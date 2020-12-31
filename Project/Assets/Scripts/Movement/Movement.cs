@@ -17,32 +17,34 @@ public class Movement : MonoBehaviour
     
     void Start()
     {
-        body = GetComponent<Rigidbody2D>();
+        body = gameObject.GetComponent<Rigidbody2D>();
     }
 
     
     void Update()
     {
-        isGrounded = Physics2D.OverlapCircle(transform.position, checkRadius, ground);
+        isGrounded = Physics2D.OverlapCircle(gameObject.transform.position, checkRadius, ground);
         moveInput = Input.GetAxis("Horizontal");
         if (!isGrounded) 
         {
             //такая-то анимация
             body.velocity = new Vector2(body.velocity.x, body.velocity.y);
         }
-        if (isGrounded)
+        //if (isGrounded)
+        else
         {
-            body.velocity = new Vector2(0, 0);
-            if (moveInput != 0)
-            {
-                body.velocity = new Vector2(moveInput * speed, 0);
-                // анимации
-            }
+            body.velocity = new Vector2(moveInput * speed, 0);
+            //if (moveInput != 0)
+            //{
+            //    body.velocity = new Vector2(moveInput * speed, 0);
+            //    // анимации
+            //}
         }
 
-        if(Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+            Debug.Log("батрачит");
         {
-            body.AddForce(transform.up, ForceMode2D.Impulse);
+            body.AddForce(transform.up*10, ForceMode2D.Impulse);
         }
         if(Input.GetKey(KeyCode.Space) && !isGrounded)
         {

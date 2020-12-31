@@ -7,7 +7,7 @@ public class TimerSlider : MonoBehaviour
 {
     Text text;
     Image slider;
-    ForBars script;
+    AllStats script;
     public string called;
     public float time;
     public float timeRemain;
@@ -17,7 +17,7 @@ public class TimerSlider : MonoBehaviour
     void Start()
     {
         GameObject obj = GameObject.Find("UIController");
-        script = obj.GetComponent<ForBars>();
+        script = obj.GetComponent<AllStats>();
         called = gameObject.transform.parent.name + "Time";
         text = gameObject.GetComponent<Text>();
         slider = gameObject.GetComponentInChildren<Image>();
@@ -33,7 +33,7 @@ public class TimerSlider : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Debug.Log("я запустился");
+        //Debug.Log("я запустился");
         timeRemain -= Time.fixedDeltaTime;
         text.text = Mathf.RoundToInt(timeRemain).ToString();
         slider.fillAmount = timeRemain / time;

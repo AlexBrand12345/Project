@@ -2,37 +2,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Escbuttons : MonoBehaviour
 {
-    public GameObject settings;
+    public GameObject loadingScene;
+    Slider loadingSlider;
+    GameObject settings;
     public GameObject panel;
+    public GameObject setts;
     public GameObject PauseMenu;
     public GameObject GOMenu;
     bool paused = false;
-    public void Restart()
+    
+    public void LoadScene(string scene)
     {
-        SceneManager.LoadScene("Arena");
+        loadingScene.SetActive(true);
+        AsyncOperation loading = SceneManager.LoadSceneAsync(scene);
+        loadingSlider.value = 1 - loading.progress;
     }
-    public void Main_Menu()
-    {
-        SceneManager.LoadScene("Main_Menu");
-    }
+    //public void Main_Menu()
+    //{
+    //    loadingScene.SetActive(true);
+    //    AsyncOperation loading = SceneManager.LoadSceneAsync("Main_Menu");
+    //    loadingSlider.value = 1 - loading.progress;
+    //}
 
     public void Settings()
     {
-        //settings = Instantiate(setts, new Vector3(0, 0, 0), panel.transform.rotation, panel);
-        if (settings.activeSelf) settings.SetActive(false);
-        else settings.SetActive(true);
+        settings = Instantiate(setts, new Vector3(0, 0, 0), panel.transform.rotation, panel.transform);
+        //if (settings.activeSelf) settings.SetActive(false);
+        //else settings.SetActive(true);
         //settings.SetActive(!settings.activeSelf);
     } 
     public void Start()
     {
-        settings.SetActive(false);
-        panel.SetActive(false);
-        GOMenu.SetActive(false);
-        PauseMenu.SetActive(false);
-
+        loadingSlider = loadingScene.GetComponentInChildren<Slider>();
     }
     private void Update()
     {
@@ -40,7 +45,7 @@ public class Escbuttons : MonoBehaviour
         {
             if (paused)
             {
-                //Destroy(settings);
+                Destroy(settings);
                 settings.SetActive(false);
                 Resume();
             }

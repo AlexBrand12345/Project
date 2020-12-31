@@ -56,13 +56,13 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Movement\Movement.cs" />
-    <Compile Include="Assets\Scripts\UIStats\!Health.cs" />
-    <Compile Include="Assets\Scripts\UIStats\ForBars.cs" />
-    <Compile Include="Assets\Scripts\UIStats\!PauseGame.cs" />
-    <Compile Include="Assets\Scripts\Esc buttons\Escbuttons.cs" />
-    <Compile Include="Assets\Scripts\Esc buttons\!LockPrefab.cs" />
     <Compile Include="Assets\Scripts\UIStats\TimerSlider.cs" />
+    <Compile Include="Assets\Scripts\Movement\Movement.cs" />
+    <Compile Include="Assets\Scripts\Esc buttons\Settings.cs" />
+    <Compile Include="Assets\Scripts\Esc buttons\Escbuttons.cs" />
+    <Compile Include="Assets\Scripts\UIStats\AllStats.cs" />
+    <Compile Include="Assets\Scripts\UpgButton\UpgButScript.cs" />
+    <Compile Include="Assets\Scripts\UpgButton\UpgFolder.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
