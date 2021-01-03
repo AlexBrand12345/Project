@@ -8,7 +8,6 @@ using UnityEngine.UI;
 
 public class AllStats : MonoBehaviour
 {
-    StatisticsDone statisticks;
     public Escbuttons esc;
     public int updLvlTime;
     public int gameOverTime;
@@ -21,7 +20,7 @@ public class AllStats : MonoBehaviour
     public Image image;
     public Text textH;
     public Text textE;
-    string child;
+    //string child;
     int damage;
     int exp;
     int curH;
@@ -32,7 +31,6 @@ public class AllStats : MonoBehaviour
 
     void Start()
     {
-        statisticks = GameObject.Find("MenuUIController").GetComponent<StatisticsDone>();
         curH = maxH;
         curE = 0;
         sliderH.maxValue = maxH;
@@ -53,7 +51,7 @@ public class AllStats : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        statisticks.timeValue += Time.deltaTime;
+        MainSave.game.timeValue += Time.deltaTime;
     }
     public void LaunchUpg(string upgName, GameObject upgrades)
     {               
@@ -103,6 +101,7 @@ public class AllStats : MonoBehaviour
         curH -= damage;
         if (curH <= 0)
         {
+            MainSave.game.deaths++;
             curH = 0;
             sliderH.value = 0;
             StartCoroutine(GameOver());

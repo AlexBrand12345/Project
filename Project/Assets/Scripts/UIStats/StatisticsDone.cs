@@ -22,9 +22,19 @@ public class StatisticsDone : MonoBehaviour
     public GameObject[] stats;
     GameObject time;
     // Start is called before the first frame update
-    void Start()
+    public void Awake()
     {
-       
+        kills = MainSave.game.kills;
+        deaths = MainSave.game.deaths;
+        heals = MainSave.game.heals;
+        exp = MainSave.game.exp;
+        rounds = MainSave.game.rounds;
+        timeValue = MainSave.game.timeValue;
+        waves = MainSave.game.waves;
+        shots = MainSave.game.shots;
+    }
+    void Start()
+    {      
             values = new List<int> { kills, deaths, heals, exp, rounds, waves, shots };
             time = stats[i].transform.parent.GetChild(7).gameObject;
             i = 0;

@@ -41,14 +41,17 @@ public class Movement : MonoBehaviour
             //}
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-            Debug.Log("батрачит");
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)        
         {
-            body.AddForce(transform.up*10, ForceMode2D.Impulse);
+
+            Debug.Log("батрачит");
+            //body.AddForce(transform.up*10, ForceMode2D.Impulse);
+            body.velocity = new Vector2(body.velocity.x, 10);
         }
         if(Input.GetKey(KeyCode.Space) && !isGrounded)
         {
-            body.AddForce(transform.up * 2, ForceMode2D.Force);
+            body.velocity = new Vector2(body.velocity.x, 2);
+            //body.AddForce(transform.up * 2, ForceMode2D.Force);
             //анимация ранца
         }
     }

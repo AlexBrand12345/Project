@@ -58,14 +58,16 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\UIStats\TimerSlider.cs" />
     <Compile Include="Assets\Scripts\Movement\Movement.cs" />
+    <Compile Include="Assets\Scripts\PlayableBut\StartMenu.cs" />
     <Compile Include="Assets\Scripts\PlayableBut\Settings.cs" />
     <Compile Include="Assets\Scripts\UpgButton\UpgFolder.cs" />
     <Compile Include="Assets\Scripts\PlayableBut\Escbuttons.cs" />
     <Compile Include="Assets\Scripts\UIStats\AllStats.cs" />
     <Compile Include="Assets\Scripts\UpgButton\UpgButScript.cs" />
+    <Compile Include="Assets\Scripts\Saves\SaveLoad.cs" />
     <Compile Include="Assets\Scripts\MenuBut\MenuBut.cs" />
-    <Compile Include="Assets\Scripts\PlayableBut\StartMenu.cs" />
     <Compile Include="Assets\Scripts\UIStats\StatisticsDone.cs" />
+    <Compile Include="Assets\Scripts\Saves\Save.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
