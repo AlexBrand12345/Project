@@ -18,6 +18,7 @@ public class MainSave
     public int rounds;
     public int waves;
     public int shots;
+    public int curSkin;
     public MainSave()
     {
         i = new int();
@@ -29,5 +30,6 @@ public class MainSave
         rounds = new int();
         waves = new int();
         shots = new int();
-}
+        curSkin = new int();
+    }
 }

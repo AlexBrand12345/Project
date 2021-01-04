@@ -14,6 +14,7 @@ public class Escbuttons : MonoBehaviour
     public GameObject PauseMenu;
     public GameObject GOMenu;
     bool paused = false;
+    bool isSets = false;
     
     public void LoadScene(string scene)
     {
@@ -35,11 +36,15 @@ public class Escbuttons : MonoBehaviour
     }
     public void Settings()
     {
-        //settings = Instantiate(setts, new Vector3(0, 0, 0), panel.transform.rotation, panel.transform);
-        settings = Instantiate(setts, new Vector3(0, 0, 0), Quaternion.Euler(0,0,0));
-        //if (settings.activeSelf) settings.SetActive(false);
-        //else settings.SetActive(true);
-        //settings.SetActive(!settings.activeSelf);
+        if (!isSets)
+        {
+            settings = Instantiate(setts, panel.transform);
+            isSets = true;
+        } else
+        {
+            Destroy(settings);
+            isSets = false;
+        }
     } 
     public void Start()
     {
@@ -52,7 +57,6 @@ public class Escbuttons : MonoBehaviour
             if (paused)
             {
                 Destroy(settings);
-                settings.SetActive(false);
                 Resume();
             }
             else Stop();
