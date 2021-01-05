@@ -2,18 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Person : Movement
+public abstract class Person : Movement
 {
     float health;
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
-    void Update()
+    protected new void Update()
     {
-        Die();
+        base.Update();
+
+        //Die();
     }
 
     void Die()

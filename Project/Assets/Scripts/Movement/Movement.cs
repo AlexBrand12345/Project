@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public abstract class Movement : MonoBehaviour
 {
+    [Header("Movement")]
     public float speed;
     public bool isGrounded;
     public bool isForward;
@@ -12,16 +13,17 @@ public class Movement : MonoBehaviour
 
     public Rigidbody2D body;
 
-    // Start is called before the first frame update
-    void Start()
-    {        
-        body = gameObject.GetComponent<Rigidbody2D>();
-    }
-    private void Update()
+    private void Awake()
     {
-        isGrounded = Physics2D.OverlapCircle(transform.position, checkRadius, ground);
+        body = GetComponent<Rigidbody2D>();
     }
-    public void Move(float moveInput)
+
+    protected virtual void Update()
+    {
+
+    }
+
+    protected void Move(float moveInput)
     {
         if (isGrounded)
         {
@@ -30,16 +32,16 @@ public class Movement : MonoBehaviour
         else Fall();
     }
 
-    public void Go(float moveInput)
+    protected void Go(float moveInput)
     {
         if(isForward) body.velocity = new Vector2(moveInput * speed, 0);
         else body.velocity = new Vector2(moveInput * speed/2, 0);
     }
-    public void Fall()
+    protected void Fall()
     {
         body.velocity = new Vector2(body.velocity.x, body.velocity.y);
     }
-    public void Jump()
+    protected void Jump()
     {
         if (isGrounded) body.velocity = new Vector2(body.velocity.x, 10);
         else body.velocity = new Vector2(body.velocity.x, 2);

@@ -57,7 +57,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\UIStats\TimerSlider.cs" />
-    <Compile Include="Assets\Scripts\Movement\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Movement\BaseEnemy.cs" />
+    <Compile Include="Assets\Scripts\Movement\Player.cs" />
     <Compile Include="Assets\Scripts\Movement\Movement.cs" />
     <Compile Include="Assets\Scripts\Shooting\Bullet.cs" />
     <Compile Include="Assets\Scripts\PlayableBut\StartMenu.cs" />
@@ -69,13 +70,14 @@
     <Compile Include="Assets\Scripts\UpgButton\UpgButScript.cs" />
     <Compile Include="Assets\Scripts\Saves\SaveLoad.cs" />
     <Compile Include="Assets\Scripts\MenuBut\MenuBut.cs" />
+    <Compile Include="Assets\Scripts\Person.cs" />
     <Compile Include="Assets\Scripts\Saves\Save.cs" />
     <Compile Include="Assets\Scripts\UIStats\StatisticsDone.cs" />
     <Compile Include="Assets\Scripts\MenuBut\ChangeSkin.cs" />
-    <Compile Include="Assets\Scripts\Person.cs" />
-    <Compile Include="Assets\Scripts\Movement\EnemyController.cs" />
+    <Compile Include="Assets\Scripts\Movement\Enemy.cs" />
   </ItemGroup>
   <ItemGroup>
+     <None Include="Assets\Scripts\ClassDiagram1.cd" />
     <Reference Include="UnityEngine">
       <HintPath>E:\UnityVersions\2020.1.17f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
