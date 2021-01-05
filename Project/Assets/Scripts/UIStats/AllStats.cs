@@ -112,27 +112,7 @@ public class AllStats : MonoBehaviour
             image.color = gradient.Evaluate(sliderH.normalizedValue);
         }
     }
-    //public void SetH(int damage, int heal)
-    //{
-    //    curH += heal * maxH / 5;
-    //    curH -= damage;
-    //    if (curH <= 0)
-    //    {
-    //        curH = 0;
-    //        sliderH.value = 0;
-    //        //StartCoroutine(GameOver());
-    //    }
-    //    else if (curH >= maxH)
-    //    {
-    //        curH = maxH;
-    //        sliderH.value = maxH;
-    //    }
-    //    else
-    //    {
-    //        sliderH.value = curH;
-    //    }
-    //    image.color = gradient.Evaluate(sliderH.normalizedValue);
-    //}    
+
     public void GainEXP()
     {
         curE += exp;
@@ -161,29 +141,15 @@ public class AllStats : MonoBehaviour
     }
     
 
-    //IEnumerator GameOver()
-    //{
-    //    GO_clone = Instantiate(GO, new Vector3(0, 0, 0), panel.transform.rotation panel);
-    //    yield return new WaitForSeconds(10);
-    //    //загрузка сцены с меню
-    //}
-    //IEnumerator UpdLvl()
-    //{
-    //    UpdWindow_Clone = Instantiate(UpdWindow, new Vector3(0, 0, 0), panel.transform.rotation panel);
-    //    yield return new WaitForSeconds(3);
-    //    Destroy(UWindow_Clone);
-    //    SetMaxE();
-    //}
     IEnumerator GameOver()
     {
-        //updLvl.SetActive(true);
+        
         gameOver.GetComponentInChildren<TimerSlider>().Begin();
         yield return new WaitForSeconds(gameOverTime);
         esc.LoadScene("Main_Menu");
     }
     IEnumerator UpdLvl()
     {
-        //updLvl.SetActive(true);
         updLvl.GetComponentInChildren<TimerSlider>().Begin();
         SetMaxE();
         yield return new WaitForSeconds(updLvlTime);
