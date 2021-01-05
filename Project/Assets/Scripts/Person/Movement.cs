@@ -10,7 +10,7 @@ public class Movement : MonoBehaviour
     public float checkRadius;
     public LayerMask ground;
 
-    Rigidbody2D body;
+    public Rigidbody2D body;
 
     // Start is called before the first frame update
     void Start()

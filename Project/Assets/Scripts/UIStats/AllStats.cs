@@ -27,31 +27,42 @@ public class AllStats : MonoBehaviour
     public int maxH;
     public int curE;
     public int maxE;
+    Player player;
     // Start is called before the first frame update
 
     void Start()
     {
-        curH = maxH;
+        player = GameObject.FindWithTag("Player").GetComponent<Player>();
         curE = 0;
-        sliderH.maxValue = maxH;
-        sliderE.maxValue = maxE;
-        sliderH.value = maxH;
+        sliderH.maxValue = player.health;
+        sliderE.maxValue = player.maxExp;
+        sliderH.value = player.maxHealth;
         sliderE.value = 0;
-        textH.text = ($"{curH}/{maxH}");
-        textE.text = ($"{curE}/{maxE}");
+        textH.text = ($"{player.health}/{player.maxHealth}");
+        textE.text = ($"{curE}/{player.maxExp}");
         image.color = gradient.Evaluate(1f);
-        updLvl.SetActive(false);
     }
     void Update()
     {
-        textH.text = ($"{curH}/{maxH}");
-        textE.text = ($"{curE}/{maxE}");
-        //Debug
-        GainEXP();
+        textH.text = ($"{player.health}/{player.maxHealth}");
+        textE.text = ($"{curE}/{player.maxExp}");
     }
     private void FixedUpdate()
     {
         MainSave.game.timeValue += Time.deltaTime;
+
+        sliderH.maxValue = player.maxHealth;
+        sliderH.value = player.health;
+        if (player.health == 0) StartCoroutine(GameOver());
+        image.color = gradient.Evaluate(sliderH.normalizedValue);
+
+        sliderE.maxValue = player.maxExp;
+        sliderE.value = player.exp;
+        if(player.exp == player.maxExp)
+        {
+            player.exp = 0;
+            StartCoroutine(UpdLvl());
+        }
     }
     public void LaunchUpg(string upgName, GameObject upgrades)
     {               
@@ -75,63 +86,22 @@ public class AllStats : MonoBehaviour
 
     public void PlusEXP()
     {
-        exp++;
+        player.exp++;
     }
     public void PlusDMG()
     {
-        damage = damage * 3 / 2;
+        player.baseDMG = player.baseDMG * 3 / 2;
+        //damage = damage * 3 / 2;
     }
     public void PlusHP()
     {
-        maxH = maxH * 3 / 2;
-        curH = maxH;
-        textH.text = ($"{curH}/{maxH}");
-        sliderH.maxValue = maxH;
-        sliderH.value = curH;
+        player.maxHealth = player.maxHealth * 3 / 2;
+        player.health = player.maxHealth;
     }
-    public void Heal(int heal)
-    {
-        curH += heal;
-        if (curH >= maxH) curH = maxH;
-        sliderH.value = curH;
-        image.color = gradient.Evaluate(sliderH.normalizedValue);
-    }
-    public void Damage(int damage)
-    {
-        curH -= damage;
-        if (curH <= 0)
-        {
-            MainSave.game.deaths++;
-            curH = 0;
-            sliderH.value = 0;
-            StartCoroutine(GameOver());
-        }
-        else
-        {
-            sliderH.value = curH;
-            image.color = gradient.Evaluate(sliderH.normalizedValue);
-        }
-    }
-
-    public void GainEXP()
-    {
-        curE += exp;
-        if (curE >= maxE)
-        {
-            curE = maxE;
-            //if (!Wave)
-            //{
-                  StartCoroutine(UpdLvl());              
-            //}
-        }
-        sliderE.value = curE;
-    }
-
     public void SetMaxE()
     {
-        maxE = maxE * 3 / 2;
-        curE = 0;
-        sliderE.value = curE;
+        player.maxExp = player.maxExp * 3 / 2;
+        player.exp = 0;
     }
     public int time(string Name)
     {
@@ -139,8 +109,6 @@ public class AllStats : MonoBehaviour
         else return gameOverTime;
         
     }
-    
-
     IEnumerator GameOver()
     {
         

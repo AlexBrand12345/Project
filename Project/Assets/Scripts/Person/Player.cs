@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : Movement
+public class Player : Person
 {
-    public float health;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int maxHealth;
+    public int maxExp;
+    public int gainExp = 1;
+    public int exp;
 
-    public void TakeDamage(int damage)
+    public void Heal(int heal)
     {
-        health -= damage;
-        if (health <= 0) Die();
+        health += heal;
+        if (health >= maxHealth) health = maxHealth;       
     }
-    public void Die()
+    //TakeDamage уже есть у бати
+    public void GainExp()
     {
-        if (tag != "Player") Destroy(gameObject);
+        exp += gainExp;
+        if (exp > maxExp) exp = maxExp; 
     }
 }

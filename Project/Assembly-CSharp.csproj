@@ -71,8 +71,11 @@
     <Compile Include="Assets\Scripts\MenuBut\MenuBut.cs" />
     <Compile Include="Assets\Scripts\Saves\Save.cs" />
     <Compile Include="Assets\Scripts\UIStats\StatisticsDone.cs" />
+    <Compile Include="Assets\Scripts\Person\Person.cs" />
     <Compile Include="Assets\Scripts\MenuBut\ChangeSkin.cs" />
+    <Compile Include="Assets\Scripts\Enemies\EnemyController.cs" />
     <Compile Include="Assets\Scripts\Person\Player.cs" />
+    <Compile Include="Assets\Scripts\Shooting\Guns.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
