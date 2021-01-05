@@ -4,52 +4,45 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    float moveInput;
-
-
     public float speed;
     public bool isGrounded;
+    public bool isForward;
     public float checkRadius;
     public LayerMask ground;
-    //public Transform checkPosition;
 
     Rigidbody2D body;
-    
+
+    // Start is called before the first frame update
     void Start()
-    {
+    {        
         body = gameObject.GetComponent<Rigidbody2D>();
     }
-
-    
-    void Update()
+    private void Update()
     {
-        isGrounded = Physics2D.OverlapCircle(gameObject.transform.position, checkRadius, ground);
-        moveInput = Input.GetAxis("Horizontal");
-        if (!isGrounded) 
-        {
-            //такая-то анимация
-            body.velocity = new Vector2(body.velocity.x, body.velocity.y);
-        }
-        //if (isGrounded)
-        else
-        {
-            body.velocity = new Vector2(moveInput * speed, 0);
-            //if (moveInput != 0)
-            //{
-            //    body.velocity = new Vector2(moveInput * speed, 0);
-            //    // анимации
-            //}
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-            Debug.Log("батрачит");
-        {
-            body.AddForce(transform.up*10, ForceMode2D.Impulse);
-        }
-        if(Input.GetKey(KeyCode.Space) && !isGrounded)
-        {
-            body.AddForce(transform.up * 2, ForceMode2D.Force);
-            //анимация ранца
-        }
+        isGrounded = Physics2D.OverlapCircle(transform.position, checkRadius, ground);
     }
+    public void Move(float moveInput)
+    {
+        if (isGrounded)
+        {
+            Go(moveInput);
+        }
+        else Fall();
+    }
+
+    public void Go(float moveInput)
+    {
+        if(isForward) body.velocity = new Vector2(moveInput * speed, 0);
+        else body.velocity = new Vector2(moveInput * speed/2, 0);
+    }
+    public void Fall()
+    {
+        body.velocity = new Vector2(body.velocity.x, body.velocity.y);
+    }
+    public void Jump()
+    {
+        if (isGrounded) body.velocity = new Vector2(body.velocity.x, 10);
+        else body.velocity = new Vector2(body.velocity.x, 2);
+    }
+    
 }

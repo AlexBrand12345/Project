@@ -20,8 +20,7 @@ public class AllStats : MonoBehaviour
     public Image image;
     public Text textH;
     public Text textE;
-    string child;
-    int explvl = 1;
+    //string child;
     int damage;
     int exp;
     int curH;
@@ -31,7 +30,7 @@ public class AllStats : MonoBehaviour
     // Start is called before the first frame update
 
     void Start()
-    {      
+    {
         curH = maxH;
         curE = 0;
         sliderH.maxValue = maxH;
@@ -49,6 +48,10 @@ public class AllStats : MonoBehaviour
         textE.text = ($"{curE}/{maxE}");
         //Debug
         GainEXP();
+    }
+    private void FixedUpdate()
+    {
+        MainSave.game.timeValue += Time.deltaTime;
     }
     public void LaunchUpg(string upgName, GameObject upgrades)
     {               
@@ -98,6 +101,7 @@ public class AllStats : MonoBehaviour
         curH -= damage;
         if (curH <= 0)
         {
+            MainSave.game.deaths++;
             curH = 0;
             sliderH.value = 0;
             StartCoroutine(GameOver());
