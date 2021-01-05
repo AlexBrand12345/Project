@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public abstract class Movement : MonoBehaviour
 {
     public float speed;
     public bool isGrounded;
@@ -13,8 +13,12 @@ public class Movement : MonoBehaviour
     public Rigidbody2D body;
 
     // Start is called before the first frame update
-    void Start()
-    {        
+    //void Start()
+    //{        
+    //    body = gameObject.GetComponentInChildren<Rigidbody2D>();
+    //}
+    public void Awake()
+    {       
         body = gameObject.GetComponent<Rigidbody2D>();
     }
     private void Update()

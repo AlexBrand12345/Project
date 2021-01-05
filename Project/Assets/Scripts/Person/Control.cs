@@ -6,13 +6,13 @@ public class Control : MonoBehaviour
 {
     float moveInput;
     Movement move;
+    Hands hands;
     
     void Start()
     {    
         move = GetComponent<Movement>();
-    }
-
-    
+        hands = GetComponentInChildren<Hands>();
+    }   
     void Update()
     {
         
@@ -23,5 +23,6 @@ public class Control : MonoBehaviour
         {
             move.Jump();
         }
+        if (Input.GetMouseButtonDown(0)) hands.Shoot();
     }
 }

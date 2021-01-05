@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : Person
 {
     [Header("Set In Inspector")]
     public float speedRange;
@@ -13,7 +13,7 @@ public class EnemyController : MonoBehaviour
 
     int moveInput;
     Movement move;
-    Weapon228 weapon;
+    Hands weapon;
     RectTransform rect;
 
     Coroutine shootingCoroutine;

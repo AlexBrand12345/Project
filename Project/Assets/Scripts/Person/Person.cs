@@ -3,12 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Person : Movement
+public abstract class Person : Movement
 {
+    [Header("Статы")]
     public int health;
-    public int baseDMG;
-
-
+    private void Start()
+    {
+        
+    }
+    
     public void TakeDamage(int damage)
     {
         health -= damage;
@@ -18,8 +21,8 @@ public class Person : Movement
             Die(); 
         }
     }
-    public void Die()
+    public virtual void Die()
     {
-        if (tag != "Player") Destroy(gameObject);
+        Destroy(gameObject);
     }
 }

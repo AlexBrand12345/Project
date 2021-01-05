@@ -18,7 +18,7 @@ public class ChangeSkin : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        i = MainSave.game.curSkin;
+        i = MainSave.save.curSkin;
         contentRect = GetComponent<RectTransform>();
         contentRect.anchoredPosition = new Vector2(-skins[i].transform.localPosition.x, 0);
         
@@ -34,13 +34,13 @@ public class ChangeSkin : MonoBehaviour
     public void NextSkin()
     {
         i++;
-        MainSave.game.curSkin = i;
+        MainSave.save.curSkin = i;
        
     }
     public void PrevSkin()
     {
         i--;
-        MainSave.game.curSkin = i;
+        MainSave.save.curSkin = i;
        
     }
 }
