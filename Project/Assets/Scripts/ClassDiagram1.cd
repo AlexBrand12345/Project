@@ -3,36 +3,36 @@
   <Class Name="BaseEnemy">
     <Position X="15.25" Y="3" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAQAgAIAAAACIAICDAAAGAABQAAgAACAAEA=</HashCode>
-      <FileName>Assets\Scripts\Movement\BaseEnemy.cs</FileName>
+      <HashCode>AAQAAAAAAAQAgAYAAAAAAAICCAAAGAABQAFgAICAAEA=</HashCode>
+      <FileName>Assets\Scripts\Person\BaseEnemy.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Movement">
     <Position X="10.75" Y="0.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAQAAAAAoAAAAAAAAABAAgAEQAAAQAMAAAAAAAAAEA=</HashCode>
-      <FileName>Assets\Scripts\Movement\Movement.cs</FileName>
+      <HashCode>AAQQAAAAAoAAAAAAAAABIAgAEQAAAQAMAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Person\Movement.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Person">
     <Position X="11" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAACAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
-      <FileName>Assets\Scripts\Person.cs</FileName>
+      <HashCode>AAAAAAAAACAAAAAgAAAAAAAAAAAAAAAAAAAAgAAAAEg=</HashCode>
+      <FileName>Assets\Scripts\Person\Person.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Player">
     <Position X="6.75" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\Scripts\Movement\Player.cs</FileName>
+      <HashCode>AAQAAAAIAAIQAACAAAgAAAAAAAAACAAIAAAEwCAAAsg=</HashCode>
+      <FileName>Assets\Scripts\Person\Player.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Enemy">
     <Position X="18.5" Y="8.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\Scripts\Movement\Enemy.cs</FileName>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Person\Enemy.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

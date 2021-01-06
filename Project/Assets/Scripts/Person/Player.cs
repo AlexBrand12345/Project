@@ -4,16 +4,10 @@ using UnityEngine;
 
 public sealed class Player : Person
 {
-    public int maxHealth;
     public int baseDMG;
     public int exp;
     public int maxExp;
     public int gainExp = 1;
-    //int maxHealth;
-    //int health;
-    //int baseDMG;
-    //int exp;
-    //int maxExp;
 
     public float moveInput;
     private Hands hands;
