@@ -20,15 +20,8 @@ public abstract class Person : Movement
     {
         base.Update();
     }
-<<<<<<< HEAD
-    protected new void Update()
-    {
-        base.Update();
-    }
-    
-=======
 
->>>>>>> XSpirit
+    
     public void TakeDamage(int damage)
     {
         health -= damage;

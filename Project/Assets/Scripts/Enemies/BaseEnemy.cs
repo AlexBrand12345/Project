@@ -13,30 +13,16 @@ public abstract class BaseEnemy : Person
     public float jumpDistance; //дистанция до прыжка
     public int moveInput = 1;
 
-<<<<<<< HEAD:Project/Assets/Scripts/Enemies/BaseEnemy.cs
-    //protected GameObject player;
-
-=======
->>>>>>> XSpirit:Project/Assets/Scripts/Person/BaseEnemy.cs
     private bool isFalling;
 
     //Movement move;
     Weapon weapon;
 
     Coroutine shootingCoroutine;
-<<<<<<< HEAD:Project/Assets/Scripts/Enemies/BaseEnemy.cs
-    
-    protected new void Awake()
-    {
-        base.Awake();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-=======
-    protected Player player;
 
     protected new void Awake()
     {
         base.Awake();
->>>>>>> XSpirit:Project/Assets/Scripts/Person/BaseEnemy.cs
         StartCoroutine(ChangeSpeedAndDirectionPerTime(timeRange));
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
     }
@@ -44,10 +30,7 @@ public abstract class BaseEnemy : Person
     protected new void Update()
     {
         base.Update();
-<<<<<<< HEAD:Project/Assets/Scripts/Enemies/BaseEnemy.cs
        //Debug.Log(rect.rect.yMin);
-=======
->>>>>>> XSpirit:Project/Assets/Scripts/Person/BaseEnemy.cs
 
         //Поворот
         if (moveInput < 0) transform.rotation = Quaternion.Euler(0, 180, 0);
@@ -59,10 +42,9 @@ public abstract class BaseEnemy : Person
         //Разворот от препядствия
         if (CheckLet()) ChangeSpeedAndDirection(moveInput);
 
-<<<<<<< HEAD:Project/Assets/Scripts/Enemies/BaseEnemy.cs
+
         //Debug.Log(CheckAbyss());
-=======
->>>>>>> XSpirit:Project/Assets/Scripts/Person/BaseEnemy.cs
+
         //Прыжок над пропастью
         if (CheckAbyss() & !isFalling) Jump();
         if (!isGrounded & CanLand()) { Fall(); isFalling = true; }
