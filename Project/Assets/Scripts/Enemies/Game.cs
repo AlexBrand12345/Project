@@ -5,7 +5,7 @@ using UnityEngine;
 public class Game : MonoBehaviour
 {
     public int waves;
-
+   // public List<Sprite> sprites;
     public static Game game = new Game();
 
     public int pistolDMG;
@@ -23,23 +23,43 @@ public class Game : MonoBehaviour
     public int autogunbspeed;
     public int riflebspeed;
 
-    public int pistolAmmo = 7;
-    public int tommyAmmo = 15;
-    public int autogunAmmo = 30;
-    public int rifleAmmo = 5;
+    public int pistolAmmo;
+    public int tommyAmmo;
+    public int autogunAmmo;
+    public int rifleAmmo;
 
-    public int extraHP;
-    public int extraDMG;
-    public int extrabspeed;
-    //public float fasterReload;
+    public int extraHP = 0;
+    public int extraDMG = 0;
+    public int extrabspeed = 0;
+
     public Game()
     {
         extraHP = new int();
         extraDMG = new int();
         extrabspeed = new int();
-        //fasterReload = new float();
-    }
-    void FixedUpdate()
+
+        pistolDMG = new int();
+        tommyDMG = new int();
+        autogunDMG = new int();
+        rifleDMG = new int();
+
+        pistolHP = new int();
+        tommyHP = new int();
+        autogunHP = new int();
+        rifleHP = new int();
+
+        pistolbspeed = new int();
+        tommybspeed = new int();
+        autogunbspeed = new int();
+        riflebspeed = new int();
+
+        pistolAmmo = new int();
+        tommyAmmo = new int();
+        autogunAmmo = new int();
+        rifleAmmo = new int();
+
+}
+public void FixedUpdate()
     {
         MainSave.save.timeValue += Time.deltaTime;
     }

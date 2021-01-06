@@ -11,6 +11,7 @@ public class AllStats : MonoBehaviour
     public Escbuttons esc;
     public int updLvlTime;
     public int gameOverTime;
+    public int startGameOverTime;
     public GameObject gameOver;
     public GameObject updLvl;
     public GameObject panel;
@@ -24,7 +25,7 @@ public class AllStats : MonoBehaviour
     Player player;
     // Start is called before the first frame update
 
-    void Start()
+    public void Start()
     {
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
         sliderH.maxValue = player.health;
@@ -35,16 +36,16 @@ public class AllStats : MonoBehaviour
         textE.text = ($"{player.exp}/{player.maxExp}");
         image.color = gradient.Evaluate(1f);
     }
-    void Update()
+    public void Update()
     {
         textH.text = ($"{player.health}/{player.maxHealth}");
         textE.text = ($"{player.exp}/{player.maxExp}");
     }
-    private void FixedUpdate()
+    public void FixedUpdate()
     {
         sliderH.maxValue = player.maxHealth;
         sliderH.value = player.health;
-        if (player.health == 0) StartCoroutine(GameOver());
+        if (player.health == 0) StartCoroutine(StartGameOver());
         image.color = gradient.Evaluate(sliderH.normalizedValue);
 
         sliderE.maxValue = player.maxExp;
@@ -61,20 +62,28 @@ public class AllStats : MonoBehaviour
         else return gameOverTime;
         
     }
+    IEnumerator StartGameOver()
+    {
+        yield return new WaitForSeconds(startGameOverTime);
+        StartCoroutine(GameOver());
+    }
     IEnumerator GameOver()
     {
-        
+        player.canShoot = false;
         gameOver.GetComponentInChildren<TimerSlider>().Begin();
         yield return new WaitForSeconds(gameOverTime);
+        player.canShoot = true;
         esc.LoadScene("Main_Menu");
     }
     IEnumerator UpdLvl()
     {
+        player.canShoot = false;
         updLvl.GetComponentInChildren<TimerSlider>().Begin();
         player.SetMaxExp();
         yield return new WaitForSeconds(updLvlTime);
         updLvl.SetActive(false);
-        
+        player.canShoot = true;
+
     }
   
 

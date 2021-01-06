@@ -4,11 +4,17 @@ using UnityEngine;
 
 public sealed class Player : Person
 {
-    public int maxHealth;
-    public int baseDMG;
-    public int exp;
+    int index;
+    public bool canShoot = true;
+    public float DMGmod = 1f;
+    public int ammo;
+    public int bspeed;
     public int maxExp;
+    public int exp;
     public int gainExp = 1;
+    SpriteRenderer sprite;
+    public List<Sprite> sprites;
+    public List<Sprite> hands;
     //int maxHealth;
     //int health;
     //int baseDMG;
@@ -16,24 +22,41 @@ public sealed class Player : Person
     //int maxExp;
 
     public float moveInput;
-    private Hands hands;
+    [SerializeField]
+    public Hands hand;
 
     private new void Awake()
     {
         base.Awake();
-        hands = GetComponentInChildren<Hands>();
+        hand = GetComponentInChildren<Hands>();
+        sprite = GetComponent<SpriteRenderer>();
+        //sprite.sprite = sprites[MainSave.save.curSkin];
+        //hand.gameObject.GetComponent<SpriteRenderer>().sprite = hands[MainSave.save.curSkin];
     }
     private new void Update()
     {
-        base.Update();
-        moveInput = Input.GetAxis("Horizontal");
-        Move(moveInput);
-
-        if (Input.GetKey(KeyCode.Space))
+        if (canShoot)
         {
-            Jump();
+            base.Update();
+            moveInput = Input.GetAxis("Horizontal");
+            Move(moveInput);
+
+            if (Input.GetKey(KeyCode.Space))
+            {
+                Jump();
+            }
+            if (Input.GetMouseButtonDown(0)) hand.Shoot();
+
+            if (Input.GetKeyDown(KeyCode.F)) index = 0;
+            else if (Input.GetKeyDown(KeyCode.Alpha1)) index = 1;
+            else if (Input.GetKeyDown(KeyCode.Alpha2)) index = 2;
+            else if (Input.GetKeyDown(KeyCode.Alpha3)) index = 3;
+            hand.SwitchWeapon(index);
         }
-        if (Input.GetMouseButtonDown(0)) hands.Shoot();
+    }
+    public override void Die()
+    {
+        body.gravityScale -= 3 * body.gravityScale;
     }
 
     public void Heal(int heal)
@@ -73,7 +96,11 @@ public sealed class Player : Person
     }
     public void PlusDMG()
     {
-        baseDMG = baseDMG * 3 / 2;
+        DMGmod *= Random.Range(1.1f, 1.5f);
+        foreach(GameObject weapon in hand.guns)
+        {
+            weapon.GetComponent<Weapon>().UpdateDMG(DMGmod);
+        }
     }
     public void PlusHP()
     {

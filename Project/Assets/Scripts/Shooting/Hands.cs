@@ -10,36 +10,33 @@ public class Hands : MonoBehaviour
     private float ShotTime;
     public float StartTime;
 
-    public GameObject bullet;
-    public GameObject effect;
-    public Transform bulletPosition;
-    public List<Sprite> sprites;
+    //public GameObject bullet;
+    //public GameObject effect;
+    //public Transform bulletPosition;
+    //public List<Sprite> sprites;
+    public List<GameObject> guns;
     GameObject batka;
-    GameObject child;
-    SpriteRenderer sprite;
+    GameObject gun;
+    //SpriteRenderer sprite;
     Player player;
-
+    Weapon weapon;
 
     private void Awake()
     {
         batka = transform.parent.gameObject;
-        sprite = transform.parent.GetComponent<SpriteRenderer>();
+        //sprite = transform.parent.GetComponent<SpriteRenderer>();
         player = transform.parent.GetComponent<Player>();
     }    
     private void Start()
     {
         //спавн оружия
+        gun = guns[0];
+        weapon = gun.GetComponent<Weapon>();
+        gun.SetActive(true);
     }
 
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.F)) index = 0;
-        //else if (Input.GetKeyDown(KeyCode.Alpha1)) index = 1;
-        //else if (Input.GetKeyDown(KeyCode.Alpha2)) index = 2;
-        //else if (Input.GetKeyDown(KeyCode.Alpha3)) index = 3;
-        ////gun = guns[index];
-        //sprite.sprite = sprites[index]; 
-
         Vector3 mousePos = Input.mousePosition;
         Vector3 gunPosition = Camera.main.WorldToScreenPoint(transform.position);
 
@@ -64,20 +61,21 @@ public class Hands : MonoBehaviour
             if (Input.GetAxis("Horizontal") > 0) player.isForward = true;
             else player.isForward = false;
         }
-        
+        transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, gunAngle));
     }
 
     public void Shoot()
     {
-        Instantiate(bullet, bulletPosition.position, transform.rotation);
+        StartCoroutine(weapon.Shoot());
     }
-    //void SwitchWeapon()
-    //{
-        //if (Input.GetKeyDown(KeyCode.F)) index = 0;
-        //else if (Input.GetKeyDown(KeyCode.Alpha1)) index = 1;
-        //else if (Input.GetKeyDown(KeyCode.Alpha2)) index = 2;
-        //else if (Input.GetKeyDown(KeyCode.Alpha3)) index = 3;
-        //gun = guns[index];
-        //sprite.sprite = sprites[index];
-    //}
+    public void SwitchWeapon(int index)
+    {
+        if (gun != guns[index])
+        {
+            gun.SetActive(false);
+            gun = guns[index];
+            weapon = gun.GetComponent<Weapon>();
+            gun.SetActive(true);
+        }
+    }
 }

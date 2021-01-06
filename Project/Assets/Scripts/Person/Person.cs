@@ -7,6 +7,7 @@ public abstract class Person : Movement
 {
     [Header("Статы")]
     public int health;
+    public int maxHealth;
 
     protected new void Awake()
     {
@@ -15,6 +16,10 @@ public abstract class Person : Movement
     private void Start()
     {
         
+    }
+    protected new void Update()
+    {
+        base.Update();
     }
     
     public void TakeDamage(int damage)
@@ -27,7 +32,7 @@ public abstract class Person : Movement
         }
     }
     public virtual void Die()
-    {
+    { 
         Destroy(gameObject);
     }
 }
