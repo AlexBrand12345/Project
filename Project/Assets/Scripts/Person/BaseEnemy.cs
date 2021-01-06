@@ -5,7 +5,8 @@ using UnityEngine;
 public abstract class BaseEnemy : Person
 {
     [Header("BaseEnemy")]
-    public float speedRange;
+    public float minSpeed = 1;
+    public float maxSpeed = 3;
     public float timeRange;
     public float rotationDistance; //дистанция до стены перед разворотом
     public float jumpDistance; //дистанция до прыжка
@@ -16,7 +17,7 @@ public abstract class BaseEnemy : Person
     private bool isFalling;
 
     //Movement move;
-    Weapon228 weapon;
+    Weapon weapon;
     RectTransform rect;
 
     Coroutine shootingCoroutine;
@@ -75,12 +76,12 @@ public abstract class BaseEnemy : Person
     void ChangeSpeedAndDirection()
     {
         moveInput = Random.Range(-1, 1);
-        speed = Random.Range(0, speedRange);
+        speed = Random.Range(minSpeed, maxSpeed);
     }
     void ChangeSpeedAndDirection(int direction)
     {
         moveInput = direction * -1;
-        speed = Random.Range(0, speedRange);
+        speed = Random.Range(minSpeed, maxSpeed);
     }
 
     bool SearchPlayer()

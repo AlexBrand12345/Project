@@ -71,7 +71,7 @@ public class AllStats : MonoBehaviour
     IEnumerator UpdLvl()
     {
         updLvl.GetComponentInChildren<TimerSlider>().Begin();
-        player.SetMaxE();
+        player.SetMaxExp();
         yield return new WaitForSeconds(updLvlTime);
         updLvl.SetActive(false);
         

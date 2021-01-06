@@ -57,24 +57,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\UIStats\TimerSlider.cs" />
-    <Compile Include="Assets\Scripts\Movement\BaseEnemy.cs" />
-    <Compile Include="Assets\Scripts\Movement\Player.cs" />
-    <Compile Include="Assets\Scripts\Movement\Movement.cs" />
+    <Compile Include="Assets\Scripts\Person\BaseEnemy.cs" />
+    <Compile Include="Assets\Scripts\Shooting\Weapon.cs" />
     <Compile Include="Assets\Scripts\Shooting\Bullet.cs" />
     <Compile Include="Assets\Scripts\PlayableBut\StartMenu.cs" />
+    <Compile Include="Assets\Scripts\Person\Enemy.cs" />
     <Compile Include="Assets\Scripts\PlayableBut\Settings.cs" />
+    <Compile Include="Assets\Scripts\Person\Player.cs" />
     <Compile Include="Assets\Scripts\UpgButton\UpgFolder.cs" />
     <Compile Include="Assets\Scripts\PlayableBut\Escbuttons.cs" />
-    <Compile Include="Assets\Scripts\Shooting\Weapon228.cs" />
+    <Compile Include="Assets\Scripts\Person\Movement.cs" />
     <Compile Include="Assets\Scripts\UIStats\AllStats.cs" />
+    <Compile Include="Assets\Scripts\Enemies\Game.cs" />
+    <Compile Include="Assets\Scripts\Shooting\Hands.cs" />
     <Compile Include="Assets\Scripts\UpgButton\UpgButScript.cs" />
     <Compile Include="Assets\Scripts\Saves\SaveLoad.cs" />
     <Compile Include="Assets\Scripts\MenuBut\MenuBut.cs" />
-    <Compile Include="Assets\Scripts\Person.cs" />
+    <Compile Include="Assets\Scripts\Person\Person.cs" />
     <Compile Include="Assets\Scripts\Saves\Save.cs" />
     <Compile Include="Assets\Scripts\UIStats\StatisticsDone.cs" />
     <Compile Include="Assets\Scripts\MenuBut\ChangeSkin.cs" />
-    <Compile Include="Assets\Scripts\Movement\Enemy.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Scripts\ClassDiagram1.cd" />
