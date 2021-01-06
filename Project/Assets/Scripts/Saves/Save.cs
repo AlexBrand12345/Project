@@ -8,7 +8,7 @@ using UnityEngine;
 [System.Serializable]
 public class MainSave
 {
-    public static MainSave game = new MainSave();
+    public static MainSave save = new MainSave();
     public int i;
     public int kills;
     public int deaths;

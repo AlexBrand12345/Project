@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class UpgButScript : MonoBehaviour
 {
-    public AllStats stats;
+    public Player player;
     public List<GameObject> Upgrades;
     GameObject upg;
     //public string upgName;
@@ -20,6 +20,6 @@ public class UpgButScript : MonoBehaviour
     }
     public void GetUpgName()
     {
-        stats.LaunchUpg(upg.name, gameObject.transform.parent.gameObject);
+        player.LaunchUpg(upg.name, gameObject.transform.parent.gameObject);
     }
 }

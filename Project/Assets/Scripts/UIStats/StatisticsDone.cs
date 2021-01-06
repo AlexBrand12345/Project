@@ -24,14 +24,14 @@ public class StatisticsDone : MonoBehaviour
     // Start is called before the first frame update
     public void Awake()
     {
-        kills = MainSave.game.kills;
-        deaths = MainSave.game.deaths;
-        heals = MainSave.game.heals;
-        exp = MainSave.game.exp;
-        rounds = MainSave.game.rounds;
-        timeValue = MainSave.game.timeValue;
-        waves = MainSave.game.waves;
-        shots = MainSave.game.shots;
+        kills = MainSave.save.kills;
+        deaths = MainSave.save.deaths;
+        heals = MainSave.save.heals;
+        exp = MainSave.save.exp;
+        rounds = MainSave.save.rounds;
+        timeValue = MainSave.save.timeValue;
+        waves = MainSave.save.waves;
+        shots = MainSave.save.shots;
     }
     void Start()
     {      

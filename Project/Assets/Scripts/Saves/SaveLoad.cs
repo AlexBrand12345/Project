@@ -11,7 +11,7 @@ public static class SaveLoad
     {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/save.gd");
-        bf.Serialize(file, MainSave.game);
+        bf.Serialize(file, MainSave.save);
         file.Close();
     }
 
@@ -21,7 +21,7 @@ public static class SaveLoad
         {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/save.gd", FileMode.Open);
-            MainSave.game = (MainSave)bf.Deserialize(file);
+            MainSave.save = (MainSave)bf.Deserialize(file);
             file.Close();
             return true;
         }
