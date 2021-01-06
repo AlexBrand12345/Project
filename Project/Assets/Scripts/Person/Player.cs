@@ -4,14 +4,20 @@ using UnityEngine;
 
 public sealed class Player : Person
 {
+<<<<<<< HEAD
     int index;
     public bool canShoot = true;
     public float DMGmod = 1f;
     public int ammo;
     public int bspeed;
+=======
+    public int baseDMG;
+    public int exp;
+>>>>>>> XSpirit
     public int maxExp;
     public int exp;
     public int gainExp = 1;
+<<<<<<< HEAD
     SpriteRenderer sprite;
     public List<Sprite> sprites;
     public List<Sprite> hands;
@@ -20,6 +26,8 @@ public sealed class Player : Person
     //int baseDMG;
     //int exp;
     //int maxExp;
+=======
+>>>>>>> XSpirit
 
     public float moveInput;
     [SerializeField]

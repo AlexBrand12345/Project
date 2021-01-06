@@ -1,11 +1,10 @@
-﻿
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Person : Movement
 {
-    [Header("Статы")]
+    [Header("Stats")]
     public int health;
     public int maxHealth;
 
@@ -15,20 +14,28 @@ public abstract class Person : Movement
     }
     private void Start()
     {
-        
+
     }
     protected new void Update()
     {
         base.Update();
     }
+<<<<<<< HEAD
+    protected new void Update()
+    {
+        base.Update();
+    }
     
+=======
+
+>>>>>>> XSpirit
     public void TakeDamage(int damage)
     {
         health -= damage;
         if (health <= 0)
         {
             health = 0;
-            Die(); 
+            Die();
         }
     }
     public virtual void Die()

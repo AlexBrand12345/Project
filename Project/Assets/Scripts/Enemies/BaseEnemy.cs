@@ -13,51 +13,66 @@ public abstract class BaseEnemy : Person
     public float jumpDistance; //дистанция до прыжка
     public int moveInput = 1;
 
+<<<<<<< HEAD:Project/Assets/Scripts/Enemies/BaseEnemy.cs
     //protected GameObject player;
 
+=======
+>>>>>>> XSpirit:Project/Assets/Scripts/Person/BaseEnemy.cs
     private bool isFalling;
 
     //Movement move;
     Weapon weapon;
 
     Coroutine shootingCoroutine;
+<<<<<<< HEAD:Project/Assets/Scripts/Enemies/BaseEnemy.cs
     
     protected new void Awake()
     {
         base.Awake();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+=======
+    protected Player player;
+
+    protected new void Awake()
+    {
+        base.Awake();
+>>>>>>> XSpirit:Project/Assets/Scripts/Person/BaseEnemy.cs
         StartCoroutine(ChangeSpeedAndDirectionPerTime(timeRange));
+        player = GameObject.FindWithTag("Player").GetComponent<Player>();
     }
 
     protected new void Update()
     {
         base.Update();
+<<<<<<< HEAD:Project/Assets/Scripts/Enemies/BaseEnemy.cs
        //Debug.Log(rect.rect.yMin);
+=======
+>>>>>>> XSpirit:Project/Assets/Scripts/Person/BaseEnemy.cs
 
-        if (moveInput == -moveInput) transform.rotation = Quaternion.Euler(0, 180, 0);
+        //Поворот
+        if (moveInput < 0) transform.rotation = Quaternion.Euler(0, 180, 0);
+        if (moveInput > 0) transform.rotation = Quaternion.Euler(0, 0, 0);
+
         //Движение
         Move(moveInput);
 
         //Разворот от препядствия
         if (CheckLet()) ChangeSpeedAndDirection(moveInput);
 
+<<<<<<< HEAD:Project/Assets/Scripts/Enemies/BaseEnemy.cs
         //Debug.Log(CheckAbyss());
+=======
+>>>>>>> XSpirit:Project/Assets/Scripts/Person/BaseEnemy.cs
         //Прыжок над пропастью
-        if (CheckAbyss())
-        {
-            if (!isFalling) Jump();
-            if (CanLand())
-            {
-                isFalling = true;
-                Fall();
-            }
-        }
-        if (isGrounded) isFalling = false;
+        if (CheckAbyss() & !isFalling) Jump();
+        if (!isGrounded & CanLand()) { Fall(); isFalling = true; }
+        if (isGrounded | !CanLand()) isFalling = false;
 
         //Стрельба
+        Debug.Log(SearchPlayer());
         if (shootingCoroutine == null)
         {
-            if (SearchPlayer()) shootingCoroutine = StartCoroutine(weapon.Shoot());
+            if (SearchPlayer()) shootingCoroutine = StartCoroutine(weapon.Shoot()); 
         }
         else if (!SearchPlayer())
         {
@@ -76,7 +91,7 @@ public abstract class BaseEnemy : Person
 
     void ChangeSpeedAndDirection()
     {
-        moveInput = Random.Range(-1, 1);
+        moveInput = Random.Range(-1, 2);
         speed = Random.Range(minSpeed, maxSpeed);
     }
     void ChangeSpeedAndDirection(int direction)
@@ -88,10 +103,22 @@ public abstract class BaseEnemy : Person
     bool SearchPlayer()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.forward);
+        if (hit.rigidbody != null)
+        {   
+            if (hit.rigidbody.gameObject == player.gameObject)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
+    bool SearchPlayerInstantly()
+    {
+        RaycastHit2D hit = Physics2D.Linecast(transform.position, player.transform.position);
         if (hit.rigidbody != null)
         {
-            if (hit.rigidbody.gameObject == player)
+            if (hit.rigidbody.gameObject == player.gameObject)
             {
                 return true;
             }
@@ -137,7 +164,6 @@ public abstract class BaseEnemy : Person
         else if (body.velocity.x < 0)
         {
             Vector2 origin = rect.position;
-            Debug.Log(origin.y);
             origin.x -= rect.rect.width / 2 - jumpDistance;
             origin.y -= rect.rect.height / 2;
             RaycastHit2D hit = Physics2D.Raycast(origin, origin - Vector2.up);
@@ -158,36 +184,18 @@ public abstract class BaseEnemy : Person
 
     bool CanLand()
     {
-        Vector2 v = body.velocity;
-        float g = Physics2D.gravity.magnitude;
-        float velocityX  = v.x;
-        float velocityY0 = 10;
-        //float angleDeg = Vector2.Angle(new Vector2(v.x, 0), v);
-        //float angleRad = angleDeg * Mathf.Deg2Rad;
-        //float distance = Mathf.Pow(velocity, 2) * Mathf.Sin(2 * angleRad) / g; //Максимальное расстояние, на которое возможен прыжок ПО ПРЯМОЙ
-        float distance = velocityX * velocityY0 / g;
-
-        Vector3[] arr = new Vector3[4];
-        rect.GetWorldCorners(arr);
-
-        if (velocityX < 0)
+        Vector2 origin = rect.transform.position;
+        RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down);
+        if (hit.collider != null)
         {
-            Vector2 origin = new Vector2(arr[0].x - distance, arr[0].y);
-            RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down);
-            if (hit.collider != null)
-            {
-                return true;
-            }
-        }
-        if (velocityX > 0)
-        {
-            Vector2 origin = new Vector2(arr[3].x + distance, arr[0].y);
-            RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down);
-            if (hit.collider != null)
-            {
-                return true;
-            }
+            return true;
         }
         return false;
+    }
+
+    public override void Die()
+    {
+        Destroy(gameObject);
+        player.GainExp();
     }
 }
