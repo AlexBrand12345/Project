@@ -18,11 +18,12 @@ public sealed class Player : Person
     public float moveInput;
     private Hands hands;
 
-    void Awake()
+    private new void Awake()
     {
+        base.Awake();
         hands = GetComponentInChildren<Hands>();
     }
-    new void Update()
+    private new void Update()
     {
         base.Update();
         moveInput = Input.GetAxis("Horizontal");

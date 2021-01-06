@@ -7,10 +7,10 @@ public abstract class BaseEnemy : Person
     [Header("BaseEnemy")]
     public float minSpeed = 1;
     public float maxSpeed = 3;
-    public float timeRange;
-    public float rotationDistance; //дистанция до стены перед разворотом
+    public float timeRange = 5;
+    public float rotationDistance = 3; //дистанция до стены перед разворотом
     public float jumpDistance; //дистанция до прыжка
-    public int moveInput;
+    public int moveInput = 1;
 
     protected GameObject player;
 
@@ -18,13 +18,12 @@ public abstract class BaseEnemy : Person
 
     //Movement move;
     Weapon weapon;
-    RectTransform rect;
 
     Coroutine shootingCoroutine;
 
-    private void Awake()
+    protected new void Awake()
     {
-        rect = GetComponent<RectTransform>();
+        base.Awake();
         player = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(ChangeSpeedAndDirectionPerTime(timeRange));
     }
@@ -32,17 +31,18 @@ public abstract class BaseEnemy : Person
     protected new void Update()
     {
         base.Update();
+        Debug.Log(rect.rect.yMin);
 
-        isGrounded = Physics2D.OverlapCircle(transform.position, checkRadius, ground);
-
+        if (moveInput == -moveInput) transform.rotation = Quaternion.Euler(0, 180, 0);
         //Движение
         Move(moveInput);
 
         //Разворот от препядствия
         if (CheckLet()) ChangeSpeedAndDirection(moveInput);
 
-        //Прыжок над пропастью (или разворот)
-        if (!isGrounded)
+        Debug.Log(CheckAbyss());
+        //Прыжок над пропастью
+        if (CheckAbyss())
         {
             if (!isFalling) Jump();
             if (CanLand())
@@ -56,7 +56,7 @@ public abstract class BaseEnemy : Person
         //Стрельба
         if (shootingCoroutine == null)
         {
-            //if (SearchPlayer()) shootingCoroutine = StartCoroutine(weapon.Shoot());
+            if (SearchPlayer()) shootingCoroutine = StartCoroutine(weapon.Shoot());
         }
         else if (!SearchPlayer())
         {
@@ -113,30 +113,43 @@ public abstract class BaseEnemy : Person
         return false;
     }
 
-    bool CheckAbyss(int direction)
+    bool CheckAbyss()
     {
-        if (direction == 1)
+        if (body.velocity.x > 1)
         {
-            Vector2 origin = new Vector2(rect.rect.xMax + jumpDistance, rect.rect.yMin);
+            Vector2 origin = rect.position;
+            origin.x += rect.rect.width / 2 + jumpDistance;
+            origin.y -= rect.rect.height / 2;
             RaycastHit2D hit = Physics2D.Raycast(origin, origin - Vector2.up);
             if (hit.collider != null)
             {
-                if (hit.distance > 0.5)
+                if (hit.distance > 1)
                 {
                     return true;
                 }
             }
+            else
+            {
+                return true;
+            }
         }
-        else if (direction == -1)
+        else if (body.velocity.x < 1)
         {
-            Vector2 origin = new Vector2(rect.rect.xMin - jumpDistance, rect.rect.yMin);
+            Vector2 origin = rect.position;
+            Debug.Log(origin.y);
+            origin.x -= rect.rect.width / 2 - jumpDistance;
+            origin.y -= rect.rect.height / 2;
             RaycastHit2D hit = Physics2D.Raycast(origin, origin - Vector2.up);
             if (hit.collider != null)
             {
-                if (hit.distance > 0.5)
+                if (hit.distance > 1)
                 {
                     return true;
                 }
+            }
+            else
+            {
+                return true;
             }
         }
         return false;
@@ -160,7 +173,6 @@ public abstract class BaseEnemy : Person
         {
             Vector2 origin = new Vector2(arr[0].x - distance, arr[0].y);
             RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down);
-            Debug.Log(hit.collider);
             if (hit.collider != null)
             {
                 return true;

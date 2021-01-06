@@ -48,9 +48,10 @@ public class Weapon : MonoBehaviour
                 break;
         }
     }
-    public void Shoot()
+    public IEnumerator Shoot()
     {
         Instantiate(bullet, new Vector3(rect.rect.xMax, rect.rect.y / 2, 0), Quaternion.Euler(0, 0, 0), gameObject.transform);
+        yield return new WaitForSeconds(shotTime);
     }
     
 }

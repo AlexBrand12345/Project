@@ -8,19 +8,21 @@ public abstract class Movement : MonoBehaviour
     public float speed;
     public bool isGrounded;
     public bool isForward;
-    public float checkRadius;
+    public float checkRadius = 0.1f;
     public LayerMask ground;
 
     public Rigidbody2D body;
+    protected RectTransform rect;
 
-    private void Awake()
+    protected void Awake()
     {
-        body = GetComponent<Rigidbody2D>();
+        rect = GetComponent<RectTransform>();
+        body = gameObject.GetComponent<Rigidbody2D>();
     }
 
     protected virtual void Update()
     {
-
+        isGrounded = Physics2D.OverlapCircle(rect.position - new Vector3(0, rect.rect.height/2), checkRadius, ground);
     }
 
     protected void Move(float moveInput)

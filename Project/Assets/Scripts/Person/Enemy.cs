@@ -10,6 +10,11 @@ public sealed class Enemy : BaseEnemy
         
     }
 
+    private new void Awake()
+    {
+        base.Awake();
+    }
+
     // Update is called once per frame
     private new void Update()
     {

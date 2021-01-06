@@ -7,6 +7,11 @@ public abstract class Person : Movement
 {
     [Header("Статы")]
     public int health;
+
+    protected new void Awake()
+    {
+        base.Awake();
+    }
     private void Start()
     {
         
