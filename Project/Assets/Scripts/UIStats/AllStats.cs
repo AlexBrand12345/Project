@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class AllStats : MonoBehaviour
 {
+    bool waveIsOver;
     public Escbuttons esc;
     public int updLvlTime;
     public int gameOverTime;
@@ -38,6 +39,7 @@ public class AllStats : MonoBehaviour
     }
     public void Update()
     {
+        waveIsOver = Game.game.waveIsOver;
         textH.text = ($"{player.health}/{player.maxHealth}");
         textE.text = ($"{player.exp}/{player.maxExp}");
     }
@@ -50,7 +52,7 @@ public class AllStats : MonoBehaviour
 
         sliderE.maxValue = player.maxExp;
         sliderE.value = player.exp;
-        if (player.exp == player.maxExp)
+        if (player.exp == player.maxExp && waveIsOver)
         {
             StartCoroutine(UpdLvl());
         }

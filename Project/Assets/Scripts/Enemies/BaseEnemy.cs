@@ -179,5 +179,6 @@ public abstract class BaseEnemy : Person
     {
         Destroy(gameObject);
         player.GainExp();
+        Game.game.protivnikov--;
     }
 }
