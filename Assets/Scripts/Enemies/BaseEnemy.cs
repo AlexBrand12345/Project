@@ -46,7 +46,7 @@ public abstract class BaseEnemy : Person
         //Debug.Log(CheckAbyss());
 
         //Прыжок над пропастью
-        if (!isGrounded & !isFalling) Jump();
+        if (CheckAbyss() & !isFalling) Jump();
         if (!isGrounded & CanLand()) { Fall(); isFalling = true; }
         if (isGrounded | !CanLand()) isFalling = false;
 
@@ -54,7 +54,7 @@ public abstract class BaseEnemy : Person
         Debug.Log(SearchPlayer());
         if (shootingCoroutine == null)
         {
-            if (SearchPlayer()) Debug.Log("Shooting");//shootingCoroutine = StartCoroutine(weapon.Shoot()); 
+            if (SearchPlayer()) shootingCoroutine = StartCoroutine(weapon.Shoot()); 
         }
         else if (!SearchPlayer())
         {

@@ -70,12 +70,12 @@ public class Hands : MonoBehaviour
     }
     public void SwitchWeapon(int index)
     {
-        //if (gun != guns[index])
-        //{
-        //    gun.SetActive(false);
-        //    gun = guns[index];
-        //    weapon = gun.GetComponent<Weapon>();
-        //    gun.SetActive(true);
-        //}
+        if (gun != guns[index])
+        {
+            gun.SetActive(false);
+            gun = guns[index];
+            weapon = gun.GetComponent<Weapon>();
+            gun.SetActive(true);
+        }
     }
 }

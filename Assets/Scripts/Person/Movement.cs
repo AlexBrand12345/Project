@@ -6,48 +6,46 @@ using UnityEngine;
 public abstract class Movement : MonoBehaviour
 {
     [Header("Movement")]
+    [SerializeField]
+    int layerMask;
     public float speed;
     public bool isGrounded;
     public bool isForward;
+    public float checkRadius = 0.4f;
     public LayerMask ground;
 
     public Rigidbody2D body;
     protected RectTransform rect;
-    private float checkRadius;
 
     protected void Awake()
     {
-        ground = LayerMask.GetMask("Ground");
-        //layerMask = (1 << layerMask);
+        layerMask = LayerMask.NameToLayer("Ground");
+        layerMask = (1 << layerMask);
         rect = GetComponent<RectTransform>();
         body = gameObject.GetComponent<Rigidbody2D>();
-        checkRadius = rect.rect.height/2 + 0.01f ;
     }
 
     protected virtual void Update()
     {
-        //isGrounded = Physics2D.OverlapCircle(rect.position - new Vector3(0, rect.rect.height/2), checkRadius, ground);
-        RaycastHit hit;
-        isGrounded = Physics2D.Raycast(rect.position, Vector2.down, checkRadius, ground);
-#if DEBUG_MODE
-        Debug.DrawRay(rect.position, Vector2.down * checkRadius, Color.yellow, 2);
-#endif
+        isGrounded = Physics2D.OverlapCircle(rect.position - new Vector3(0, rect.rect.height/2), checkRadius, ground);
+        //RaycastHit hit;
+        //isGrounded = Physics.Raycast(rect.position, Vector2.down, out hit, checkRadius, layerMask);
+        //Debug.DrawRay(rect.position, Vector2.down * 100, Color.yellow);
     }
 
     protected void Move(float moveInput)
     {
-        Go(moveInput);
-        //if (isGrounded)
-        //{
-        //    Go(moveInput);
-        //}
-        //else Fall();
+        if (isGrounded)
+        {
+            Go(moveInput);
+        }
+        else Fall();
     }
 
     protected void Go(float moveInput)
     {
-        if(isForward) body.velocity = new Vector2(moveInput * speed, body.velocity.y);
-        else body.velocity = new Vector2(moveInput * speed/2, body.velocity.y);
+        if(isForward) body.velocity = new Vector2(moveInput * speed, 0);
+        else body.velocity = new Vector2(moveInput * speed/2, 0);
     }
     protected void Fall()
     {
