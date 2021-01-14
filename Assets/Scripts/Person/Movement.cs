@@ -30,7 +30,7 @@ public abstract class Movement : MonoBehaviour
         RaycastHit hit;
         isGrounded = Physics2D.Raycast(rect.position, Vector2.down, checkRadius, ground);
 #if DEBUG_MODE
-        Debug.DrawRay(rect.position, Vector2.down * checkRadius, Color.yellow, 2);
+        //Debug.DrawRay(rect.position, Vector2.down * checkRadius, Color.yellow, 2);
 #endif
     }
 
