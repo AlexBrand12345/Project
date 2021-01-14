@@ -43,7 +43,7 @@ public class Weapon : MonoBehaviour
                 case "tommy":
                     damage = Game.game.tommyDMG;
                     bspeed = Game.game.tommybspeed;
-                    shotTime = 0.5f;
+                    //shotTime = 0.5f;
                     ammo = Game.game.tommyAmmo;
                     //sprite.sprite = Game.game.sprites[1];
                     break;
@@ -67,7 +67,7 @@ public class Weapon : MonoBehaviour
                 ammo += player.ammo;
                 break;
             }
-      
+        ammoLeft = ammo;
     }
     public void UpdateDMG(float DMGmod)
     {
@@ -95,7 +95,7 @@ public class Weapon : MonoBehaviour
                 { 
                     Instantiate(bullet, new Vector3(rect.rect.xMax, rect.rect.y / 2, 0), transform.rotation, gameObject.transform);          
                     shoted++;            
-                    ammoLeft = ammo - shoted;
+                    ammoLeft--;
                     firing = true;
                     yield return new WaitForSeconds(shotTime);
                     firing = false;
@@ -107,7 +107,6 @@ public class Weapon : MonoBehaviour
     {
         reloading = true;
         yield return new WaitForSeconds(time2reload);
-        shoted = 0;
         ammoLeft = ammo;
         reloading = false;
     }
