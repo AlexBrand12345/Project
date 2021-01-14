@@ -6,46 +6,27 @@ using UnityEngine.UIElements;
 
 public class MenuBut : MonoBehaviour
 {
-    public List<GameObject> buttons;
-    public GameObject togo;
+    public GameObject newsBut;
     GameObject scroll;
-    GameObject clone;
     Vector3 startPos;
     bool butClicked;
-    public void OpenWindow(GameObject obj)
-    {
-         if (!butClicked)
-         {
-            clone = obj.transform.GetChild(2).gameObject;
-            scroll = obj.transform.GetChild(1).gameObject;
-            startPos = new Vector3(obj.transform.position.x, obj.transform.position.y, obj.transform.position.z);
-            obj.transform.position = togo.transform.position;
-            Debug.Log(clone);
-            for (int i = 0; i < buttons.Count; i++)
-            {
-                if (obj != buttons[i]) buttons[i].SetActive(false);
-            }
-            //obj.transform.Translate(new Vector3(0, 0, -1));
-            scroll.SetActive(true);
-            clone.SetActive(true);
-            butClicked = true;
-         }
-         else if (scroll.activeSelf)
-         {
-            for (int i = 0; i<buttons.Count; i++)
-            {
-                buttons[i].SetActive(true);
-            }
+    public void  OpenWindow(GameObject obj)
+    {        
+        scroll = obj.transform.GetChild(1).gameObject;
+        if (scroll.activeSelf)
+        {
             obj.transform.position = startPos;
             scroll.SetActive(false);
-            clone.SetActive(false);
             butClicked = false;
-         }
-        
-    }
-    public void ShowCredits()
-    {
-
+        }
+        else if(!butClicked)
+        {
+            startPos = new Vector3(obj.transform.position.x, obj.transform.position.y, obj.transform.position.z);
+            obj.transform.position = newsBut.transform.position;
+            //obj.transform.Translate(new Vector3(0, 0, -1));
+            scroll.SetActive(true);
+            butClicked = true;
+        }
     }
     
 }
