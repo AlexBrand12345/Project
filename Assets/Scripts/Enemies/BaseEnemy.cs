@@ -14,6 +14,7 @@ public abstract class BaseEnemy : Person
     public float rotationDistance = 3; //дистанция до стены перед разворотом
     public float jumpDistance; //дистанция до прыжка
     public int moveInput = 1;
+    public float minDistance = 5;
 
     private bool isFalling;
 
@@ -73,7 +74,6 @@ public abstract class BaseEnemy : Person
 
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - body.position).normalized;
         Vector2 force;
-        Debug.Log(direction.y);
 
         //Нужно для того, чтобы скорость вниз не увеличивалась
         //Path прокладывается по центру клеток, а position объекта может быть с краю клетки
@@ -95,69 +95,27 @@ public abstract class BaseEnemy : Person
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
 
-
-        //if (!isGrounded & !isFalling) Jump();
-        //if (!isGrounded & CanLand()) { Fall(); isFalling = true; }
-        //if (isGrounded | !CanLand() | body.velocity.y > 0) isFalling = false;
-        //if (!isGrounded & !isFalling)
-        //{
-        //    force = Vector2.up * speed * Time.deltaTime;
-        //    body.AddForce(force);
-        //}
-        //if (!isGrounded & CanLand()) { 
-        //    Fall();
-        //    isFalling = true;
-        //}
-
-
         float distance = Vector2.Distance(body.position, path.vectorPath[currentWaypoint]);
-        if (distance < nextWaypointDistance)
+        float distanceToPlayer = Vector2.Distance(body.position, player.body.position);
+        if (distance < nextWaypointDistance && distanceToPlayer > minDistance && SearchPlayer()) currentWaypoint++;
+        if (distance < nextWaypointDistance && !SearchPlayer()) currentWaypoint++;
+
+        //Стрельба
+        if (shootingCoroutine == null)
         {
-            currentWaypoint++;
+            if (SearchPlayer()) Debug.Log("Shooting");//shootingCoroutine = StartCoroutine(weapon.Shoot()); 
         }
-
-        //Движение
-    //    Move(moveInput);
-
-    //    //Разворот от препядствия
-    //    if (CheckLet()) ChangeSpeedAndDirection(moveInput);
-
-
-    //    //Debug.Log(CheckAbyss());
-
-    //    //Стрельба
-    //    Debug.Log(SearchPlayer());
-    //    if (shootingCoroutine == null)
-    //    {
-    //        if (SearchPlayer()) Debug.Log("Shooting");//shootingCoroutine = StartCoroutine(weapon.Shoot()); 
-    //    }
-    //    else if (!SearchPlayer())
-    //    {
-    //        StopCoroutine(shootingCoroutine);
-    //        shootingCoroutine = null;
-    //    }
+        else if (!SearchPlayer())
+        {
+            StopCoroutine(shootingCoroutine);
+            shootingCoroutine = null;
+        }
     }
-
-    //void ChangeSpeedAndDirectionPerTime()
-    //{
-    //    float waitingTimeForChangeSpeed = Random.Range(0, timeRange);
-    //    if (isGrounded) ChangeSpeedAndDirection();
-    //}
-
-    //void ChangeSpeedAndDirection()
-    //{
-    //    moveInput = Random.Range(-1, 2);
-    //    speed = Random.Range(minSpeed, maxSpeed);
-    //}
-    //void ChangeSpeedAndDirection(int direction)
-    //{
-    //    moveInput = direction * -1;
-    //    speed = Random.Range(minSpeed, maxSpeed);
-    //}
 
     bool SearchPlayer()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.forward);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, (player.body.position - body.position).normalized);
+        Debug.DrawRay(transform.position, player.body.position - body.position, Color.white);
         if (hit.rigidbody != null)
         {   
             if (hit.rigidbody.gameObject == player.gameObject)

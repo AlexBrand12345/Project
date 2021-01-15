@@ -2064,7 +2064,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 30.990997, y: -11.980011}
+  m_AnchoredPosition: {x: 30.990967, y: -11.980011}
   m_SizeDelta: {x: 53.97635, y: 9.362808}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &912014266
@@ -2493,7 +2493,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAAAYIexv6VMPVQIAAPMEAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVMmSmzAQ/RWXznEKnPFCbgn2eHLw2DVOai5cZGhAZSFRkhgvU/73tIQwxDkh9Xvd/XoRn4QJXUNqpForlm1kBuT7iNgz+TLqwRc400KKPbtCx3lnmSktiTrOGzVMoj20blpWYBRLf4iCW3KAxkawXKpqlRUQS200mnPKNSCkpLHeAk2fI3LGzziyLhc8Teb2dMVTFIxueExBGFA9NfTE0NNaViNSTqsaMit5QF5EHT2cOqLAcjzHRkgl50x7LcRcalfrvi5BgS02YxRLc/kneC2BFaXxl7vvNs81GF+3opclU9ihNij5Kdu2VVQfW2EflDc2zWQ6c5LaoJv/8HHo4FzJ6qXLGwY2hylZenyjl5RqM+jr0LzshYeuPyfKj/TA4b0E8SrXSjYiQ9Coxro2GibL/novLS4hPfb2VuqDsan7hndj7IZoa7i56s8xZ9XBQl+fWsOeS9duN3tQOJhfKNhthvYh0GpV/NHwmxbDFfLAM1PaIOSrFFbeQTbKUsnK9cxW05hYKgHO7EXXICg3lx2GMY8jfMAGaR+QZ2ofi0/use4NPLg4c88PggdoJ0/3YelSnjagy21jOBPQi7bAK/YplkK0GzbsSee2b1RO04Fb0bDs39UidBZ9gyiYLebzIAqmdBxMZgv6NA8hms6neTohbveYwDop37VCfXtwaqIPLnDPun/IaK1o7bY9U/S0ZtdKDlrORC73qQIQ2zbCXTgoTIKPMltlDBu0B2OYcPMmnwnhMj1CltwDJa7S1dkomvRRElKzD2msJSGx+2kk5EZufwFQSwMEFAAACAgAABgh7AUsI+5tAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTVUVBKL0osyCgGihiCOKWZKSB2tFKimaVxqqWBmYW5uYGlgWmiroGRmUWiiblhqqWpuWlaspFSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAABgh7G/pUw9VAgAA8wQAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAABgh7AUsI+5tAAAAeAAAAAkAJAAAAAAAAAAAAAAAogIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAABaAwAAAAA=
+    dataString: UEsDBBQAAAgIAAAYIex7/UEZVAIAAPQEAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVMmSmzAQ/RWXznEKnPFCbgn2eHLw2DVOai5cZGhAZSFRkhgvU/73tIQwxDkh9Xvd/XoRn4QJXUNqpForlm1kBuT7iNgz+TLqwRc400KKPbtCx3lnmSktiTrOGzVMoj20blpWYBRLf4iCW3KAxkawXKpqlRUQS200mnPKNSCkpLHeAk2fI3LGzziyLhc8Teb2dMVTFIxueExBGFA9NfTE0NNaViNSTqsaMit5QF5EHT2cOqLAcjzHRkgl50x7LcRcalfrvi5BgS02YxRLc/kneC2BFaXxl7vvNs81GF+3opclU9ihNij5Kdu2VVQfW2EflDc2zWQ6c5LaoJv/8HHo4FzJ6qXLGwY2hylZenyjl5RqM+jr0LzshYeuPyfKj/TA4b0E8SrXSjYiQ9Coxro2GibL/novLS4hPfb2VuqDsan7hndj7IZoa7i56s8xZ9XBQl+fWsOeS9duN3tQOJhfKNhthvYh0GpV/NHwmxbDFfLAM1PaIOSrFFbeQTbKUsnK9cxW05hYKgHO7EXXICg3lx2GMY8jfMAGaR+QZ2ofi0/use4NPLg4c88PggdoJ0/3YelSnjagy21jOBPQi7bAK/YplkK0GzbsSee2b1RO04Fb0bDs39UidBZ9gyiYLebzIAqmdBxMZgv6NA8hms6neTohbveYwDop37VCfXtwaqIPLnDPun/IaK1o7bY9U/S0ZtdKDgUykct9qgDEtg1xVw4Ks+CrzFYZww7twRgm3MDJZ0K4TI+QJfeciSt1dTaKJn2UhNTsQxprSUjs/hoJuZHbX1BLAwQUAAAICAAAGCHsBSwj7m0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNVRUEovSizIKAaKGII4pZkpIHa0UqKZpXGqpYGZhbm5gaWBaaKugZGZRaKJuWGqpam5aVqykVIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAGCHse/1BGVQCAAD0BAAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAGCHsBSwj7m0AAAB4AAAACQAkAAAAAAAAAAAAAAChAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAFkDAAAAAA==
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -2506,7 +2506,7 @@ MonoBehaviour:
   manualDebugFloorRoof: 0
   showSearchTree: 0
   unwalkableNodeDebugSize: 0.3
-  logPathResults: 1
+  logPathResults: 0
   maxNearestNodeDistance: 100
   scanOnStartup: 1
   fullGetNearestSearch: 0
@@ -2525,7 +2525,7 @@ MonoBehaviour:
   heuristic: 2
   heuristicScale: 1
   threadCount: 1
-  maxFrameTime: 1
+  maxFrameTime: 10
   batchGraphUpdates: 0
   graphUpdateBatchingInterval: 0.2
   euclideanEmbedding:
@@ -4171,6 +4171,7 @@ MonoBehaviour:
   rotationDistance: 0
   jumpDistance: 0
   moveInput: 0
+  minDistance: 10
   nextWaypointDistance: 3
 --- !u!114 &1752907638
 MonoBehaviour:
