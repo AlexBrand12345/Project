@@ -59,56 +59,57 @@ public abstract class BaseEnemy : Person
     {
         base.Update();
         //Debug.Log(rect.rect.yMin);
+        if (player != null) {
+            if (path == null) return;
 
-        if (path == null) return;
+            if (currentWaypoint >= path.vectorPath.Count)
+            {
+                reachedEndOfPath = true;
+                return;
+            }
+            else
+            {
+                reachedEndOfPath = false;
+            }
 
-        if (currentWaypoint >= path.vectorPath.Count)
-        {
-            reachedEndOfPath = true;
-            return;
-        }
-        else
-        {
-            reachedEndOfPath = false;
-        }
+            Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - body.position).normalized;
+            Vector2 force;
 
-        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - body.position).normalized;
-        Vector2 force;
+            //Нужно для того, чтобы скорость вниз не увеличивалась
+            //Path прокладывается по центру клеток, а position объекта может быть с краю клетки
+            if (!isGrounded & direction.y <= -0.25f /*Максимальное расстояние от края клетки до центра*/) Fall();
+            else
+            {
+                force = direction * speed * Time.deltaTime;
+                if (direction.y > 0) force.y += -Physics2D.gravity.y * 4;
+                body.AddForce(force);
+            }
 
-        //Нужно для того, чтобы скорость вниз не увеличивалась
-        //Path прокладывается по центру клеток, а position объекта может быть с краю клетки
-        if (!isGrounded & direction.y <= -0.25f /*Максимальное расстояние от края клетки до центра*/) Fall();
-        else
-        {
-            force = direction * speed * Time.deltaTime;
-            if (direction.y > 0) force.y += -Physics2D.gravity.y * 4;
-            body.AddForce(force);
-        }
+            //Поворот
+            if (body.velocity.x >= 0.01f)
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            else if (body.velocity.x <= 0.01f)
+            {
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
 
-        //Поворот
-        if (body.velocity.x >= 0.01f)
-        {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
-        else if (body.velocity.x <= 0.01f)
-        {
-            transform.rotation = Quaternion.Euler(0, 180, 0);
-        }
+            float distance = Vector2.Distance(body.position, path.vectorPath[currentWaypoint]);
+            float distanceToPlayer = Vector2.Distance(body.position, player.body.position);
+            if (distance < nextWaypointDistance && distanceToPlayer > minDistance && SearchPlayer()) currentWaypoint++;
+            if (distance < nextWaypointDistance && !SearchPlayer()) currentWaypoint++;
 
-        float distance = Vector2.Distance(body.position, path.vectorPath[currentWaypoint]);
-        float distanceToPlayer = Vector2.Distance(body.position, player.body.position);
-        if (distance < nextWaypointDistance && distanceToPlayer > minDistance && SearchPlayer()) currentWaypoint++;
-        if (distance < nextWaypointDistance && !SearchPlayer()) currentWaypoint++;
-
-        //Стрельба
-        if (shootingCoroutine == null)
-        {
-            if (SearchPlayer()) Debug.Log("Shooting");//shootingCoroutine = StartCoroutine(weapon.Shoot()); 
-        }
-        else if (!SearchPlayer())
-        {
-            StopCoroutine(shootingCoroutine);
-            shootingCoroutine = null;
+            //Стрельба
+            if (shootingCoroutine == null)
+            {
+                if (SearchPlayer()) Debug.Log("Shooting");//shootingCoroutine = StartCoroutine(weapon.Shoot()); 
+            }
+            else if (!SearchPlayer())
+            {
+                StopCoroutine(shootingCoroutine);
+                shootingCoroutine = null;
+            }
         }
     }
 

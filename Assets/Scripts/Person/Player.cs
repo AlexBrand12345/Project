@@ -30,9 +30,12 @@ public sealed class Player : Person
     [SerializeField]
     public Hands hand;
 
+    private Collider2D bg;
+
     private new void Awake()
     {
         base.Awake();
+        bg = GameObject.FindWithTag("Background").GetComponent<Collider2D>();
         hand = GetComponentInChildren<Hands>();
         sprite = GetComponent<SpriteRenderer>();
         //sprite.sprite = sprites[MainSave.save.curSkin];
@@ -58,10 +61,17 @@ public sealed class Player : Person
             else if (Input.GetKeyDown(KeyCode.Alpha3)) index = 3;
             hand.SwitchWeapon(index);
         }
+        if (!gameObject.GetComponent<Collider2D>().IsTouching(bg))
+        {
+            Die();
+        }
     }
     public override void Die()
     {
-        body.gravityScale -= 3 * body.gravityScale;
+        Debug.Log("Die");
+        //body.gravityScale -= 3 * body.gravityScale;
+        Game.game.EndGame();
+        Destroy(gameObject);
     }
 
     public void Heal(int heal)
