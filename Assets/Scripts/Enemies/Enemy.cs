@@ -5,9 +5,9 @@ using UnityEngine;
 public sealed class Enemy : BaseEnemy
 {
     // Start is called before the first frame update
-    void Start()
+    private new void Start()
     {
-        
+        base.Start();
     }
 
     private new void Awake()
