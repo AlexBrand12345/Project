@@ -68,14 +68,14 @@ public class Hands : MonoBehaviour
     {
         StartCoroutine(weapon.Shoot());
     }
-    public void SwitchWeapon(int index)
-    {
-        //if (gun != guns[index])
-        //{
-        //    gun.SetActive(false);
-        //    gun = guns[index];
-        //    weapon = gun.GetComponent<Weapon>();
-        //    gun.SetActive(true);
-        //}
-    }
+    //public void SwitchWeapon(int index)
+    //{
+    //if (gun != guns[index])
+    //{
+    //    gun.SetActive(false);
+    //    gun = guns[index];
+    //    weapon = gun.GetComponent<Weapon>();
+    //    gun.SetActive(true);
+    //}
+    //}
 }

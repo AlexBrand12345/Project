@@ -34,7 +34,8 @@ public class StatisticsDone : MonoBehaviour
         shots = MainSave.save.shots;
     }
     void Start()
-    {      
+    {
+        Debug.Log(timeValue);
             values = new List<int> { kills, deaths, heals, exp, rounds, waves, shots };
             time = stats[i].transform.parent.GetChild(7).gameObject;
             i = 0;

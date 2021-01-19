@@ -13,11 +13,12 @@ public class Escbuttons : MonoBehaviour
     public GameObject setts;
     public GameObject PauseMenu;
     public GameObject GOMenu;
-    bool paused = false;
+    //bool paused = false;
     bool isSets = false;
     
     public void LoadScene(string scene)
     {
+        CursorControll.cursorControll.HideCursor();
         loadingSlider = loadingScene.GetComponentInChildren<Slider>();
         loadingScene.SetActive(true);
         AsyncOperation loading = SceneManager.LoadSceneAsync(scene);
@@ -45,22 +46,25 @@ public class Escbuttons : MonoBehaviour
             Destroy(settings);
             isSets = false;
         }
+        Debug.Log(isSets);
     } 
     public void Start()
     {
         //loadingSlider = loadingScene.GetComponentInChildren<Slider>();
     }
-    private void Update()
+    //private void Update()
+    //{
+    //    OnEscape()
+    //}
+    public void OnEscape(bool paused)
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (paused)
         {
-            if (paused)
-            {
-                Destroy(settings);
-                Resume();
-            }
-            else Stop();
+            Destroy(settings);
+            Resume();
         }
+        else Stop();
+        CursorControll.cursorControll.ChangeCursor();
     }
     public void Resume()
     {
@@ -71,7 +75,7 @@ public class Escbuttons : MonoBehaviour
             //if(pauseMenu != null) Destroy(pauseMenu);
             PauseMenu.SetActive(false);
             //Settings.SetActive(false);
-            paused = false;
+            //paused = false;
         }
     }
     void Stop()
@@ -80,6 +84,6 @@ public class Escbuttons : MonoBehaviour
         Time.timeScale = 0.0f;
         //pauseMenu = Instantiate(PauseMenu, new Vector3(0, 0, 0), panel.transform.rotation, panel.transform);
         PauseMenu.SetActive(true);
-        paused = true;
+        //paused = true;
     }
 }

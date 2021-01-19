@@ -14,18 +14,26 @@ public class TimerSlider : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        GameObject obj = GameObject.Find("UIController");
-        script = obj.GetComponent<AllStats>();
-        called = gameObject.transform.parent.name + "Time";
-        text = gameObject.GetComponent<Text>();
-        slider = gameObject.GetComponentInChildren<Image>();
+        //GameObject obj = GameObject.Find("UIController");
+        //script = obj.GetComponent<AllStats>();
+        //called = ($"{gameObject.transform.parent.name}" + "Time");
+        //Debug.Log(called);
+        //text = gameObject.GetComponent<Text>();
+        //slider = gameObject.GetComponentInChildren<Image>();
         
     }
     public void Begin()
     {
-        gameObject.transform.parent.gameObject.SetActive(true);
+        GameObject obj = GameObject.Find("UIController");
+        script = obj.GetComponent<AllStats>();
+        called = ($"{gameObject.transform.parent.name}" + "Time");
+        Debug.Log(called);
+        text = gameObject.GetComponent<Text>();
+        slider = gameObject.GetComponentInChildren<Image>();
+        gameObject.transform.parent.parent.gameObject.SetActive(true);
+        //gameObject.transform.parent.gameObject.SetActive(true);
         time = script.time(called);
         timeRemain = time;
     }
@@ -33,7 +41,6 @@ public class TimerSlider : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //Debug.Log("я запустился");
         timeRemain -= Time.fixedDeltaTime;
         text.text = Mathf.RoundToInt(timeRemain).ToString();
         slider.fillAmount = timeRemain / time;

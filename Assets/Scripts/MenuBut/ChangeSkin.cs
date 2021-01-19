@@ -16,7 +16,7 @@ public class ChangeSkin : MonoBehaviour
 
     Vector2 contentVector;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         i = MainSave.save.curSkin;
         contentRect = GetComponent<RectTransform>();
@@ -24,23 +24,25 @@ public class ChangeSkin : MonoBehaviour
         
     }
     private void Update()
-    {
-        
-        contentVector.x = Mathf.SmoothStep(contentRect.anchoredPosition.x, -skins[i].transform.localPosition.x, timeToChange * Time.deltaTime);
-        contentRect.anchoredPosition = contentVector;
-       
+    {        
+            contentVector.x = Mathf.SmoothStep(contentRect.anchoredPosition.x, -skins[i].transform.localPosition.x, timeToChange * Time.deltaTime);
+            contentRect.anchoredPosition = contentVector;      
     }
 
     public void NextSkin()
     {
-        i++;
-        MainSave.save.curSkin = i;
-       
+        if (skins[i + 1] != null)
+        {
+            i++;
+            MainSave.save.curSkin = i;
+        }
     }
     public void PrevSkin()
     {
-        i--;
-        MainSave.save.curSkin = i;
-       
+        if (skins[i - 1] != null) 
+        { 
+            i--;
+            MainSave.save.curSkin = i;
+        }
     }
 }

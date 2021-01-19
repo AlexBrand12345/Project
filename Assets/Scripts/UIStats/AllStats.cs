@@ -8,11 +8,12 @@ using UnityEngine.UI;
 
 public class AllStats : MonoBehaviour
 {
+    bool alreadyDead = false;
     bool waveIsOver;
     public Escbuttons esc;
-    public int updLvlTime;
-    public int gameOverTime;
-    public int startGameOverTime;
+    public float updLvlTime;
+    public float gameOverTime;
+    public float startGameOverTime;
     public GameObject gameOver;
     public GameObject updLvl;
     public GameObject panel;
@@ -24,6 +25,8 @@ public class AllStats : MonoBehaviour
     public Text textE;
     //string child;
     Player player;
+
+    public Coroutine End;
     // Start is called before the first frame update
 
     public void Start()
@@ -47,7 +50,13 @@ public class AllStats : MonoBehaviour
     {
         sliderH.maxValue = player.maxHealth;
         sliderH.value = player.health;
-        if (player.health == 0) StartCoroutine(StartGameOver());
+        if (player.health == 0 && !alreadyDead)
+        {
+            CursorControll.cursorControll.HideCursor();
+            //StartCoroutine(StartGameOver());
+            End = StartCoroutine(StartGameOver());
+            alreadyDead = true;
+        }
         image.color = gradient.Evaluate(sliderH.normalizedValue);
 
         sliderE.maxValue = player.maxExp;
@@ -58,22 +67,22 @@ public class AllStats : MonoBehaviour
         }
     }
     
-    public int time(string Name)
+    public float time(string Name)
     {
         if (Name == "updLvlTime") return updLvlTime;
-        else return gameOverTime;
-        
+        else return gameOverTime;    
     }
-    IEnumerator StartGameOver()
+    public IEnumerator StartGameOver()
     {
         yield return new WaitForSeconds(startGameOverTime);
         StartCoroutine(GameOver());
     }
-    IEnumerator GameOver()
+    public IEnumerator GameOver()
     {
+        CursorControll.cursorControll.ChangeCursor();
         player.canShoot = false;
         gameOver.GetComponentInChildren<TimerSlider>().Begin();
-        yield return new WaitForSeconds(gameOverTime);
+        yield return new WaitForSeconds(gameOverTime); 
         player.canShoot = true;
         esc.LoadScene("Main_Menu");
     }

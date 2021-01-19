@@ -4,7 +4,10 @@ using UnityEngine;
 
 public sealed class Player : Person
 {
-
+    bool alreadyDead = false;
+    bool paused = false;
+    Escbuttons esc;
+    AllStats stats;
     int index;
     public bool canShoot = true;
     public float DMGmod = 1f;
@@ -35,6 +38,8 @@ public sealed class Player : Person
     private new void Awake()
     {
         base.Awake();
+        esc = GameObject.FindGameObjectWithTag("EscController").GetComponent<Escbuttons>();
+        stats = GameObject.Find("UIController").GetComponent<AllStats>();
         bg = GameObject.FindWithTag("Background").GetComponent<Collider2D>();
         hand = GetComponentInChildren<Hands>();
         sprite = GetComponent<SpriteRenderer>();
@@ -53,33 +58,68 @@ public sealed class Player : Person
             {
                 Jump();
             }
-            if (Input.GetMouseButtonDown(0)) hand.Shoot();
+            if (Input.GetKey(KeyCode.Escape))
+            {
+                Pause();               
+            }
+            if (Input.GetMouseButtonDown(0) && !paused) hand.Shoot();
 
-            if (Input.GetKeyDown(KeyCode.F)) index = 0;
-            else if (Input.GetKeyDown(KeyCode.Alpha1)) index = 1;
-            else if (Input.GetKeyDown(KeyCode.Alpha2)) index = 2;
-            else if (Input.GetKeyDown(KeyCode.Alpha3)) index = 3;
-            hand.SwitchWeapon(index);
-        }
-        if (!gameObject.GetComponent<Collider2D>().IsTouching(bg))
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                index = 0;
+                //hand.SwitchWeapon(index);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                index = 1;
+                //hand.SwitchWeapon(index);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                index = 2;
+                //hand.SwitchWeapon(index);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                index = 3;
+                //hand.SwitchWeapon(index);
+            }
+
+            }
+        if (!gameObject.GetComponent<Collider2D>().IsTouching(bg) && gameObject != null)
         {
             Die();
         }
     }
     public override void Die()
     {
+        health = 0;
         Debug.Log("Die");
-        //body.gravityScale -= 3 * body.gravityScale;
-        Game.game.EndGame();
-        Destroy(gameObject);
+        body.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        body.gravityScale = 0;
+        body.velocity = new Vector2(0, 10);
+        Debug.Log(body.velocity);
+        //Game.game.EndGame();
+        if (body.transform.position.y > Camera.main.ViewportToWorldPoint(new Vector2(0, 1)).y)
+        {
+            Debug.Log("ExitMap");
+            Destroy(gameObject);
+            StopCoroutine(stats.End);
+            Debug.Log(stats.StartGameOver().Current);
+            StartCoroutine(stats.GameOver());
+        }
     }
-
+    public void Pause()
+    {
+        esc.OnEscape(paused);
+        paused = !paused;
+    }
     public void Heal(int heal)
     {
         health += heal;
         if (health >= maxHealth) health = maxHealth;
     }
-    //TakeDamage уже есть у бати
+    //TakeDamage уже есть у бати у Person
     public void GainExp()
     {
         exp += gainExp;

@@ -124,14 +124,14 @@ public void FixedUpdate()
 
     }
 
-    public void EndGame()
-    {
-        Debug.Log("EndGame");
-        Time.timeScale = 0;
-        //AlexBrand-123
-            //Destroy(game);
-            //UI.EndGame();
-    }
+    //public void EndGame() EndGame уже есть
+    //{
+    //    Debug.Log("EndGame");
+    //    Time.timeScale = 0;
+    //    //AlexBrand-123
+    //        //Destroy(game);
+    //        //UI.EndGame();
+    //}
 }
 
 
