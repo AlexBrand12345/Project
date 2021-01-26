@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class TimerSlider : MonoBehaviour
 {
+    [SerializeField]
+    AudioClip clip;
+    EffectsControll audioEffects;
     Text text;
     Image slider;
     AllStats script;
@@ -26,6 +29,7 @@ public class TimerSlider : MonoBehaviour
     }
     public void Begin()
     {
+        audioEffects = GameObject.FindWithTag("EffectsControll").GetComponent<EffectsControll>();
         GameObject obj = GameObject.Find("UIController");
         script = obj.GetComponent<AllStats>();
         called = ($"{gameObject.transform.parent.name}" + "Time");
@@ -43,6 +47,7 @@ public class TimerSlider : MonoBehaviour
     {
         timeRemain -= Time.fixedDeltaTime;
         text.text = Mathf.RoundToInt(timeRemain).ToString();
+        if (timeRemain == 3 || timeRemain == 2 || timeRemain == 1) audioEffects.PlayOneShot(clip);
         slider.fillAmount = timeRemain / time;
     }
 }

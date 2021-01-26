@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class AllStats : MonoBehaviour
 {
+    MusicControll music;
     bool alreadyDead = false;
     bool waveIsOver;
     public Escbuttons esc;
@@ -31,6 +32,7 @@ public class AllStats : MonoBehaviour
 
     public void Start()
     {
+        music = GameObject.FindWithTag("MusicControll").GetComponent<MusicControll>();
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
         sliderH.maxValue = player.health;
         sliderE.maxValue = player.maxExp;
@@ -55,6 +57,7 @@ public class AllStats : MonoBehaviour
             CursorControll.cursorControll.HideCursor();
             //StartCoroutine(StartGameOver());
             End = StartCoroutine(StartGameOver());
+            music.GameOver();
             alreadyDead = true;
         }
         image.color = gradient.Evaluate(sliderH.normalizedValue);

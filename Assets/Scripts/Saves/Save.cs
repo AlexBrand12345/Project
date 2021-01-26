@@ -19,7 +19,7 @@ public class MainSave
     public int waves;
     public int shots;
     public int curSkin;
-    public float soundVolume;
+    public float musicVolume;
     public float effectsVolume;
     public MainSave()
     {
@@ -33,7 +33,7 @@ public class MainSave
         waves = new int();
         shots = new int();
         curSkin = new int();
-        soundVolume = new float();
+        musicVolume = new float();
         effectsVolume = new float();
     }
 }
