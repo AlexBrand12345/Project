@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Escbuttons : MonoBehaviour
 {
-    MusicControll music;
+    //MusicControll music;
     public GameObject loadingScene;
     Slider loadingSlider;
     GameObject settings;
@@ -51,7 +51,7 @@ public class Escbuttons : MonoBehaviour
     } 
     public void Start()
     {
-        music = GameObject.FindWithTag("MusicControll").GetComponent<MusicControll>();
+        //music = GameObject.FindWithTag("MusicControll").GetComponent<MusicControll>();
         //loadingSlider = loadingScene.GetComponentInChildren<Slider>();
     }
     //private void Update()
@@ -66,7 +66,7 @@ public class Escbuttons : MonoBehaviour
             Resume();
         }
         else Stop();
-        music.Pause(paused);
+        //music.Pause(paused);
         CursorControll.cursorControll.ChangeCursor();
     }
     public void Resume()

@@ -25,6 +25,11 @@ public class EffectsControll : MonoBehaviour
         audioSrc.clip = clip;
         audioSrc.Play();
     }
+    public void PlayShortClip(AudioClip clip, Animator animator)
+    {
+        audioSrc.clip = clip;
+        audioSrc.Play();
+    }
     public void PlayOneShot(AudioClip clip)
     {
         audioSrc.PlayOneShot(clip);

@@ -9,6 +9,8 @@ TagManager:
   - Save
   - Enemy
   - Background
+  - EffectsControll
+  - MusicControll
   layers:
   - Default
   - TransparentFX

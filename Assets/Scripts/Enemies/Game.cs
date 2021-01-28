@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 
 public class Game : MonoBehaviour
 {
+    //public MusicControll music;
     public bool waveIsOver;
     public float timeBetWaves;
 
@@ -74,6 +75,7 @@ public class Game : MonoBehaviour
     
     IEnumerator Wave(int bots)
     {
+        //StartCoroutine(music.SwitchWave(timeBetWaves));
         waveIsOver = true;
         yield return new WaitForSeconds(timeBetWaves);
         var upgrades = new List<Action> { AddDMG, AddHP, Addbspeed };

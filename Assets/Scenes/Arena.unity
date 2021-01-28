@@ -1097,7 +1097,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.672888, y: -3.8631873, z: -10}
+  m_LocalPosition: {x: -7.6592045, y: -3.8631873, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 877443700}
@@ -1798,7 +1798,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a37504cd30209c4898cb3eb8bd8e220, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  texture: {fileID: 2800000, guid: 6d9f5fb6855ea5f45abfe0b211851ed2, type: 3}
+  texture: {fileID: 2800000, guid: 174701a289cd53c40b2fb613bd1354a5, type: 3}
 --- !u!1 &756881598
 GameObject:
   m_ObjectHideFlags: 0
@@ -1986,8 +1986,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b4161b703816634881b4b2b647d0b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  music: {fileID: 780232558}
   waveIsOver: 0
-  timeBetWaves: 0
+  timeBetWaves: 10
   spawnPoints: []
   enemies: []
   protivnikov: 0
@@ -2035,9 +2036,10 @@ GameObject:
   m_Component:
   - component: {fileID: 780232556}
   - component: {fileID: 780232557}
+  - component: {fileID: 780232558}
   m_Layer: 0
   m_Name: MusicControll
-  m_TagString: Untagged
+  m_TagString: MusicControll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2152,6 +2154,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &780232558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 780232555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdddb2e62327ad2479279d98f8e50a30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waves: []
+  audioClips: []
+  pause: []
+  gameOver: {fileID: 0}
+  deathBackground: {fileID: 0}
+  speed2change: 3
+  volume: 1
 --- !u!1 &806791429
 GameObject:
   m_ObjectHideFlags: 0
@@ -3843,6 +3864,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12306a70876ebf047846cf209507e9ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clip: {fileID: 0}
   called: 
   time: 0
   timeRemain: 0
@@ -4448,9 +4470,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1560256856}
   - component: {fileID: 1560256857}
+  - component: {fileID: 1560256858}
   m_Layer: 0
   m_Name: EffectsControll
-  m_TagString: Untagged
+  m_TagString: EffectsControll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4565,6 +4588,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1560256858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1560256855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea6ad66e8d95de9458df119df77c07ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1636565383
 GameObject:
   m_ObjectHideFlags: 0
@@ -5020,6 +5055,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12306a70876ebf047846cf209507e9ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clip: {fileID: 0}
   called: 
   time: 0
   timeRemain: 0
