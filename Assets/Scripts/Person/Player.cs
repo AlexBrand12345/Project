@@ -5,7 +5,7 @@ using UnityEngine;
 public sealed class Player : Person
 {
     bool alreadyDead = false;
-    bool paused = false;
+    public bool paused;
     Escbuttons esc;
     AllStats stats;
     int index;
@@ -48,22 +48,30 @@ public sealed class Player : Person
     }
     private new void Update()
     {
-        if (canShoot)
+        if (!stats.alreadyDead) 
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Pause();
+            }
+        }
+        //if (!stats.alreadyDead && canShoot)
+        if (!paused)
         {
             base.Update();
             moveInput = Input.GetAxis("Horizontal");
             Move(moveInput);
 
+            if(Input.GetKeyDown(KeyCode.R))
+            {
+                hand.weapon.GoToReload();
+            }
+
             if (Input.GetKey(KeyCode.Space))
             {
                 Jump();
             }
-            if (Input.GetKey(KeyCode.Escape))
-            {
-                Pause();               
-            }
-            if (Input.GetMouseButtonDown(0) && !paused) hand.Shoot();
-
+               
             if (Input.GetKeyDown(KeyCode.F))
             {
                 index = 0;
@@ -84,35 +92,68 @@ public sealed class Player : Person
                 index = 3;
                 //hand.SwitchWeapon(index);
             }
-
-            }
-        if (!gameObject.GetComponent<Collider2D>().IsTouching(bg) && gameObject != null)
+            //if(!esc.IsLoading) CheckOnBG();
+        }
+       
+    }
+    private void FixedUpdate()
+    {
+        if (gameObject) CheckOutOfView();
+        if (!paused && gameObject) 
+        {            
+            if (Input.GetMouseButtonDown(0)) hand.Shoot();          
+        }
+        
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (!esc.IsLoading && collision == bg) 
+        CheckOnBG();
+    }
+    public void CheckOutOfView()
+    {
+        if (body.transform.position.y > Camera.main.ViewportToWorldPoint(new Vector2(0, 1)).y)
         {
-            Die();
+            Debug.Log("ExitMap");
+            Destroy(gameObject);
+            //StopCoroutine(stats.End);
+            StopAllCoroutines();
+            //Debug.Log(stats.StartGameOver().Current);
+            StartCoroutine(stats.GameOver());
+            Debug.Log("started");
         }
     }
     public override void Die()
     {
         health = 0;
+        stats.GuiDie();
         Debug.Log("Die");
         body.gameObject.GetComponent<BoxCollider2D>().enabled = false;
         body.gravityScale = 0;
         body.velocity = new Vector2(0, 10);
         Debug.Log(body.velocity);
         //Game.game.EndGame();
-        if (body.transform.position.y > Camera.main.ViewportToWorldPoint(new Vector2(0, 1)).y)
+        //if (transform.position.y > Camera.main.ViewportToWorldPoint(new Vector2(0, 1)).y)
+        //{
+        //    Debug.Log("ExitMap");
+        //    Destroy(gameObject);
+        //    StopCoroutine(stats.End);
+        //    Debug.Log(stats.StartGameOver().Current);
+        //    StartCoroutine(stats.GameOver());
+        //}
+    }
+    void CheckOnBG()
+    {
+        //if (!gameObject.GetComponent<Collider2D>().IsTouching(bg) && gameObject != null)
+        if (gameObject != null)
         {
-            Debug.Log("ExitMap");
-            Destroy(gameObject);
-            StopCoroutine(stats.End);
-            Debug.Log(stats.StartGameOver().Current);
-            StartCoroutine(stats.GameOver());
+            Die();
         }
     }
     public void Pause()
     {
-        esc.OnEscape(paused);
-        paused = !paused;
+        esc.OnEscape();
+        //paused = !paused;
     }
     public void Heal(int heal)
     {

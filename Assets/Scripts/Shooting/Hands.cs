@@ -6,7 +6,7 @@ public class Hands : MonoBehaviour
 {
     int index;
     public float offset;
-    
+    public bool canRotate;
     private float ShotTime;
     public float StartTime;
 
@@ -14,15 +14,17 @@ public class Hands : MonoBehaviour
     //public GameObject effect;
     //public Transform bulletPosition;
     //public List<Sprite> sprites;
+    public GameObject reload;
     public List<GameObject> guns;
     GameObject batka;
     GameObject gun;
     //SpriteRenderer sprite;
     Player player;
-    Weapon weapon;
+    public Weapon weapon;
 
     private void Awake()
     {
+        canRotate = true;
         batka = transform.parent.gameObject;
         //sprite = transform.parent.GetComponent<SpriteRenderer>();
         player = transform.parent.GetComponent<Player>();
@@ -44,24 +46,27 @@ public class Hands : MonoBehaviour
         mousePos.y = mousePos.y - gunPosition.y;
 
         float gunAngle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
+        if (canRotate) 
+        { 
+            if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x < transform.position.x)
+            {
+              //sprite.flipX = true;
+                transform.rotation = Quaternion.Euler(new Vector3(180f, 0f, -gunAngle));
+                batka.transform.rotation = Quaternion.Euler(0, -180, 0);
+                if (Input.GetAxis("Horizontal") < 0) player.isForward = true;
+                else player.isForward = false;
+            }
+            else
+            {
+                //sprite.flipX = true;
+                transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, gunAngle));
+                batka.transform.rotation = Quaternion.Euler(0, 0, 0);
+                if (Input.GetAxis("Horizontal") > 0) player.isForward = true;
+                else player.isForward = false;
+            }
+        //transform.rotation = Quaternion.Euler(new Vector3(0f, batka.transform.rotation.y, gunAngle));
+        }
 
-        if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x < transform.position.x)
-        {
-            //sprite.flipX = true;
-            //transform.rotation = Quaternion.Euler(new Vector3(180f, 0f, -gunAngle));
-            batka.transform.rotation = Quaternion.Euler(0,180,0);
-            if (Input.GetAxis("Horizontal") < 0) player.isForward = true;
-            else player.isForward = false;
-        }
-        else
-        {
-            //sprite.flipX = true;
-            //transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, gunAngle));
-            batka.transform.rotation = Quaternion.Euler(0, 180, 0);          
-            if (Input.GetAxis("Horizontal") > 0) player.isForward = true;
-            else player.isForward = false;
-        }
-        transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, gunAngle));
     }
 
     public void Shoot()

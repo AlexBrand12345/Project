@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class CursorControll : MonoBehaviour
 {
-    bool menuOpened = false;
-    CursorMode cursorMode = CursorMode.Auto;
+    bool menuOpened;
+    CursorMode cursorMode = CursorMode.ForceSoftware;
     public Texture2D texture;
+    [SerializeField]
     Texture2D cursor;
     public static CursorControll cursorControll = new CursorControll();
     public void HideCursor()
@@ -15,7 +16,8 @@ public class CursorControll : MonoBehaviour
         Cursor.visible = false;
     }
     public void ChangeCursor()
-    {   
+    {
+        //Texture2D cursor;
         if(!Cursor.visible)
         {
             Cursor.visible = true;
@@ -26,7 +28,9 @@ public class CursorControll : MonoBehaviour
         Cursor.SetCursor(cursor, Vector2.zero, cursorMode);
     }
     void Awake()
-    {     
+    {
+        menuOpened = false;
+        cursor = texture;
         Cursor.SetCursor(texture, Vector2.zero, cursorMode); 
     }
 }

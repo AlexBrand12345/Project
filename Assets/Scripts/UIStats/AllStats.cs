@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class AllStats : MonoBehaviour
 {
     //MusicControll music;
-    bool alreadyDead = false;
+    public bool alreadyDead = false;
     bool waveIsOver;
     public Escbuttons esc;
     public float updLvlTime;
@@ -30,10 +30,13 @@ public class AllStats : MonoBehaviour
     public Coroutine End;
     // Start is called before the first frame update
 
-    public void Start()
+    public void Awake()
     {
+        Time.timeScale = 1f;
+        alreadyDead = false;    
         //music = GameObject.FindWithTag("MusicControll").GetComponent<MusicControll>();
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        player.paused = false;
         sliderH.maxValue = player.health;
         sliderE.maxValue = player.maxExp;
         sliderH.value = player.maxHealth;
@@ -52,14 +55,13 @@ public class AllStats : MonoBehaviour
     {
         sliderH.maxValue = player.maxHealth;
         sliderH.value = player.health;
-        if (player.health == 0 && !alreadyDead)
-        {
-            CursorControll.cursorControll.HideCursor();
-            //StartCoroutine(StartGameOver());
-            End = StartCoroutine(StartGameOver());
-            //music.GameOver();
-            alreadyDead = true;
-        }
+        //if (player.health == 0 && !alreadyDead)
+        //{
+        //    CursorControll.cursorControll.HideCursor();
+        //    End = StartCoroutine(StartGameOver());
+        //    //music.GameOver();
+        //    alreadyDead = true;
+        //}
         image.color = gradient.Evaluate(sliderH.normalizedValue);
 
         sliderE.maxValue = player.maxExp;
@@ -67,6 +69,17 @@ public class AllStats : MonoBehaviour
         if (player.exp == player.maxExp && waveIsOver)
         {
             StartCoroutine(UpdLvl());
+        }
+    }
+    public void GuiDie()
+    {
+        if (!alreadyDead)
+        {
+            CursorControll.cursorControll.HideCursor();
+            End = StartCoroutine(StartGameOver());
+            //StartGameOver();
+            //music.GameOver();
+            alreadyDead = true;
         }
     }
     
@@ -77,26 +90,26 @@ public class AllStats : MonoBehaviour
     }
     public IEnumerator StartGameOver()
     {
-        yield return new WaitForSeconds(startGameOverTime);
-        StartCoroutine(GameOver());
+       player.paused = true;
+       yield return new WaitForSeconds(startGameOverTime);
+       StartCoroutine(GameOver());
     }
     public IEnumerator GameOver()
     {
-        CursorControll.cursorControll.ChangeCursor();
-        player.canShoot = false;
+        CursorControll.cursorControll.ChangeCursor();       
         gameOver.GetComponentInChildren<TimerSlider>().Begin();
-        yield return new WaitForSeconds(gameOverTime); 
-        player.canShoot = true;
+        yield return new WaitForSeconds(gameOverTime);
+        Debug.Log("finished");
         esc.LoadScene("Main_Menu");
     }
     IEnumerator UpdLvl()
     {
-        player.canShoot = false;
+        player.paused = true;
         updLvl.GetComponentInChildren<TimerSlider>().Begin();
         player.SetMaxExp();
         yield return new WaitForSeconds(updLvlTime);
         updLvl.SetActive(false);
-        player.canShoot = true;
+        player.paused = false;
 
     }
   

@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 public class Game : MonoBehaviour
 {
     //public MusicControll music;
+    bool startWave;
     public bool waveIsOver;
     public float timeBetWaves;
 
@@ -70,7 +71,6 @@ public class Game : MonoBehaviour
         tommyAmmo = new int();
         autogunAmmo = new int();
         rifleAmmo = new int();
-
 }
     
     IEnumerator Wave(int bots)
@@ -90,12 +90,17 @@ public class Game : MonoBehaviour
             enemy = enemies[UnityEngine.Random.Range(0, enemies.Count - 1)];
             Instantiate(enemy, new Vector3(UnityEngine.Random.Range(spawnPos.x - 10f, spawnPos.x +10f), spawnPos.y, spawnPos.z), Quaternion.Euler(0, 0, 0));
             protivnikov++;
-        }       
+        }
+        startWave = true;
     }
 public void FixedUpdate()
     {
         MainSave.save.timeValue += Time.deltaTime;
-        if (protivnikov == 0) StartCoroutine(Wave(UnityEngine.Random.Range(0, waves / 10 + 10)));
+        //if (protivnikov == 0 && startWave)
+        //{
+         //   startWave = true;
+         //   StartCoroutine(Wave(UnityEngine.Random.Range(0, waves / 10 + 10)));
+        //}
     }
     public void AddDMG()
     {

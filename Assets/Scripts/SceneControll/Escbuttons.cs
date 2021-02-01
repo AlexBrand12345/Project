@@ -6,19 +6,23 @@ using UnityEngine.UI;
 
 public class Escbuttons : MonoBehaviour
 {
+    public Player player;
     //MusicControll music;
     public GameObject loadingScene;
+    public bool IsLoading = false;
     Slider loadingSlider;
     GameObject settings;
+    public Hands hands;
     public GameObject panel;
     public GameObject setts;
     public GameObject PauseMenu;
     public GameObject GOMenu;
-    //bool paused = false;
+//public bool onPause = false;
     bool isSets = false;
     
     public void LoadScene(string scene)
     {
+        IsLoading = true;
         CursorControll.cursorControll.HideCursor();
         loadingSlider = loadingScene.GetComponentInChildren<Slider>();
         loadingScene.SetActive(true);
@@ -58,21 +62,24 @@ public class Escbuttons : MonoBehaviour
     //{
     //    OnEscape()
     //}
-    public void OnEscape(bool paused)
-    {      
-        if (paused)
+    public void OnEscape()
+    {
+        if (player.paused)
         {
             Destroy(settings);
             Resume();
         }
         else Stop();
-        //music.Pause(paused);
-        CursorControll.cursorControll.ChangeCursor();
+        //music.Pause(paused);   
     }
     public void Resume()
     {
-        if (!GOMenu.activeSelf) //если игра не проиграна, а на паузе
+        //if (!GOMenu.activeSelf) //если игра не проиграна, а на паузе
+        if (!GOMenu.activeSelf)
         {
+            player.paused = false;
+            CursorControll.cursorControll.ChangeCursor();
+            hands.canRotate = true;
             panel.SetActive(false);
             Time.timeScale = 1f;
             //if(pauseMenu != null) Destroy(pauseMenu);
@@ -83,6 +90,9 @@ public class Escbuttons : MonoBehaviour
     }
     void Stop()
     {
+        player.paused = true;
+        CursorControll.cursorControll.ChangeCursor();
+        hands.canRotate = false;
         panel.SetActive(true);
         Time.timeScale = 0.001f;
         //pauseMenu = Instantiate(PauseMenu, new Vector3(0, 0, 0), panel.transform.rotation, panel.transform);

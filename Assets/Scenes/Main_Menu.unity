@@ -2532,6 +2532,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadingScene: {fileID: 1262896254}
+  IsLoading: 0
+  hands: {fileID: 0}
   panel: {fileID: 1169918450}
   setts: {fileID: 5758775098124288414, guid: bd95016ec84b33448aae3c059de72144, type: 3}
   PauseMenu: {fileID: 0}
@@ -7515,7 +7517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a37504cd30209c4898cb3eb8bd8e220, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  texture: {fileID: 0}
+  texture: {fileID: 2800000, guid: 692c5befdf031b345ac21a353dfd883a, type: 3}
 --- !u!1 &1561503832
 GameObject:
   m_ObjectHideFlags: 0

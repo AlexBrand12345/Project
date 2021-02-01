@@ -287,6 +287,7 @@ MonoBehaviour:
   body: {fileID: 0}
   health: 5
   maxHealth: 10
+  paused: 0
   canShoot: 1
   DMGmod: 1
   ammo: 0
@@ -1097,7 +1098,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.6592045, y: -3.8631873, z: -10}
+  m_LocalPosition: {x: -7.672888, y: -3.8631873, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 877443700}
@@ -1118,7 +1119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ShowDebugText: 0
   m_ShowCameraFrustum: 1
-  m_IgnoreTimeScale: 0
+  m_IgnoreTimeScale: 1
   m_WorldUpOverride: {fileID: 0}
   m_UpdateMethod: 2
   m_BlendUpdateMethod: 1
@@ -1528,8 +1529,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 53972379
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a0d1d68e8145ebe4b97281e20196c18f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1741,8 +1742,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 53972379
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a0d1d68e8145ebe4b97281e20196c18f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1799,6 +1800,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   texture: {fileID: 2800000, guid: 174701a289cd53c40b2fb613bd1354a5, type: 3}
+  cursor: {fileID: 0}
 --- !u!1 &756881598
 GameObject:
   m_ObjectHideFlags: 0
@@ -1986,7 +1988,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b4161b703816634881b4b2b647d0b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  music: {fileID: 780232558}
   waveIsOver: 0
   timeBetWaves: 10
   spawnPoints: []
@@ -2166,13 +2167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdddb2e62327ad2479279d98f8e50a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waves: []
-  audioClips: []
-  pause: []
-  gameOver: {fileID: 0}
-  deathBackground: {fileID: 0}
-  speed2change: 3
-  volume: 1
 --- !u!1 &806791429
 GameObject:
   m_ObjectHideFlags: 0
@@ -2281,8 +2275,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 858097606}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.805, y: 1.182, z: 0}
+  m_LocalScale: {x: 7.994975, y: 7.994975, z: 7.994975}
   m_Children:
   - {fileID: 2022794931}
   m_Father: {fileID: 87913216}
@@ -2327,18 +2321,19 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: -7359788704436708632, guid: 87f96c22bff745f478748da29a1343ff,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.046875, y: 0.578125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!114 &858097609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2346,14 +2341,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 858097606}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8f661db7737a1404c940d5bc48b910fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: 0
-  StartTime: 0
-  guns: []
+  offset: 2
+  canRotate: 0
+  StartTime: 1
+  reload: {fileID: 633268555032138119, guid: 2c651ddee8a76074785cda5a96cd9105, type: 3}
+  guns:
+  - {fileID: 2022794930}
+  weapon: {fileID: 0}
 --- !u!1 &877443699
 GameObject:
   m_ObjectHideFlags: 0
@@ -2809,6 +2808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d2854a76b04ea540a565c1606f5cf69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alreadyDead: 0
   esc: {fileID: 1210574102}
   updLvlTime: 10
   gameOverTime: 10
@@ -3226,11 +3226,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e64d7b474d44a2468dcd76284f8d167, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 87913217}
   loadingScene: {fileID: 436701181}
+  IsLoading: 0
+  hands: {fileID: 858097609}
   panel: {fileID: 1489632845}
   setts: {fileID: 5758775098124288414, guid: bd95016ec84b33448aae3c059de72144, type: 3}
   PauseMenu: {fileID: 599651402}
-  GOMenu: {fileID: 1873797924772882808}
+  GOMenu: {fileID: 1636565383}
 --- !u!1 &1413009668
 GameObject:
   m_ObjectHideFlags: 0
@@ -5452,7 +5455,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2022794930}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.3604, y: 0.0791, z: 0}
+  m_LocalPosition: {x: 0.018, y: -0.234, z: 0}
   m_LocalScale: {x: 0.66433686, y: 0.66433686, z: 0.66433686}
   m_Children: []
   m_Father: {fileID: 858097607}
@@ -5470,7 +5473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1348b87a0f738449be7d74d98992b7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 0}
+  bullet: {fileID: 2022794930}
   damage: 0
   bspeed: 0
   time2reload: 0
@@ -5517,16 +5520,16 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7362661061344524757, guid: 901b1dbb79e4d3c4088dc13bc1f3e439,
+  m_Sprite: {fileID: 4130640169021434097, guid: faf1b9cd2352408468ca221f433e1bd8,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.32, y: 0.61}
+  m_Size: {x: 0.328125, y: 0.171875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2100260967

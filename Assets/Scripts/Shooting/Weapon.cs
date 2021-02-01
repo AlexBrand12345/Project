@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    GameObject reloadObj;
+    GameObject reload;
     Player player;
     public GameObject bullet;
     RectTransform rect;
@@ -28,6 +30,7 @@ public class Weapon : MonoBehaviour
 
     public void Start()
     {
+        reload = transform.parent.GetComponent<Hands>().reload;
         player = transform.parent.parent.GetComponent<Player>();
         rect = GetComponent<RectTransform>();
         // sprite = GetComponent<SpriteRenderer>();
@@ -85,8 +88,7 @@ public class Weapon : MonoBehaviour
     {
         Debug.Log(reloading);
         while (!reloading) 
-        { 
-        
+        {        
             if (ammoLeft == 0) StartCoroutine(Reload(time2reload));       
             else        
             {
@@ -103,9 +105,19 @@ public class Weapon : MonoBehaviour
             }
         }
     }
-    private IEnumerator Reload(float time2reload)
+    public void GoToReload()
     {
+        if (!reloading)
+        {
+            StartCoroutine(Reload(time2reload));
+        }
         reloading = true;
+    }
+    IEnumerator Reload(float time2reload)
+    {
+        reloadObj = Instantiate(reload, gameObject.transform);
+        //здесь должна быть блокировка поворота
+        reloadObj.GetComponent<Reloading>().GetTime(time2reload);
         yield return new WaitForSeconds(time2reload);
         ammoLeft = ammo;
         reloading = false;
