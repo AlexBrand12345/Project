@@ -17,10 +17,15 @@ public class BaseWeapon : MonoBehaviour
     //public int baseDMG;
     //public int basebspeed;
     //public int baseAmmo;
+    [SerializeField]
     public float damage; //урон пули
+    [SerializeField]
     public int bspeed; //скорость пули
+    [SerializeField]
     public float time2reload;
+    [SerializeField]
     public float shotTime;
+    [SerializeField]
     public int ammo;
     public int ammoLeft;
     int shoted;
@@ -28,7 +33,7 @@ public class BaseWeapon : MonoBehaviour
     bool firing;
     public void Start()
     {
-        player = transform.parent.parent.GetComponent<Player>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         rect = GetComponent<RectTransform>();
         switch (gameObject.name)
         {
@@ -60,6 +65,8 @@ public class BaseWeapon : MonoBehaviour
                 ammo = Game.game.rifleAmmo;
                 //sprite.sprite = Game.game.sprites[3];
                 break;
+            //case "Ppistol":
+            //    break;
             default: //блять я второй, крч мы должны обновлять статистику оружия, ладно, отдельного оружия сможем, но когда у всех увеличивается дамаг или скорость, то нужны методы, нужно их вызывать, скорее всего из player
                 damage *= player.DMGmod;
                 bspeed += player.bspeed;

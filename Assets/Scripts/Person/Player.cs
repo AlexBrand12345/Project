@@ -12,12 +12,26 @@ public sealed class Player : Person
     AllStats stats;
     int index;
     public bool canShoot = true;
+
+
+    //public int pistolAmmo;
+    //public int pistolbspeed;
+    //public int pistolDMG;
+    //public int autogunAmmo;
+    //public int autogunbspeed;
+    //public int autogunDMG;
+    //public int tommyAmmo;
+    //public int tommybspeed;
+    //public int tommyDMG;
+    //public int rifleAmmo;
+    //public int riflebspeed;
+    //public int rifleDMG;
+
+
     public float DMGmod = 1f;
     public int ammo;
     public int bspeed;
-
     public int baseDMG;
-
     public int maxExp;
     public int exp;
     public int gainExp = 1;
