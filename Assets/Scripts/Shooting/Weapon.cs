@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    [SerializeField]
     GameObject reloadObj;
+    [SerializeField]
     GameObject reload;
+    [SerializeField]
+    GameObject canvas;
     Player player;
     public GameObject bullet;
     RectTransform rect;
@@ -20,7 +24,7 @@ public class Weapon : MonoBehaviour
     public int ammo;
     public int ammoLeft;
     int shoted;
-    bool reloading;
+    bool reloading = false;
     bool firing;
 
     //public static Guns pistol = new Guns { damage = 1, bspeed = 10, shotTime = 1f, ammo = 7};
@@ -30,8 +34,10 @@ public class Weapon : MonoBehaviour
 
     public void Start()
     {
+        reloadObj = null;
         reload = transform.parent.GetComponent<Hands>().reload;
         player = transform.parent.parent.GetComponent<Player>();
+        canvas = player.canvas;
         rect = GetComponent<RectTransform>();
         // sprite = GetComponent<SpriteRenderer>();
             switch (gameObject.name)
@@ -84,26 +90,31 @@ public class Weapon : MonoBehaviour
     {
         ammo += ammunition;
     }
-    public IEnumerator Shoot()
+    public void Shoot()
     {
-        Debug.Log(reloading);
-        while (!reloading) 
-        {        
-            if (ammoLeft == 0) StartCoroutine(Reload(time2reload));       
-            else        
+        //Debug.Log(reloading);
+        if (!reloading)
+        {
+            if (ammoLeft == 0) GoToReload();
+            else
             {
-                Debug.Log(firing);
-                while (!firing) 
-                { 
-                    Instantiate(bullet, new Vector3(rect.rect.xMax, rect.rect.y / 2, 0), transform.rotation, gameObject.transform);          
-                    shoted++;            
-                    ammoLeft--;
-                    firing = true;
-                    yield return new WaitForSeconds(shotTime);
-                    firing = false;
+                //Debug.Log(firing);
+                if (!firing)
+                {
+                    StartCoroutine(ShootCor());
                 }
             }
         }
+    }
+    public IEnumerator ShootCor()
+    {
+       
+        firing = true;
+        Instantiate(bullet, new Vector3(transform.position.x, transform.position.y, 0), transform.rotation, transform);  
+        shoted++;            
+        ammoLeft--;                   
+        yield return new WaitForSeconds(shotTime);
+        firing = false;
     }
     public void GoToReload()
     {
@@ -115,8 +126,7 @@ public class Weapon : MonoBehaviour
     }
     IEnumerator Reload(float time2reload)
     {
-        reloadObj = Instantiate(reload, gameObject.transform);
-        //здесь должна быть блокировка поворота
+        reloadObj = Instantiate(reload, new Vector3(Camera.main.transform.position.x, player.gameObject.transform.position.y-player.gameObject.GetComponent<RectTransform>().rect.height,0), Quaternion.identity, canvas.transform);
         reloadObj.GetComponent<Reloading>().GetTime(time2reload);
         yield return new WaitForSeconds(time2reload);
         ammoLeft = ammo;

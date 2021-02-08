@@ -19,9 +19,7 @@ public class Game : MonoBehaviour
     public int protivnikov;
     public int waves;
    // public List<Sprite> sprites;
-    public static Game game = new Game();
-    
-
+    public static Game game = new Game();    
     public int pistolDMG;
     public int tommyDMG;
     public int autogunDMG;
@@ -48,31 +46,34 @@ public class Game : MonoBehaviour
 
     public Game()
     {
-        extraHP = new int();
-        extraDMG = new int();
-        extrabspeed = new int();
+        //extraHP = new int();
+        //extraDMG = new int();
+        //extrabspeed = new int();
 
-        pistolDMG = new int();
-        tommyDMG = new int();
-        autogunDMG = new int();
-        rifleDMG = new int();
+        //pistolDMG = new int();
+        //tommyDMG = new int();
+        //autogunDMG = new int();
+        //rifleDMG = new int();
 
-        pistolHP = new int();
-        tommyHP = new int();
-        autogunHP = new int();
-        rifleHP = new int();
+        //pistolHP = new int();
+        //tommyHP = new int();
+        //autogunHP = new int();
+        //rifleHP = new int();
 
-        pistolbspeed = new int();
-        tommybspeed = new int();
-        autogunbspeed = new int();
-        riflebspeed = new int();
+        //pistolbspeed = new int();
+        //tommybspeed = new int();
+        //autogunbspeed = new int();
+        //riflebspeed = new int();
 
-        pistolAmmo = new int();
-        tommyAmmo = new int();
-        autogunAmmo = new int();
-        rifleAmmo = new int();
+        //pistolAmmo = new int();
+        //tommyAmmo = new int();
+        //autogunAmmo = new int();
+        //rifleAmmo = new int();
 }
-    
+    private void Awake()
+    {
+        game.pistolHP = pistolHP;
+    }
     IEnumerator Wave(int bots)
     {
         //StartCoroutine(music.SwitchWave(timeBetWaves));

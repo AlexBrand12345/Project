@@ -11,6 +11,7 @@ TagManager:
   - Background
   - EffectsControll
   - MusicControll
+  - Bullet
   layers:
   - Default
   - TransparentFX

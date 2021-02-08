@@ -89,6 +89,8 @@ GameObject:
   m_Component:
   - component: {fileID: 633268555032138104}
   - component: {fileID: 633268555032138105}
+  - component: {fileID: 5058830123372600827}
+  - component: {fileID: 6045639066735946412}
   m_Layer: 5
   m_Name: reloading
   m_TagString: Untagged
@@ -163,10 +165,44 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5058830123372600827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633268555032138119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db3fb894790ea1844b854340d0fb5893, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 633268555032138105}
+--- !u!223 &6045639066735946412
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633268555032138119}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 1
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 1
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &633268555184613762
 GameObject:
   m_ObjectHideFlags: 0

@@ -50,7 +50,7 @@ public class Hands : MonoBehaviour
         { 
             if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x < transform.position.x)
             {
-              //sprite.flipX = true;
+                //sprite.flipX = true;
                 transform.rotation = Quaternion.Euler(new Vector3(180f, 0f, -gunAngle));
                 batka.transform.rotation = Quaternion.Euler(0, -180, 0);
                 if (Input.GetAxis("Horizontal") < 0) player.isForward = true;
@@ -71,7 +71,7 @@ public class Hands : MonoBehaviour
 
     public void Shoot()
     {
-        StartCoroutine(weapon.Shoot());
+        weapon.Shoot();
     }
     //public void SwitchWeapon(int index)
     //{

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public sealed class Player : Person
 {
+    public HeartFon heartFon;
+    public GameObject canvas;
     bool alreadyDead = false;
     public bool paused;
     Escbuttons esc;
@@ -101,7 +103,7 @@ public sealed class Player : Person
         if (gameObject) CheckOutOfView();
         if (!paused && gameObject) 
         {            
-            if (Input.GetMouseButtonDown(0)) hand.Shoot();          
+            if (Input.GetMouseButton(0)) hand.Shoot();         
         }
         
     }

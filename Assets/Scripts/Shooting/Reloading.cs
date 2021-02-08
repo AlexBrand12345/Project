@@ -11,6 +11,7 @@ public class Reloading : MonoBehaviour
     
     public void GetTime(float time)
     {
+        Debug.Log("GotTime");
         time2reload = time;
         timeLeft = time2reload;
     }
