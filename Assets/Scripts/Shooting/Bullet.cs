@@ -9,11 +9,11 @@ public class Bullet : MonoBehaviour
     int speed;
     public float lifeTime = 4f;
 
-    Weapon parent;
+    BaseWeapon parent;
 
     public void Awake()
     {
-        parent = transform.parent.gameObject.GetComponent<Weapon>();
+        parent = transform.parent.gameObject.GetComponent<BaseWeapon>();
         batyanya = transform.parent.parent.parent.gameObject;
         damage = (int)parent.damage;
         speed = parent.bspeed;

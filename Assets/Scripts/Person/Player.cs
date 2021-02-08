@@ -197,7 +197,7 @@ public sealed class Player : Person
         DMGmod *= Random.Range(1.1f, 1.5f);
         foreach(GameObject weapon in hand.guns)
         {
-            weapon.GetComponent<Weapon>().UpdateDMG(DMGmod);
+            weapon.GetComponent<PlayerWeapon>().UpdateDMG(DMGmod);
         }
     }
     public void PlusHP()

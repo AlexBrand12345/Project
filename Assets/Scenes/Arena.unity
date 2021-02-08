@@ -1533,7 +1533,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 53972379
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: a0d1d68e8145ebe4b97281e20196c18f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1746,7 +1746,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 53972379
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: a0d1d68e8145ebe4b97281e20196c18f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -5638,9 +5638,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1348b87a0f738449be7d74d98992b7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reloadObj: {fileID: 0}
-  reload: {fileID: 633268555032138119, guid: 2c651ddee8a76074785cda5a96cd9105, type: 3}
-  canvas: {fileID: 0}
+  player: {fileID: 0}
   bullet: {fileID: 8841895012004681818, guid: c37572f96a670134dbe2e7f560f9209d, type: 3}
   damage: 1
   bspeed: 10
@@ -5648,6 +5646,10 @@ MonoBehaviour:
   shotTime: 0.2
   ammo: 6
   ammoLeft: 0
+  reloading: 0
+  reloadObj: {fileID: 0}
+  reload: {fileID: 633268555032138119, guid: 2c651ddee8a76074785cda5a96cd9105, type: 3}
+  canvas: {fileID: 0}
 --- !u!212 &2022794933
 SpriteRenderer:
   m_ObjectHideFlags: 0

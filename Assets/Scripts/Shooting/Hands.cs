@@ -20,7 +20,7 @@ public class Hands : MonoBehaviour
     GameObject gun;
     //SpriteRenderer sprite;
     Player player;
-    public Weapon weapon;
+    public BaseWeapon weapon;
 
     private void Awake()
     {
@@ -33,7 +33,7 @@ public class Hands : MonoBehaviour
     {
         //спавн оружия
         gun = guns[0];
-        weapon = gun.GetComponent<Weapon>();
+        weapon = gun.GetComponent<BaseWeapon>();
         gun.SetActive(true);
     }
 

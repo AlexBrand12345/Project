@@ -26,7 +26,7 @@ public abstract class BaseEnemy : Person
     Seeker seeker; 
 
     //Movement move;
-    Weapon weapon;
+    EnemyWeapon weapon;
 
     Coroutine shootingCoroutine;
 
