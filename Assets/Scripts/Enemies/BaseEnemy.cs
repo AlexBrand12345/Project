@@ -40,6 +40,7 @@ public abstract class BaseEnemy : Person
 
     protected new void Start()
     {
+        base.Start();
         InvokeRepeating("ChangeSpeedAndDirectionPerTime", 0, timeRange);
         InvokeRepeating("UpdatePath", 0, .5f);
     }

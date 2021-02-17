@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Escbuttons : MonoBehaviour
 {
     public Player player;
-    //MusicControll music;
+    MusicControll music;
     public GameObject loadingScene;
     public bool IsLoading = false;
     Slider loadingSlider;
@@ -19,15 +19,23 @@ public class Escbuttons : MonoBehaviour
     public GameObject GOMenu;
 //public bool onPause = false;
     bool isSets = false;
+    AsyncOperation loading;
     
     public void LoadScene(string scene)
     {
         SaveLoad.Save();
+        
         IsLoading = true;
         CursorControll.cursorControll.HideCursor();
         loadingSlider = loadingScene.GetComponentInChildren<Slider>();
         loadingScene.SetActive(true);
-        AsyncOperation loading = SceneManager.LoadSceneAsync(scene);
+        loading = SceneManager.LoadSceneAsync(scene);
+        if(loading.progress >=0.9f) IsLoading = false;       
+    }
+
+    public void Update()
+    {
+        if(IsLoading)
         loadingSlider.value = 1 - loading.progress;
     }
     //public void Main_Menu()
@@ -39,6 +47,7 @@ public class Escbuttons : MonoBehaviour
     private void Awake()
     {
         SaveLoad.Load();
+        music = GameObject.FindWithTag("MusicControll").GetComponent<MusicControll>();
     }
 
     public void Quit()
@@ -75,7 +84,7 @@ public class Escbuttons : MonoBehaviour
             Resume();
         }
         else Stop();
-        //music.Pause(paused);   
+           
     }
     public void Resume()
     {
@@ -89,6 +98,7 @@ public class Escbuttons : MonoBehaviour
             Time.timeScale = 1f;
             //if(pauseMenu != null) Destroy(pauseMenu);
             PauseMenu.SetActive(false);
+            music.Pause(player.paused);
             //Settings.SetActive(false);
             //paused = false;
         }
@@ -100,6 +110,7 @@ public class Escbuttons : MonoBehaviour
         hands.canRotate = false;
         panel.SetActive(true);
         Time.timeScale = 0.001f;
+        music.Pause(player.paused);
         //pauseMenu = Instantiate(PauseMenu, new Vector3(0, 0, 0), panel.transform.rotation, panel.transform);
         PauseMenu.SetActive(true);
         //paused = true;

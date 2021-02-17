@@ -12,9 +12,9 @@ public class EffectsControll : MonoBehaviour
     AudioSource source;
     public float volume;
 
-    public void ChangeMusicVolume(float volume)
+    public void ChangeEffectsVolume(float volume)
     {
-        effectsMixer.audioMixer.SetFloat("MusicVolume", Mathf.Lerp(-80, 0, volume));
+        effectsMixer.audioMixer.SetFloat("EffectsVolume", Mathf.Lerp(-80, 0, volume));
     }
 
     void Awake()

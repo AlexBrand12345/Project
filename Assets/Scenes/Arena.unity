@@ -1142,7 +1142,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.672888, y: -3.8631878, z: -10}
+  m_LocalPosition: {x: -7.6616364, y: -3.8631878, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 877443700}
@@ -2353,7 +2353,7 @@ MonoBehaviour:
   deathBackground: {fileID: 0}
   musicMixer: {fileID: -8017982990677903830, guid: 3c24281af678e2b40a825d178cd37bd3,
     type: 2}
-  speed2change: 1
+  speed2change: 0.01
   volume: 1
   UIaudioSource: {fileID: 1975842364}
 --- !u!1 &806791429

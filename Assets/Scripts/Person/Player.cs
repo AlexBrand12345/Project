@@ -133,9 +133,9 @@ public sealed class Player : Person
             Debug.Log("ExitMap");
             Destroy(gameObject);
             StopCoroutine(stats.End);
-            //StopAllCoroutines();
+            StopAllCoroutines();
             //Debug.Log(stats.StartGameOver().Current);
-            StartCoroutine(stats.GameOver());
+            stats.StartCoroutine(stats.GameOver());
             Debug.Log("started");
         }
     }

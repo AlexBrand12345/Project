@@ -35,23 +35,25 @@ public class MusicControll : MonoBehaviour
     }
     
     void Awake()
-    {
-        StartPlaying();
+    {      
         audioSrc = GetComponent<AudioSource>();
-        volume = MainSave.save.musicVolume;
+        StartPlaying();
+        //volume = MainSave.save.musicVolume;
+        volume = 1f;
         //audioSrc.volume = volume;
         audioSrc.volume = 0f;
+        UIaudioSource.volume = 0f;
         //StartPlaying();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (volume != MainSave.save.musicVolume)
-        {
-            volume = MainSave.save.musicVolume;
+        //if (volume != MainSave.save.musicVolume)
+        //{
+            //volume = MainSave.save.musicVolume;
             audioSrc.volume = volume;
-        }
+        //}
     }
 
     void StartPlaying()
@@ -80,11 +82,12 @@ public class MusicControll : MonoBehaviour
         } while (curClip == prevClip);
         source.clip = curClip;
         source.Play();
+        clipFound = true;
 
     }
-    public void Pause(bool alreadyStopped)
+    public void Pause(bool isStopped)
     {
-        if (!alreadyStopped)
+        if (isStopped)
         {
             audioSrc.Pause();
             audioSrc.volume = 0;
@@ -94,6 +97,7 @@ public class MusicControll : MonoBehaviour
         }
         else
         {
+            UIaudioSource.volume = 0f;
             UIaudioSource.Stop();
             audioSrc.UnPause();
             //audioSrc.Stop();
@@ -110,16 +114,19 @@ public class MusicControll : MonoBehaviour
     }
     IEnumerator ChangeVolume(AudioSource source, float speed, AudioClip[] clips)
     {
+        Debug.Log("Ласточка");
+        Debug.Log(source.volume);
         if (source.volume > volume)
         {
-            audioSrc.volume = volume;
+            source.volume = volume;
             isLoud = true;
             clipFound = false;
             yield return null;
         }
         else if (source.volume <= 0)
         {
-            audioSrc.volume = 0;
+            source.volume = 0;
+            clipFound = false;
             isLoud = false;
             if (MainSave.save.musicVolume != 0)
             {
@@ -129,7 +136,7 @@ public class MusicControll : MonoBehaviour
             if (!clipFound)
             {
                 GetNewClip(source,clips);
-                clipFound = true;
+                //clipFound = true;
             }
             yield return null;
             //audioSrc.volume += speed;
@@ -139,13 +146,13 @@ public class MusicControll : MonoBehaviour
         {
             if (!isLoud)
             {
-                audioSrc.volume += speed;
+                source.volume += speed;
             }
             else
             {
-                audioSrc.volume -= speed;
+                source.volume -= speed;
             }
-            yield return new WaitForSeconds(0.001f);
+            yield return new WaitForSeconds(0.1f);
             ChangeVolume(source, speed, clips);
         }
 

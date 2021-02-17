@@ -28,6 +28,7 @@ public class AllStats : MonoBehaviour
     Player player;
 
     public Coroutine End;
+    public Coroutine GameOverCor;
     // Start is called before the first frame update
 
     public void Awake()
@@ -92,13 +93,15 @@ public class AllStats : MonoBehaviour
     {
        player.paused = true;
        yield return new WaitForSeconds(startGameOverTime);
-        Debug.Log("I catched you");
+       Debug.Log("I catched you");
        StartCoroutine(GameOver());
     }
     public IEnumerator GameOver()
     {
+        Debug.Log("started2");
         CursorControll.cursorControll.ChangeCursor();       
         gameOver.GetComponentInChildren<TimerSlider>().Begin();
+        Debug.Log("started3");
         yield return new WaitForSeconds(gameOverTime);
         Debug.Log("finished");
         esc.LoadScene("Main_Menu");

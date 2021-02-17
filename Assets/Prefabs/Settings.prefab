@@ -386,20 +386,20 @@ MonoBehaviour:
   m_FillRect: {fileID: 3333043162368819315}
   m_HandleRect: {fileID: 6794601821553328885}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 2
+  m_MinValue: 0.5
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5758775098124288414}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 1112605487087397111}
+        m_TargetAssemblyTypeName: Settings, Assembly-CSharp
+        m_MethodName: ChangeEffectsVolume
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgument: {fileID: 5094855770403612229}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Slider, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1132,6 +1132,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44709249227ce241b3b07e31a640f9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectsSlider: {fileID: 5094855770403612229}
+  musicSlider: {fileID: 5758775098487505902}
+  music: {fileID: 0}
+  effects: {fileID: 0}
+  esc: {fileID: 0}
 --- !u!212 &-2783269955484240560
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1433,20 +1438,20 @@ MonoBehaviour:
   m_FillRect: {fileID: 5758775097124994407}
   m_HandleRect: {fileID: 5758775097520550393}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 2
+  m_MinValue: 0.5
+  m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5758775098124288414}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 1112605487087397111}
+        m_TargetAssemblyTypeName: Settings, Assembly-CSharp
+        m_MethodName: ChangeMusicVolume
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgument: {fileID: 5758775098487505902}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Slider, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
