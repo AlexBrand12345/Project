@@ -92,6 +92,7 @@ public class AllStats : MonoBehaviour
     {
        player.paused = true;
        yield return new WaitForSeconds(startGameOverTime);
+        Debug.Log("I catched you");
        StartCoroutine(GameOver());
     }
     public IEnumerator GameOver()

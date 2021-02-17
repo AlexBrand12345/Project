@@ -22,6 +22,7 @@ public class Escbuttons : MonoBehaviour
     
     public void LoadScene(string scene)
     {
+        SaveLoad.Save();
         IsLoading = true;
         CursorControll.cursorControll.HideCursor();
         loadingSlider = loadingScene.GetComponentInChildren<Slider>();
@@ -35,6 +36,10 @@ public class Escbuttons : MonoBehaviour
     //    AsyncOperation loading = SceneManager.LoadSceneAsync("Main_Menu");
     //    loadingSlider.value = 1 - loading.progress;
     //}
+    private void Awake()
+    {
+        SaveLoad.Load();
+    }
 
     public void Quit()
     {

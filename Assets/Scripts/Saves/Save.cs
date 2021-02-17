@@ -23,17 +23,17 @@ public class MainSave
     public float effectsVolume;
     public MainSave()
     {
-        i = new int();
-        kills = new int();
-        deaths = new int();
-        heals = new int();
-        exp = new int();
-        timeValue = new float();
-        rounds = new int();
-        waves = new int();
-        shots = new int();
-        curSkin = new int();
-        musicVolume = new float();
-        effectsVolume = new float();
+        //i = new int();
+        //kills = new int();
+        //deaths = new int();
+        //heals = new int();
+        //exp = new int();
+        //timeValue = new float();
+        //rounds = new int();
+        //waves = new int();
+        //shots = new int();
+        //curSkin = new int();
+        //musicVolume = new float();
+        //effectsVolume = new float();
     }
 }

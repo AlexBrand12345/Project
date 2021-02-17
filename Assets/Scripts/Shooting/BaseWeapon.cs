@@ -26,6 +26,9 @@ public class BaseWeapon : MonoBehaviour
     [SerializeField]
     public float shotTime;
     [SerializeField]
+    AudioSource source;
+    [SerializeField]
+    Animator animator;
     public int ammo;
     public int ammoLeft;
     int shoted;
@@ -33,6 +36,8 @@ public class BaseWeapon : MonoBehaviour
     bool firing;
     public void Start()
     {
+        animator = GetComponent<Animator>();
+        source = GetComponent<AudioSource>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         rect = GetComponent<RectTransform>();
         switch (gameObject.name)
@@ -86,6 +91,7 @@ public class BaseWeapon : MonoBehaviour
                 //Debug.Log(firing);
                 if (!firing)
                 {
+                    source.PlayOneShot(source.clip);
                     StartCoroutine(ShootCor());
                 }
             }
@@ -93,13 +99,14 @@ public class BaseWeapon : MonoBehaviour
     }
     public IEnumerator ShootCor()
     {
-
         firing = true;
+        animator.SetBool("isFiring", true);
         Instantiate(bullet, new Vector3(transform.position.x, transform.position.y, 0), transform.rotation, transform);
         shoted++;
         ammoLeft--;
         yield return new WaitForSeconds(shotTime);
         firing = false;
+        animator.SetBool("isFiring", false);
     }
     public void GoToReload()
     {

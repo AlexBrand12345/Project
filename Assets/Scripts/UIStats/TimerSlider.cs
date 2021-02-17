@@ -47,7 +47,7 @@ public class TimerSlider : MonoBehaviour
     {
         timeRemain -= Time.fixedDeltaTime;
         text.text = Mathf.RoundToInt(timeRemain).ToString();
-        if (timeRemain == 3 || timeRemain == 2 || timeRemain == 1) audioEffects.PlayOneShot(clip);
+        if (timeRemain == 3 || timeRemain == 2 || timeRemain == 1) audioEffects.PlayOneShot(1, clip);
         slider.fillAmount = timeRemain / time;
     }
 }

@@ -59,8 +59,8 @@ public sealed class Player : Person
         bg = GameObject.FindWithTag("Background").GetComponent<Collider2D>();
         hand = GetComponentInChildren<Hands>();
         sprite = GetComponent<SpriteRenderer>();
-        //sprite.sprite = sprites[MainSave.save.curSkin];
-        //hand.gameObject.GetComponent<SpriteRenderer>().sprite = hands[MainSave.save.curSkin];
+        sprite.sprite = sprites[MainSave.save.curSkin];
+        hand.gameObject.GetComponent<SpriteRenderer>().sprite = hands[MainSave.save.curSkin];
     }
     private new void Update()
     {
@@ -132,8 +132,8 @@ public sealed class Player : Person
         {
             Debug.Log("ExitMap");
             Destroy(gameObject);
-            //StopCoroutine(stats.End);
-            StopAllCoroutines();
+            StopCoroutine(stats.End);
+            //StopAllCoroutines();
             //Debug.Log(stats.StartGameOver().Current);
             StartCoroutine(stats.GameOver());
             Debug.Log("started");

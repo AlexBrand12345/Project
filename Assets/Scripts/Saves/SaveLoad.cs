@@ -11,6 +11,7 @@ public static class SaveLoad
     {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/save.gd");
+        Debug.Log(Application.persistentDataPath);
         bf.Serialize(file, MainSave.save);
         file.Close();
     }

@@ -9,19 +9,37 @@ public abstract class Person : Movement
     [Header("Stats")]
     public int health;
     public int maxHealth;
+    [SerializeField]
+    public AudioClip[] clips; //0-takeDMG 1-Die
+    AudioSource source;
 
     protected new void Awake()
     {
         base.Awake();
+        source = GetComponent<AudioSource>();      
+    }
+    protected void LookForComponents(bool need)
+    {
+        Debug.Log("searching");
+        if(!source)
+        source = GetComponent<AudioSource>();
+        if(!heartFon)
         if (gameObject.tag == "Player")
         {
             heartFon = GameObject.Find("HeartFon").GetComponent<HeartFon>();
         }
         else heartFon = GetComponent<HeartFon>();
+        if (source && heartFon) need = false;
+        if(!need) LookForComponents(need);
     }
-    private void Start()
+    public void Start()
     {
-
+        LookForComponents(true);
+        //if (gameObject.tag == "Player")
+        //{
+        //    heartFon = GameObject.Find("HeartFon").GetComponent<HeartFon>();
+        //}
+        //else heartFon = GetComponent<HeartFon>();
     }
     protected new void Update()
     {
@@ -39,14 +57,18 @@ public abstract class Person : Movement
     {
         Debug.Log("damage");
         health -= damage;
+        //heartFon = GetComponent<HeartFon>();
+        Debug.Log(heartFon);
         heartFon.MakeRed(gameObject.tag);
         Debug.Log(health);
         if (health <= 0)
         {
+            source.PlayOneShot(clips[1]);
             Debug.Log("Die");
             health = 0;
             Die();
         }
+        else source.PlayOneShot(clips[0]);
     }
     public virtual void Die()
     { 

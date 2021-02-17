@@ -17,6 +17,7 @@ public abstract class BaseEnemy : Person
     public float minDistance = 5;
 
     private bool isFalling;
+    
 
     [Header("AI")]
     public float nextWaypointDistance = 3f;
@@ -37,7 +38,7 @@ public abstract class BaseEnemy : Person
         seeker = GetComponent<Seeker>();
     }
 
-    protected void Start()
+    protected new void Start()
     {
         InvokeRepeating("ChangeSpeedAndDirectionPerTime", 0, timeRange);
         InvokeRepeating("UpdatePath", 0, .5f);

@@ -6,6 +6,7 @@ using UnityEngine;
 public abstract class Movement : MonoBehaviour
 {
     [Header("Movement")]
+    bool isMoving;
     public float speed;
     public bool isGrounded;
     public bool isForward;
@@ -14,9 +15,12 @@ public abstract class Movement : MonoBehaviour
     public Rigidbody2D body;
     protected RectTransform rect;
     private float checkRadius;
+    Animator animator;
 
     protected void Awake()
     {
+        animator = GetComponent<Animator>();
+        animator.SetInteger("curSkin", MainSave.save.curSkin);
         ground = LayerMask.GetMask("Ground");
         //layerMask = (1 << layerMask);
         rect = GetComponent<RectTransform>();
@@ -27,8 +31,9 @@ public abstract class Movement : MonoBehaviour
     protected virtual void Update()
     {
         //isGrounded = Physics2D.OverlapCircle(rect.position - new Vector3(0, rect.rect.height/2), checkRadius, ground);
-        RaycastHit hit;
+        //RaycastHit hit;
         isGrounded = Physics2D.Raycast(rect.position, Vector2.down, checkRadius, ground);
+        animator.SetBool("isGrounded", isGrounded);
 #if DEBUG_MODE
         //Debug.DrawRay(rect.position, Vector2.down * checkRadius, Color.yellow, 2);
 #endif
@@ -36,6 +41,9 @@ public abstract class Movement : MonoBehaviour
 
     protected void Move(float moveInput)
     {
+        if (moveInput != 0) isMoving = true;
+        else isMoving = false;
+        animator.SetBool("isMoving", isMoving);
         Go(moveInput);
         //if (isGrounded)
         //{
