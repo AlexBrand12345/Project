@@ -12,6 +12,7 @@ TagManager:
   - EffectsControll
   - MusicControll
   - Bullet
+  - StartMenu
   layers:
   - Default
   - TransparentFX

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Escbuttons : MonoBehaviour
 {
+    StartMenu startmenu;
     public Player player;
     MusicControll music;
     public GameObject loadingScene;
@@ -21,16 +22,31 @@ public class Escbuttons : MonoBehaviour
     bool isSets = false;
     AsyncOperation loading;
     
-    public void LoadScene(string scene)
+    public void LoadScene(string scene, bool anything)
     {
-        SaveLoad.Save();
-        
+        SaveLoad.Save();     
         IsLoading = true;
-        CursorControll.cursorControll.HideCursor();
+        //CursorControll.cursorControll.HideCursor();
         loadingSlider = loadingScene.GetComponentInChildren<Slider>();
         loadingScene.SetActive(true);
-        loading = SceneManager.LoadSceneAsync(scene);
-        if(loading.progress >=0.9f) IsLoading = false;       
+        AsyncOperation loading = SceneManager.LoadSceneAsync(scene);
+        if(loading.progress >=0.9f) IsLoading = false;
+    }
+    public void LoadScene(string allInOne) //передача сцены и её подгрузчика
+    {
+        string scene = allInOne.Split(' ')[0];
+        string loader = allInOne.Split(' ')[1];
+        Debug.Log(scene);
+        Debug.Log(loader);
+        SaveLoad.Save();
+        //IsLoading = true;
+        CursorControll.cursorControll.HideCursor();
+        startmenu.scene = scene;
+        Debug.Log(startmenu.scene);
+        //loadingSlider = loadingScene.GetComponentInChildren<Slider>();
+        //loadingScene.SetActive(true);
+        AsyncOperation loading = SceneManager.LoadSceneAsync(loader);
+        //if (loading.progress >= 0.9f) IsLoading = false;
     }
 
     public void Update()
@@ -44,9 +60,10 @@ public class Escbuttons : MonoBehaviour
     //    AsyncOperation loading = SceneManager.LoadSceneAsync("Main_Menu");
     //    loadingSlider.value = 1 - loading.progress;
     //}
-    private void Awake()
+    private void Start()
     {
         SaveLoad.Load();
+        startmenu = GameObject.FindWithTag("StartMenu").GetComponent<StartMenu>();
         music = GameObject.FindWithTag("MusicControll").GetComponent<MusicControll>();
     }
 
@@ -67,11 +84,11 @@ public class Escbuttons : MonoBehaviour
         }
         Debug.Log(isSets);
     } 
-    public void Start()
-    {
+    //public void Start()
+    //{
         //music = GameObject.FindWithTag("MusicControll").GetComponent<MusicControll>();
         //loadingSlider = loadingScene.GetComponentInChildren<Slider>();
-    }
+    //}
     //private void Update()
     //{
     //    OnEscape()

@@ -114,8 +114,8 @@ public class MusicControll : MonoBehaviour
     }
     IEnumerator ChangeVolume(AudioSource source, float speed, AudioClip[] clips)
     {
-        Debug.Log("Ласточка");
-        Debug.Log(source.volume);
+        //Debug.Log("Ласточка");
+        //Debug.Log(source.volume);
         if (source.volume > volume)
         {
             source.volume = volume;

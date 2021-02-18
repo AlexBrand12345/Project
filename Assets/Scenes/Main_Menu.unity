@@ -1807,7 +1807,7 @@ GameObject:
   - component: {fileID: 532335452}
   m_Layer: 0
   m_Name: ButtonsManager
-  m_TagString: Untagged
+  m_TagString: EscController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3728,6 +3728,7 @@ GameObject:
   m_Component:
   - component: {fileID: 960655250}
   - component: {fileID: 960655251}
+  - component: {fileID: 960655252}
   m_Layer: 0
   m_Name: EffectsControll
   m_TagString: EffectsControll
@@ -3758,7 +3759,8 @@ AudioSource:
   m_GameObject: {fileID: 960655249}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1959013370421503564, guid: 3c24281af678e2b40a825d178cd37bd3,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -3845,6 +3847,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &960655252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 960655249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea6ad66e8d95de9458df119df77c07ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectsMixer: {fileID: -1959013370421503564, guid: 3c24281af678e2b40a825d178cd37bd3,
+    type: 2}
+  UIaudioSrc: {fileID: 960655251}
+  volume: 1
 --- !u!1 &1040876152
 GameObject:
   m_ObjectHideFlags: 0
@@ -3934,6 +3952,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1094888292}
   - component: {fileID: 1094888293}
+  - component: {fileID: 1094888294}
   m_Layer: 0
   m_Name: MusicControll
   m_TagString: MusicControll
@@ -3964,7 +3983,8 @@ AudioSource:
   m_GameObject: {fileID: 1094888291}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -8017982990677903830, guid: 3c24281af678e2b40a825d178cd37bd3,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -4051,6 +4071,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1094888294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094888291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdddb2e62327ad2479279d98f8e50a30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waves: []
+  audioClips:
+  - {fileID: 8300000, guid: 54f317a64f4371446b516a0a8348b1b1, type: 3}
+  - {fileID: 8300000, guid: 2a0b3eadd99840a40a1e9557a4a2cec1, type: 3}
+  pause: []
+  gameOver: {fileID: 0}
+  deathBackground: {fileID: 0}
+  musicMixer: {fileID: -8017982990677903830, guid: 3c24281af678e2b40a825d178cd37bd3,
+    type: 2}
+  speed2change: 0.01
+  volume: 1
+  UIaudioSource: {fileID: 1094888293}
 --- !u!1 &1106131948
 GameObject:
   m_ObjectHideFlags: 0
@@ -5435,6 +5479,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1385912075}
+  - component: {fileID: 1385912076}
   m_Layer: 0
   m_Name: Animation
   m_TagString: Untagged
@@ -5456,6 +5501,20 @@ Transform:
   m_Father: {fileID: 1262896255}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1385912076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385912074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bb47a49dff319341a8df84d9e7fca6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 2287013754857477386, guid: 14f7b4ca62e8fa440b3d4ab69c5bfbd7, type: 3}
 --- !u!1 &1400379151
 GameObject:
   m_ObjectHideFlags: 0
@@ -6973,7 +7032,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Arena
+          m_StringArgument: Arena StartScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1854403469
