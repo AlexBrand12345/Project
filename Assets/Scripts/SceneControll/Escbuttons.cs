@@ -28,7 +28,7 @@ public class Escbuttons : MonoBehaviour
         IsLoading = true;
         //CursorControll.cursorControll.HideCursor();
         loadingSlider = loadingScene.GetComponentInChildren<Slider>();
-        loadingScene.SetActive(true);
+        //loadingScene.SetActive(true);
         AsyncOperation loading = SceneManager.LoadSceneAsync(scene);
         if(loading.progress >=0.9f) IsLoading = false;
     }
@@ -38,14 +38,16 @@ public class Escbuttons : MonoBehaviour
         string loader = allInOne.Split(' ')[1];
         Debug.Log(scene);
         Debug.Log(loader);
-        SaveLoad.Save();
+        //SaveLoad.Save();
         //IsLoading = true;
-        CursorControll.cursorControll.HideCursor();
+        //CursorControll.cursorControll.HideCursor();
         startmenu.scene = scene;
         Debug.Log(startmenu.scene);
+        startmenu.needToLoad = true;
         //loadingSlider = loadingScene.GetComponentInChildren<Slider>();
         //loadingScene.SetActive(true);
-        AsyncOperation loading = SceneManager.LoadSceneAsync(loader);
+        DontDestroyOnLoad(startmenu.gameObject);
+        AsyncOperation loading = SceneManager.LoadSceneAsync(loader);      
         //if (loading.progress >= 0.9f) IsLoading = false;
     }
 
@@ -60,7 +62,7 @@ public class Escbuttons : MonoBehaviour
     //    AsyncOperation loading = SceneManager.LoadSceneAsync("Main_Menu");
     //    loadingSlider.value = 1 - loading.progress;
     //}
-    private void Start()
+    private void Awake()
     {
         SaveLoad.Load();
         startmenu = GameObject.FindWithTag("StartMenu").GetComponent<StartMenu>();
