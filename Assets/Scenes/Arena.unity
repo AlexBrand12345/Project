@@ -214,7 +214,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Arena
+          m_StringArgument: Arena LoadingScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!222 &26928467
@@ -748,7 +748,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Main_Menu StartMenu
+          m_StringArgument: Main_Menu LoadingScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!222 &317833529
@@ -1142,7 +1142,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.6616364, y: -3.8631878, z: -10}
+  m_LocalPosition: {x: -7.6537056, y: -3.8631878, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 877443700}
@@ -2658,6 +2658,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 552161932a8e2a1409cbb38befd24343, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startGame: 0
+  needToLoad: 0
   scene: Main_Menu
 --- !u!4 &903739611
 Transform:
@@ -5515,7 +5517,7 @@ Animator:
   m_GameObject: {fileID: 1752907632}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c2e266e7ff374a540bfdff0e05148bdf, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -6738,7 +6740,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Main_Menu StartScene
+          m_StringArgument: Main_Menu LoadingScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &1873797924688828776
@@ -6930,7 +6932,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Arena
+          m_StringArgument: Arena LoadingScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &1873797924937238643

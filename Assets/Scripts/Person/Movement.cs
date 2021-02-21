@@ -25,7 +25,7 @@ public abstract class Movement : MonoBehaviour
         //layerMask = (1 << layerMask);
         rect = GetComponent<RectTransform>();
         body = gameObject.GetComponent<Rigidbody2D>();
-        checkRadius = rect.rect.height/2 + 0.01f ;
+        checkRadius = rect.rect.height/2 + 0.11f ;
     }
 
     protected virtual void Update()
@@ -35,14 +35,15 @@ public abstract class Movement : MonoBehaviour
         isGrounded = Physics2D.Raycast(rect.position, Vector2.down, checkRadius, ground);
         animator.SetBool("isGrounded", isGrounded);
 #if DEBUG_MODE
-        //Debug.DrawRay(rect.position, Vector2.down * checkRadius, Color.yellow, 2);
+        Debug.DrawRay(rect.position, Vector2.down * checkRadius, Color.yellow, 2);
 #endif
     }
 
     protected void Move(float moveInput)
     {
-        if (moveInput != 0) isMoving = true;
-        else isMoving = false;
+        //if (moveInput != 0) isMoving = true;
+        if (body.velocity.x == 0 || moveInput == 0) isMoving = false;
+        else isMoving = true;
         animator.SetBool("isMoving", isMoving);
         Go(moveInput);
         //if (isGrounded)

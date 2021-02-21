@@ -5297,7 +5297,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Credits
+          m_StringArgument: Credits LoadingScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1371915903
@@ -6150,6 +6150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 552161932a8e2a1409cbb38befd24343, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startGame: 0
   needToLoad: 0
   scene: Arena
 --- !u!4 &1573784018
@@ -7077,7 +7078,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Arena StartScene
+          m_StringArgument: Arena LoadingScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1854403469

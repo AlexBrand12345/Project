@@ -104,7 +104,7 @@ public class AllStats : MonoBehaviour
         Debug.Log("started3");
         yield return new WaitForSeconds(gameOverTime);
         Debug.Log("finished");
-        esc.LoadScene("Main_Menu StartMenu");
+        esc.LoadScene("Main_Menu LoadingScene");
     }
     IEnumerator UpdLvl()
     {

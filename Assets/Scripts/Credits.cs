@@ -24,7 +24,7 @@ public class Credits : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Input.anyKey) esc.LoadScene("Main_Menu StartScene");
+        if (Input.anyKey) esc.LoadScene("Main_Menu LoadingScene");
         Debug.Log(transform.position.y);
         if (transform.position.y > max.y  || transform.position.y < min.y ) speed = -speed;     
         gameObject.transform.Translate(Vector3.up * speed * Time.deltaTime);

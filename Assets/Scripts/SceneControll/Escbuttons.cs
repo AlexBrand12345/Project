@@ -24,51 +24,68 @@ public class Escbuttons : MonoBehaviour
     
     public void LoadScene(string scene, bool anything)
     {
-        SaveLoad.Save();     
+        SaveLoad.Load();
+        //SaveLoad.Save();     
         IsLoading = true;
         //CursorControll.cursorControll.HideCursor();
+        Debug.Log(loadingScene);
         loadingSlider = loadingScene.GetComponentInChildren<Slider>();
+        Debug.Log(loadingSlider);
         //loadingScene.SetActive(true);
-        AsyncOperation loading = SceneManager.LoadSceneAsync(scene);
+        loading = SceneManager.LoadSceneAsync(scene);
         if(loading.progress >=0.9f) IsLoading = false;
     }
     public void LoadScene(string allInOne) //передача сцены и её подгрузчика
     {
+        SaveLoad.Save();
+        //SaveLoad.Load();  
         string scene = allInOne.Split(' ')[0];
         string loader = allInOne.Split(' ')[1];
-        Debug.Log(scene);
-        Debug.Log(loader);
+        Debug.Log(scene + "esc1");
+        Debug.Log(loader + "esc2");
         //SaveLoad.Save();
         //IsLoading = true;
         //CursorControll.cursorControll.HideCursor();
         startmenu.scene = scene;
-        Debug.Log(startmenu.scene);
+        Debug.Log(startmenu.scene + "esc3");
         startmenu.needToLoad = true;
         //loadingSlider = loadingScene.GetComponentInChildren<Slider>();
         //loadingScene.SetActive(true);
-        DontDestroyOnLoad(startmenu.gameObject);
-        AsyncOperation loading = SceneManager.LoadSceneAsync(loader);      
+        //DontDestroyOnLoad(startmenu.gameObject);
+        loading = SceneManager.LoadSceneAsync(loader); //загрузка подгрузчика
         //if (loading.progress >= 0.9f) IsLoading = false;
     }
 
     public void Update()
     {
-        if(IsLoading)
-        loadingSlider.value = 1 - loading.progress;
+        if (IsLoading) 
+        {
+            //Debug.Log(IsLoading);
+            loadingSlider.value = 1 - loading.progress;
+        }
+        
     }
-    //public void Main_Menu()
-    //{
-    //    loadingScene.SetActive(true);
-    //    AsyncOperation loading = SceneManager.LoadSceneAsync("Main_Menu");
-    //    loadingSlider.value = 1 - loading.progress;
-    //}
     private void Awake()
     {
         SaveLoad.Load();
         startmenu = GameObject.FindWithTag("StartMenu").GetComponent<StartMenu>();
-        music = GameObject.FindWithTag("MusicControll").GetComponent<MusicControll>();
+        music = GetMusicControll();
+        if (startmenu.needToLoad) startmenu.Load();
     }
-
+    MusicControll GetMusicControll()
+    {
+        Debug.Log("GetMusicStarted");
+        if (GameObject.FindWithTag("MusicControll") == null)
+        {
+            Debug.Log("Didnt find anything");
+            return null;
+        }
+        else
+        {
+            MusicControll music = GameObject.FindWithTag("MusicControll").GetComponent<MusicControll>();
+            return music;
+        }
+    }
     public void Quit()
     {
         Application.Quit();
