@@ -748,7 +748,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Main_Menu
+          m_StringArgument: Main_Menu StartMenu
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!222 &317833529
@@ -1142,7 +1142,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.672888, y: -3.8631878, z: -10}
+  m_LocalPosition: {x: -7.6616364, y: -3.8631878, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 877443700}
@@ -2353,7 +2353,7 @@ MonoBehaviour:
   deathBackground: {fileID: 0}
   musicMixer: {fileID: -8017982990677903830, guid: 3c24281af678e2b40a825d178cd37bd3,
     type: 2}
-  speed2change: 1
+  speed2change: 0.01
   volume: 1
   UIaudioSource: {fileID: 1975842364}
 --- !u!1 &806791429
@@ -2629,6 +2629,50 @@ MonoBehaviour:
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 5000
+--- !u!1 &903739609
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 903739611}
+  - component: {fileID: 903739610}
+  m_Layer: 0
+  m_Name: StartMenu
+  m_TagString: StartMenu
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &903739610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903739609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 552161932a8e2a1409cbb38befd24343, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scene: Main_Menu
+--- !u!4 &903739611
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903739609}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.38660973, y: 0.009981148, z: -11.487801}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &907401663
 GameObject:
   m_ObjectHideFlags: 0
@@ -6694,7 +6738,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Main_Menu
+          m_StringArgument: Main_Menu StartScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &1873797924688828776

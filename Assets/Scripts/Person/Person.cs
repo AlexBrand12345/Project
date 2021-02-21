@@ -29,8 +29,8 @@ public abstract class Person : Movement
             heartFon = GameObject.Find("HeartFon").GetComponent<HeartFon>();
         }
         else heartFon = GetComponent<HeartFon>();
-        if (source && heartFon) need = false;
-        if(!need) LookForComponents(need);
+        //if (source && heartFon) need = false;
+        //if(!need) LookForComponents(need);
     }
     public void Start()
     {
@@ -57,21 +57,27 @@ public abstract class Person : Movement
     {
         Debug.Log("damage");
         health -= damage;
+        source.clip = clips[0];
+        source.Play();
         //heartFon = GetComponent<HeartFon>();
         Debug.Log(heartFon);
         heartFon.MakeRed(gameObject.tag);
         Debug.Log(health);
         if (health <= 0)
         {
+            source.clip = clips[1];
+            Debug.Log("Dead");
             source.PlayOneShot(clips[1]);
             Debug.Log("Die");
             health = 0;
             Die();
         }
-        else source.PlayOneShot(clips[0]);
+       
     }
     public virtual void Die()
     { 
+        
+        source.Play();
         Destroy(gameObject);
     }
 }
