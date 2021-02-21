@@ -12,6 +12,7 @@ TagManager:
   - EffectsControll
   - MusicControll
   - Bullet
+  - SceneLoader
   layers:
   - Default
   - TransparentFX

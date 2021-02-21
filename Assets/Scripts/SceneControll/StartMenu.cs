@@ -5,11 +5,18 @@ using UnityEngine.UI;
 
 public class StartMenu : MonoBehaviour
 {
-    Escbuttons script;  
+    Escbuttons script;
+    public bool need2Load;
+    public string scene;
+    string loader;
     void Start()
     {
-        script = GetComponent<Escbuttons>();
-        script.LoadScene("Main_Menu");
+        script = GameObject.FindWithTag("EscController").GetComponent<Escbuttons>();
+        if (need2Load) LoadScene(scene);
+    }
+    void LoadScene(string sceneName)
+    {
+
     }
     
 }
