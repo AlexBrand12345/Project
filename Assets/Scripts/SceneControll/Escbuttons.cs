@@ -52,7 +52,9 @@ public class Escbuttons : MonoBehaviour
         //loadingSlider = loadingScene.GetComponentInChildren<Slider>();
         //loadingScene.SetActive(true);
         //DontDestroyOnLoad(startmenu.gameObject);
-        loading = SceneManager.LoadSceneAsync(loader); //загрузка подгрузчика
+        //loading = SceneManager.LoadSceneAsync(loader); //загрузка подгрузчика
+        SceneManager.LoadScene(loader); //или эта, в предыдущей подвисает всё, здесь только кнопка играть
+        Debug.Log("LoadingLoaded");
         //if (loading.progress >= 0.9f) IsLoading = false;
     }
 
@@ -65,7 +67,7 @@ public class Escbuttons : MonoBehaviour
         }
         
     }
-    private void Awake()
+    private void Start()
     {
         SaveLoad.Load();
         startmenu = GameObject.FindWithTag("StartMenu").GetComponent<StartMenu>();
@@ -98,8 +100,8 @@ public class Escbuttons : MonoBehaviour
             isSets = true;
         } else
         {
-            Destroy(settings);
             isSets = false;
+            Destroy(settings);           
         }
         Debug.Log(isSets);
     } 
@@ -145,7 +147,7 @@ public class Escbuttons : MonoBehaviour
         CursorControll.cursorControll.ChangeCursor();
         hands.canRotate = false;
         panel.SetActive(true);
-        Time.timeScale = 0.001f;
+        //Time.timeScale = 0.1f;
         music.Pause(player.paused);
         //pauseMenu = Instantiate(PauseMenu, new Vector3(0, 0, 0), panel.transform.rotation, panel.transform);
         PauseMenu.SetActive(true);

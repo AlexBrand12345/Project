@@ -46,37 +46,36 @@ public abstract class Person : Movement
         base.Update();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.tag == "Bullet")
-        {
-            collision.gameObject.GetComponent<Bullet>().DoDamage(gameObject);
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.tag == "Bullet")
+    //    {
+    //        collision.gameObject.GetComponent<Bullet>().DoDamage(gameObject);
+    //    }
+    //}
     public void TakeDamage(int damage)
     {
-        Debug.Log("damage");
+
         health -= damage;
         source.clip = clips[0];
         source.Play();
         //heartFon = GetComponent<HeartFon>();
-        Debug.Log(heartFon);
+
         heartFon.MakeRed(gameObject.tag);
-        Debug.Log(health);
+
         if (health <= 0)
         {
             source.clip = clips[1];
-            Debug.Log("Dead");
+       
             source.PlayOneShot(clips[1]);
-            Debug.Log("Die");
+            
             health = 0;
             Die();
         }
        
     }
     public virtual void Die()
-    { 
-        
+    {         
         source.Play();
         Destroy(gameObject);
     }

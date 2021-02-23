@@ -15,8 +15,10 @@ public class AllStats : MonoBehaviour
     public float updLvlTime;
     public float gameOverTime;
     public float startGameOverTime;
+    public GameObject canvas;
     public GameObject gameOver;
-    public GameObject updLvl;
+    public GameObject updLvlpref;
+    GameObject updLvl;
     public GameObject panel;
     public Slider sliderH;
     public Slider sliderE;
@@ -67,8 +69,9 @@ public class AllStats : MonoBehaviour
 
         sliderE.maxValue = player.maxExp;
         sliderE.value = player.exp;
-        if (player.exp == player.maxExp && waveIsOver)
+        if ((player.exp == player.maxExp) && waveIsOver)
         {
+            player.SetMaxExp();
             StartCoroutine(UpdLvl());
         }
     }
@@ -109,12 +112,13 @@ public class AllStats : MonoBehaviour
     IEnumerator UpdLvl()
     {
         player.paused = true;
-        updLvl.GetComponentInChildren<TimerSlider>().Begin();
-        player.SetMaxExp();
+        //updLvl.SetActive(true);
+        updLvl = Instantiate(updLvlpref, canvas.transform);
+        updLvl.GetComponentInChildren<TimerSlider>().Begin();       
         yield return new WaitForSeconds(updLvlTime);
-        updLvl.SetActive(false);
+        //updLvl.SetActive(false);
+        Destroy(updLvlpref);
         player.paused = false;
-
     }
   
 

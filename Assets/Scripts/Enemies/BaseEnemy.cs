@@ -17,6 +17,7 @@ public abstract class BaseEnemy : Person
     public float minDistance = 5;
 
     private bool isFalling;
+    bool alreadyDead;
     
 
     [Header("AI")]
@@ -211,7 +212,13 @@ public abstract class BaseEnemy : Person
 
     public override void Die()
     {
-        Destroy(gameObject);
-        player.GainExp();
+        if (!alreadyDead)
+        {
+            alreadyDead = true;
+            Destroy(gameObject);
+            Game.game.protivnikov--;
+            player.GainExp();
+        }
+        
     }
 }

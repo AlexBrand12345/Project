@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: faf1b9cd2352408468ca221f433e1bd8
+guid: acc3697e91ddbbf4588c8877bf1e77ac
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4130640169021434097
-    second: 5_0
+      213: 178514118707394433
+    second: girl1hands_0
   - first:
-      213: -7200132072931614835
-    second: 5_1
+      213: 8574346286155011596
+    second: girl1hands_1
   - first:
-      213: -3609754129978504188
-    second: 5_2
+      213: 3511756479756122735
+    second: girl1hands_2
   - first:
-      213: -4309224192539515645
-    second: 5_3
+      213: -285973805155191431
+    second: girl1hands_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -58,7 +58,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 26
+  spritePixelsToUnits: 14
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -101,34 +101,34 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 5_0
+      name: girl1hands_0
       rect:
         serializedVersion: 2
-        x: 43
-        y: 60
-        width: 26
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 0
+        y: 23
+        width: 17
+        height: 9
+      alignment: 9
+      pivot: {x: 0.14702573, y: 0.7189259}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1f86b71495bf25930800000000000000
-      internalID: 4130640169021434097
+      spriteID: 18732f825a53a7200800000000000000
+      internalID: 178514118707394433
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 5_1
+      name: girl1hands_1
       rect:
         serializedVersion: 2
-        x: 171
-        y: 60
-        width: 26
-        height: 18
+        x: 35
+        y: 25
+        width: 3
+        height: 19
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -136,20 +136,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d8f9301170ef31c90800000000000000
-      internalID: -7200132072931614835
+      spriteID: c069577b4823ef670800000000000000
+      internalID: 8574346286155011596
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 5_2
+      name: girl1hands_2
       rect:
         serializedVersion: 2
-        x: 299
-        y: 60
-        width: 26
-        height: 18
+        x: 21
+        y: 25
+        width: 3
+        height: 19
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -157,8 +157,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 40cc12c7eb397edc0800000000000000
-      internalID: -3609754129978504188
+      spriteID: f6a3a8989e34cb030800000000000000
+      internalID: 3511756479756122735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: girl1hands_3
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 33
+        width: 17
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97578a0e654080cf0800000000000000
+      internalID: -285973805155191431
       vertices: []
       indices: 
       edges: []

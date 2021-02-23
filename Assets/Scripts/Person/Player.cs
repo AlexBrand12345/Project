@@ -58,7 +58,7 @@ public sealed class Player : Person
         stats = GameObject.Find("UIController").GetComponent<AllStats>();
         bg = GameObject.FindWithTag("Background").GetComponent<Collider2D>();
         hand = GetComponentInChildren<Hands>();
-        Debug.Log(MainSave.save.curSkin);
+        //Debug.Log(MainSave.save.curSkin);
         sprite = GetComponent<SpriteRenderer>();
         sprite.sprite = sprites[MainSave.save.curSkin];
         hand.gameObject.GetComponent<SpriteRenderer>().sprite = hands[MainSave.save.curSkin];
@@ -92,22 +92,22 @@ public sealed class Player : Person
             if (Input.GetKeyDown(KeyCode.F))
             {
                 index = 0;
-                //hand.SwitchWeapon(index);
+                hand.SwitchWeapon(index);
             }
             else if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 index = 1;
-                //hand.SwitchWeapon(index);
+                hand.SwitchWeapon(index);
             }
             else if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 index = 2;
-                //hand.SwitchWeapon(index);
+                hand.SwitchWeapon(index);
             }
             else if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 index = 3;
-                //hand.SwitchWeapon(index);
+                hand.SwitchWeapon(index);
             }
             //if(!esc.IsLoading) CheckOnBG();
         }
@@ -116,7 +116,8 @@ public sealed class Player : Person
     private void FixedUpdate()
     {
         if (gameObject) CheckOutOfView();
-        if (!paused && gameObject) 
+        //if (!paused && gameObject)
+        if (!paused)
         {            
             if (Input.GetMouseButton(0)) hand.Shoot();         
         }
@@ -201,11 +202,12 @@ public sealed class Player : Person
                 break;
         }
         Destroy(upgrades);
+        paused = false;
     }
 
     public void PlusEXP()
     {
-        exp++;
+        gainExp++;
     }
     public void PlusDMG()
     {

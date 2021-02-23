@@ -21,6 +21,7 @@ public class Hands : MonoBehaviour
     //SpriteRenderer sprite;
     Player player;
     public BaseWeapon weapon;
+    Animator weaponAnimator;
 
     private void Awake()
     {
@@ -33,6 +34,8 @@ public class Hands : MonoBehaviour
     {
         //спавн оружия
         gun = guns[0];
+        weaponAnimator = gun.GetComponent<Animator>();
+        //weaponAnimator.SetInteger("index", 0);
         weapon = gun.GetComponent<BaseWeapon>();
         gun.SetActive(true);
     }
@@ -73,14 +76,16 @@ public class Hands : MonoBehaviour
     {
         weapon.Shoot();
     }
-    //public void SwitchWeapon(int index)
-    //{
-    //if (gun != guns[index])
-    //{
-    //    gun.SetActive(false);
-    //    gun = guns[index];
-    //    weapon = gun.GetComponent<Weapon>();
-    //    gun.SetActive(true);
-    //}
-    //}
+    public void SwitchWeapon(int index)
+    {
+        if (gun != guns[index])
+        {
+            gun.SetActive(false);
+            gun = guns[index];
+            //weaponAnimator.SetInteger("index", index);
+            //gun.GetComponent<Animator>().SetInteger("index",index);
+            weapon = gun.GetComponent<BaseWeapon>();
+            gun.SetActive(true);
+        }
+    }
 }

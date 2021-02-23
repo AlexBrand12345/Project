@@ -65,7 +65,7 @@ public abstract class Movement : MonoBehaviour
     protected void Jump()
     {
         if (isGrounded) body.velocity = new Vector2(body.velocity.x, 10);
-        else body.velocity = new Vector2(body.velocity.x, 2);
+        else body.velocity = new Vector2(body.velocity.x, 5);
     }
     
 }

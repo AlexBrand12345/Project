@@ -28,36 +28,17 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void DoDamage(GameObject target)
+    //public void DoDamage(GameObject target)
+    //{
+    //    if (batyanya.tag == target.tag) return;
+    //    else if (target.tag == "ground") Destroy(gameObject);
+    //    else target.GetComponent<Person>().TakeDamage(damage);
+    //    Destroy(gameObject);
+    //}
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (batyanya.tag == target.tag) return;
-        else target.GetComponent<Person>().TakeDamage(damage);
+        if (batyanya.tag == collider.gameObject.tag) return;
+        else if (!(collider.gameObject.tag == "ground")) collider.gameObject.GetComponent<Person>().TakeDamage(damage);
         Destroy(gameObject);
     }
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    Debug.Log("EnterCol");
-    //    //if (transform.parent.parent.parent.gameObject.tag == "Enemy" && collision.gameObject.tag == "Enemy") return;
-    //    if (batyanya.tag == "Enemy" && collision.gameObject.tag == "Enemy") return;
-    //    else
-    //    {
-    //        GameObject obj = collision.gameObject;
-    //        if (obj.tag == "Enemy")
-    //        {
-    //            Debug.Log("Do damage");
-    //            obj.GetComponent<Enemy>().TakeDamage(damage);
-    //        }
-    //        else if (obj.tag == "Player")
-    //        {
-    //            obj.GetComponent<Player>().TakeDamage(damage);
-    //        }
-    //        Destroy(gameObject);
-    //    }
-        //Enemy GameObject enemy = hitInfo.GetComponent<Enemy>();
-        //if (enemy.gameObject.GetComponent<Rigidbody2D>() != null)
-        //{
-        //    enemy.TakeDamage(damage);
-        //}
-        //Destroy(gameObject);
-    ////}
 }

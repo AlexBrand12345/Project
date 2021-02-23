@@ -13,6 +13,8 @@ TagManager:
   - MusicControll
   - Bullet
   - SceneLoader
+  - StartMenu
+  - Ground
   layers:
   - Default
   - TransparentFX

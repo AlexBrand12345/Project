@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 public class Game : MonoBehaviour
 {
-    //public MusicControll music;
+    MusicControll music;
     bool startWave;
     public bool waveIsOver;
     public float timeBetWaves;
@@ -70,38 +70,47 @@ public class Game : MonoBehaviour
         //autogunAmmo = new int();
         //rifleAmmo = new int();
 }
-    private void Awake()
+    private void Start()
     {
+        game.timeBetWaves = timeBetWaves;
+        game.startWave = startWave;
+        game.waveIsOver = waveIsOver;
+        game.spawnPoints = spawnPoints;
+        game.enemies = enemies;
         game.pistolHP = pistolHP;
+        game.music = GameObject.FindWithTag("MusicControll").GetComponent<MusicControll>();
+        StartCoroutine(game.Wave(UnityEngine.Random.Range(1, (int)(waves / 10) + 3)));
     }
     IEnumerator Wave(int bots)
     {
-        //StartCoroutine(music.SwitchWave(timeBetWaves));
-        waveIsOver = true;
-        yield return new WaitForSeconds(timeBetWaves);
+        Debug.Log("waveStarted");
+        game.startWave = false;
+        game.waveIsOver = true;
+        game.protivnikov = bots;
+        game.music.StartCoroutine(music.SwitchWave(game.timeBetWaves));
+        yield return new WaitForSeconds(game.timeBetWaves);
         var upgrades = new List<Action> { AddDMG, AddHP, Addbspeed };
         if (waves % 10 == 0)
         {
             upgrades[UnityEngine.Random.Range(0, upgrades.Count - 1)]();
         }
         waveIsOver = false;
-        for (int i=0; i<bots; i++)
+        for (int i = 0; i < bots; i++)
         {
-            spawnPos = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Count - 1)].transform.position;
-            enemy = enemies[UnityEngine.Random.Range(0, enemies.Count - 1)];
-            Instantiate(enemy, new Vector3(UnityEngine.Random.Range(spawnPos.x - 10f, spawnPos.x +10f), spawnPos.y, spawnPos.z), Quaternion.Euler(0, 0, 0));
-            protivnikov++;
+            game.spawnPos = game.spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Count - 1)].transform.position;
+            game.enemy = game.enemies[UnityEngine.Random.Range(0, enemies.Count - 1)];
+            Instantiate(game.enemy, new Vector3(UnityEngine.Random.Range(game.spawnPos.x - 10f, game.spawnPos.x + 10f), game.spawnPos.y, game.spawnPos.z), Quaternion.Euler(0, 0, 0)); 
         }
-        startWave = true;
+        game.startWave = true;
     }
-public void FixedUpdate()
+    public void FixedUpdate()
     {
         MainSave.save.timeValue += Time.deltaTime;
-        //if (protivnikov == 0 && startWave)
-        //{
-         //   startWave = true;
-         //   StartCoroutine(Wave(UnityEngine.Random.Range(0, waves / 10 + 10)));
-        //}
+        if (game.protivnikov == 0 && !game.waveIsOver && game.startWave)
+        {
+            //startWave = false;
+            StartCoroutine(game.Wave(UnityEngine.Random.Range(1, (int)(waves / 10) + 10)));
+        }
     }
     public void AddDMG()
     {

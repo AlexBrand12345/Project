@@ -19,6 +19,7 @@ public class MusicControll : MonoBehaviour
     public AudioMixerGroup musicMixer;
     //bool alreadyStopped;
     bool clipFound;
+    bool changeStarted;
     bool isLoud = false;
     public float speed2change;
     public float volume;
@@ -26,6 +27,7 @@ public class MusicControll : MonoBehaviour
     AudioSource audioSrc;
     AudioClip curClip;
     AudioClip prevClip;
+    Coroutine ChangeVol;
     // Start is called before the first frame update
 
 
@@ -37,12 +39,12 @@ public class MusicControll : MonoBehaviour
     void Awake()
     {      
         audioSrc = GetComponent<AudioSource>();
-        StartPlaying();
-        //volume = MainSave.save.musicVolume;
         volume = 1f;
-        //audioSrc.volume = volume;
-        audioSrc.volume = 0f;
-        UIaudioSource.volume = 0f;
+        audioSrc.volume = 0.01f;
+        UIaudioSource.volume = 0.01f;
+        StartPlaying();
+        //volume = MainSave.save.musicVolume;      
+        //audioSrc.volume = volume;       
         //StartPlaying();
     }
 
@@ -52,14 +54,14 @@ public class MusicControll : MonoBehaviour
         //if (volume != MainSave.save.musicVolume)
         //{
             //volume = MainSave.save.musicVolume;
-            audioSrc.volume = volume;
+            //audioSrc.volume = volume;
         //}
     }
 
     void StartPlaying()
     {
-        GetNewClip(audioSrc, audioClips);
-        StartCoroutine(ChangeVolume(audioSrc, 2 * speed2change, audioClips));
+        //GetNewClip(audioSrc, audioClips);
+        ChangeVolume(audioSrc, 2 * speed2change, audioClips);
     }
     //public void NewSong(float speed)
     //{
@@ -76,11 +78,14 @@ public class MusicControll : MonoBehaviour
     void GetNewClip(AudioSource source, AudioClip[] clips)
     {
         prevClip = source.clip;
-        do
-        {
+        //audioSrc.volume = volume;
+        //source.Stop();
+        //do
+        //{
             curClip = clips[Random.Range(0, clips.Length - 1)];
-        } while (curClip == prevClip);
+        //} //while (curClip == prevClip);
         source.clip = curClip;
+        Debug.Log(curClip);
         source.Play();
         clipFound = true;
 
@@ -90,14 +95,19 @@ public class MusicControll : MonoBehaviour
         if (isStopped)
         {
             audioSrc.Pause();
-            audioSrc.volume = 0;
-            //ChangeVolume(speed2change, pause);
-            StartCoroutine(ChangeVolume(UIaudioSource, 2 * speed2change, pause));
+            if (ChangeVol != null)
+            StopCoroutine(ChangeVol);
+            //audioSrc.volume = 0f;
+            //ChangeVolumeVoid(UIaudioSource, speed2change, pause);
+            ChangeVolume(UIaudioSource, 7 * speed2change, pause);
+            //Time.timeScale = 0.07f;
             //audioSrc.clip = curClip;
         }
         else
         {
-            UIaudioSource.volume = 0f;
+            if (ChangeVol != null)
+            StopCoroutine(ChangeVol);
+            //UIaudioSource.volume = 0f;
             UIaudioSource.Stop();
             audioSrc.UnPause();
             //audioSrc.Stop();
@@ -106,56 +116,122 @@ public class MusicControll : MonoBehaviour
         }
         //audioSrc.Play();
     }
+    //void ChangeVolumeVoid(AudioSource source, float speed, AudioClip[] clips)
+    //{
+    //    if(ChangeVol != null)
+    //    StopCoroutine(ChangeVol);
+    //    ChangeVol = StartCoroutine(ChangeVolume(source, speed, clips));
+    //}
     public IEnumerator SwitchWave(float time2change)
     {
-        StartCoroutine(ChangeVolume(audioSrc, speed2change, audioClips));
-        yield return new WaitForSeconds(time2change - 3f);
-        StartCoroutine(ChangeVolume(audioSrc, speed2change * 2, waves));
+        //ChangeVolumeVoid(audioSrc, speed2change, audioClips);
+        ChangeVolume(audioSrc, speed2change, audioClips);
+        yield return new WaitForSeconds(time2change - 1f);
+        ChangeVolume(audioSrc, speed2change * 2, waves);
     }
-    IEnumerator ChangeVolume(AudioSource source, float speed, AudioClip[] clips)
+    //IEnumerator ChangeVolume(AudioSource source, float speed, AudioClip[] clips)
+    //{
+    //    if (source.volume <= 0) //конец уменьшения громкости, смена композиции
+    //    {
+    //        Debug.Log("volume=0");
+    //        source.volume = 0;
+    //        clipFound = false;
+    //        isLoud = false;
+    //        Debug.Log(MainSave.save.musicVolume);            
+    //        if (!clipFound)
+    //        {
+    //            Debug.Log("LookingFornewClip");
+    //            GetNewClip(source, clips);
+    //            //clipFound = true;
+    //        }
+    //        if (MainSave.save.musicVolume != 0)
+    //        {
+    //            Debug.Log(source.volume);
+    //            source.volume += speed;
+    //            yield return null;
+    //            ChangeVolumeVoid(source, speed, clips);
+    //        }
+    //        yield return null;
+    //        //audioSrc.volume += speed;
+    //        //ChangeVolume(speed);
+    //    }
+    //    else
+    //    {
+    //        if (!isLoud)
+    //        {
+    //            source.volume += speed;
+    //            if (source.volume >= volume) //конец увеличения громкости
+    //            {
+    //                Debug.Log("volume=max");
+    //                source.volume = volume;
+    //                isLoud = true;
+    //                clipFound = false;
+    //                yield return null;
+    //            }
+    //        }
+    //        else
+    //        {
+    //            source.volume -= speed;
+    //        }
+    //        yield return new WaitForSeconds(0.1f);
+    //        ChangeVolumeVoid(source, speed, clips);
+    //    }
+
+    //}
+    void ChangeVolume(AudioSource source, float speed, AudioClip[] clips)
     {
-        //Debug.Log("Ласточка");
-        //Debug.Log(source.volume);
-        if (source.volume > volume)
+        if(ChangeVol != null)
+        StopCoroutine(ChangeVol);
+        StartToChangeMusic();
+        //if(!changeStarted) 
+        ChangeVol = StartCoroutine(ChangeSourceVolume(source, speed, clips));
+    }
+    void StartToChangeMusic()
+    {
+        isLoud = true;
+        clipFound = false;
+        //changeStarted = true;
+    }
+    void LookForNewClip(AudioSource source, AudioClip[] clips)
+    {
+        isLoud = false;
+        Debug.Log("LookingFoClip");
+        source.volume = 0f;
+        GetNewClip(source, clips);      
+    }
+    void EndToChangeMusic(AudioSource source, AudioClip[] clips)
+    {
+        source.volume = volume;
+        isLoud = true;
+        if (UIaudioSource.isPlaying) Time.timeScale = 0.03f;
+        //changeStarted = false;
+    }
+    IEnumerator ChangeSourceVolume(AudioSource source, float speed, AudioClip[] clips)
+    {
+        if (!isLoud)
         {
-            source.volume = volume;
-            isLoud = true;
-            clipFound = false;
-            yield return null;
-        }
-        else if (source.volume <= 0)
-        {
-            source.volume = 0;
-            clipFound = false;
-            isLoud = false;
-            if (MainSave.save.musicVolume != 0)
+            if (source.volume >= volume)
             {
-                source.volume += speed;
-                StartCoroutine(ChangeVolume(source, speed, clips));
+                EndToChangeMusic(source, clips);
+                Debug.Log("End");
+                yield break;
             }
-            if (!clipFound)
-            {
-                GetNewClip(source,clips);
-                //clipFound = true;
-            }
-            yield return null;
-            //audioSrc.volume += speed;
-            //ChangeVolume(speed);
+            else
+            source.volume += speed;
         }
         else
         {
-            if (!isLoud)
+            if(source.volume <= 0)
             {
-                source.volume += speed;
+                isLoud = false;
+                LookForNewClip(source, clips);
             }
             else
-            {
-                source.volume -= speed;
-            }
-            yield return new WaitForSeconds(0.1f);
-            ChangeVolume(source, speed, clips);
+            source.volume -= speed;
         }
-
+        yield return new WaitForSeconds(0.1f);
+        //ChangeVolume(source, speed, clips);
+        StartCoroutine(ChangeSourceVolume(source, speed, clips));
     }
 
     IEnumerator AfterDeath()
