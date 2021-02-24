@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: d428278bf84004e419059410c9ff9d7b
+guid: f488195d069ce494285a6814332ae2d4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 179173025687594190
-    second: Sprite-0003-Sheet_0
+      213: 4125570677424348987
+    second: 2_q_t_0
   - first:
-      213: 249474559980975759
-    second: Sprite-0003-Sheet_1
+      213: -509314372799038352
+    second: 2_q_t_1
   - first:
-      213: 7999969274959407159
-    second: Sprite-0003-Sheet_2
+      213: 5503355693952161601
+    second: 2_q_t_2
   - first:
-      213: -1467934737977065176
-    second: Sprite-0003-Sheet_3
+      213: -6000990017309879101
+    second: 2_q_t_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -54,7 +54,7 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 0
+  spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
@@ -101,85 +101,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sprite-0003-Sheet_0
+      name: 2_q_t_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 30
-        width: 11
-        height: 21
+        x: 15
+        y: 10
+        width: 23
+        height: 46
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 9}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ec4e075eaec8c7200800000000000000
-      internalID: 179173025687594190
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sprite-0003-Sheet_1
-      rect:
-        serializedVersion: 2
-        x: 19
-        y: 26
-        width: 4
-        height: 14
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f86b9206acf467300800000000000000
-      internalID: 249474559980975759
+      spriteID: b3f55a34ca8f04930800000000000000
+      internalID: 4125570677424348987
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite-0003-Sheet_2
+      name: 2_q_t_1
       rect:
         serializedVersion: 2
-        x: 40
-        y: 26
-        width: 4
-        height: 14
+        x: 54
+        y: 10
+        width: 23
+        height: 46
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 738aeff7ba9950f60800000000000000
-      internalID: 7999969274959407159
+      spriteID: 07cff42c64d8ee8f0800000000000000
+      internalID: -509314372799038352
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite-0003-Sheet_3
+      name: 2_q_t_2
       rect:
         serializedVersion: 2
-        x: 47
-        y: 30
-        width: 9
-        height: 12
+        x: 88
+        y: 9
+        width: 23
+        height: 46
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 821cb6d1229d0abe0800000000000000
-      internalID: -1467934737977065176
+      spriteID: 14754aa78d8df5c40800000000000000
+      internalID: 5503355693952161601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2_q_t_3
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 10
+        width: 23
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c45495bf5338bca0800000000000000
+      internalID: -6000990017309879101
       vertices: []
       indices: 
       edges: []

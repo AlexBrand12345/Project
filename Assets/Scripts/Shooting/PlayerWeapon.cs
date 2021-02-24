@@ -9,7 +9,7 @@ public class PlayerWeapon : BaseWeapon
     [SerializeField]
     GameObject reload;
     [SerializeField]
-    GameObject canvas;
+    GameObject canvas;   
     //Player player;
     //public GameObject bullet;
     //RectTransform rect;
@@ -57,9 +57,24 @@ public class PlayerWeapon : BaseWeapon
         reloadObj = Instantiate(reload, new Vector3(Camera.main.transform.position.x, player.gameObject.transform.position.y - player.gameObject.GetComponent<RectTransform>().rect.height, 0), Quaternion.identity, canvas.transform);
         reloadObj.GetComponent<Reloading>().GetTime(time2reload);
         yield return new WaitForSeconds(time2reload);
-        Destroy(reloadObj);
+        //Destroy(reloadObj);
+        reloadObj = null;
         ammoLeft = ammo;
         reloading = false;
+    }
+    public override void StartReloading(float time2reload)
+    {
+        reloadingCor = StartCoroutine(Reload(time2reload));
+    }
+    public override void StopReloading()
+    {
+        //reloadObj = null;
+        reloading = false;
+        Destroy(reloadObj);
+        Debug.Log(reloadObj);
+        Debug.Log(reloadingCor);
+        if(reloadingCor != null)
+        StopCoroutine(reloadingCor);
     }
     //public void Shoot()
     //{

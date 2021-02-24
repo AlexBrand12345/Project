@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 
 public class Hands : MonoBehaviour
@@ -34,6 +35,7 @@ public class Hands : MonoBehaviour
     {
         //спавн оружия
         gun = guns[0];
+        //index = 0;
         weaponAnimator = gun.GetComponent<Animator>();
         //weaponAnimator.SetInteger("index", 0);
         weapon = gun.GetComponent<BaseWeapon>();
@@ -76,16 +78,18 @@ public class Hands : MonoBehaviour
     {
         weapon.Shoot();
     }
-    public void SwitchWeapon(int index)
+    public void SwitchWeapon(int CurIndex, int index)
     {
-        if (gun != guns[index])
+        if (CurIndex != index)
         {
+            weapon.StopReloading();
             gun.SetActive(false);
             gun = guns[index];
             //weaponAnimator.SetInteger("index", index);
             //gun.GetComponent<Animator>().SetInteger("index",index);
             weapon = gun.GetComponent<BaseWeapon>();
             gun.SetActive(true);
+            if (weapon.ammoLeft == 0) weapon.StartReloading(weapon.time2reload);
         }
     }
 }

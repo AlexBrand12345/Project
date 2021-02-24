@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public sealed class Player : Person
 {
+    public GameObject font;
+    public List<Sprite> fonts;
     public HeartFon heartFon;
     public GameObject canvas;
     bool alreadyDead = false;
@@ -11,6 +14,7 @@ public sealed class Player : Person
     Escbuttons esc;
     AllStats stats;
     int index;
+    int CurIndex;
     public bool canShoot = true;
 
 
@@ -53,6 +57,8 @@ public sealed class Player : Person
 
     private new void Awake()
     {
+        index = 0;
+        CurIndex = 0;
         base.Awake();
         esc = GameObject.FindGameObjectWithTag("EscController").GetComponent<Escbuttons>();
         stats = GameObject.Find("UIController").GetComponent<AllStats>();
@@ -62,6 +68,7 @@ public sealed class Player : Person
         sprite = GetComponent<SpriteRenderer>();
         sprite.sprite = sprites[MainSave.save.curSkin];
         hand.gameObject.GetComponent<SpriteRenderer>().sprite = hands[MainSave.save.curSkin];
+        font.GetComponent<Image>().sprite = fonts[Random.Range(0, fonts.Count)];
     }
     private new void Update()
     {
@@ -90,24 +97,28 @@ public sealed class Player : Person
             }
                
             if (Input.GetKeyDown(KeyCode.F))
-            {
+            {              
                 index = 0;
-                hand.SwitchWeapon(index);
+                hand.SwitchWeapon(CurIndex, index);
+                CurIndex = index;
             }
             else if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 index = 1;
-                hand.SwitchWeapon(index);
+                hand.SwitchWeapon(CurIndex, index);
+                CurIndex = index;
             }
             else if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 index = 2;
-                hand.SwitchWeapon(index);
+                hand.SwitchWeapon(CurIndex, index);
+                CurIndex = index;
             }
             else if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 index = 3;
-                hand.SwitchWeapon(index);
+                hand.SwitchWeapon(CurIndex, index);
+                CurIndex = index;
             }
             //if(!esc.IsLoading) CheckOnBG();
         }
@@ -144,6 +155,7 @@ public sealed class Player : Person
     public override void Die()
     {
         health = 0;
+        MainSave.save.deaths++;
         stats.GuiDie();
         Debug.Log("Die");
         body.gameObject.GetComponent<BoxCollider2D>().enabled = false;
@@ -176,12 +188,14 @@ public sealed class Player : Person
     public void Heal(int heal)
     {
         health += heal;
+        MainSave.save.heals++;
         if (health >= maxHealth) health = maxHealth;
     }
     //TakeDamage уже есть у бати у Person
     public void GainExp()
     {
         exp += gainExp;
+        MainSave.save.exp += gainExp;
         if (exp > maxExp) exp = maxExp;
     }
     public void LaunchUpg(string upgName, GameObject upgrades)

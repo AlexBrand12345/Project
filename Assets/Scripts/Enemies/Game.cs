@@ -109,6 +109,7 @@ public class Game : MonoBehaviour
         if (game.protivnikov == 0 && !game.waveIsOver && game.startWave)
         {
             //startWave = false;
+            MainSave.save.waves++;
             StartCoroutine(game.Wave(UnityEngine.Random.Range(1, (int)(waves / 10) + 10)));
         }
     }

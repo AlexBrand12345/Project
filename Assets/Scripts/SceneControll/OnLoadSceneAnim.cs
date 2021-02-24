@@ -9,7 +9,7 @@ public class OnLoadSceneAnim : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Instantiate(prefabs[Random.Range(0, prefabs.Length - 1)], this.gameObject.transform);
+        Instantiate(prefabs[Random.Range(0, prefabs.Length)], this.gameObject.transform);
     }
 
     // Update is called once per frame

@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class BaseWeapon : MonoBehaviour
 {
-    //[SerializeField]
-    //GameObject reloadObj;
-    //[SerializeField]
-    //GameObject reload;
-    //[SerializeField]
-    //GameObject canvas;
     public Player player;
     public GameObject bullet;
     RectTransform rect;
@@ -34,6 +28,8 @@ public class BaseWeapon : MonoBehaviour
     int shoted;
     public bool reloading = false;
     bool firing;
+    [SerializeField]
+    protected Coroutine reloadingCor;
     public void Start()
     {
         animator = GetComponent<Animator>();
@@ -103,26 +99,33 @@ public class BaseWeapon : MonoBehaviour
         animator.SetBool("isFiring", true);
         Instantiate(bullet, new Vector3(transform.position.x, transform.position.y, 0), transform.rotation, transform);
         shoted++;
+        if (transform.parent.parent.tag == "Player") MainSave.save.shots++;
         ammoLeft--;
         yield return new WaitForSeconds(shotTime);
         firing = false;
         animator.SetBool("isFiring", false);
     }
+    public virtual IEnumerator Reload(float time2reload)
+    {
+        yield return new WaitForSeconds(time2reload);
+        ammoLeft = ammo;
+        reloading = false;
+    }
     public void GoToReload()
     {
         if (!reloading)
         {
-            StartCoroutine(Reload(time2reload));
+            StartReloading(time2reload);
         }
         reloading = true;
     }
-    public virtual IEnumerator Reload(float time2reload)
+    public virtual void StartReloading(float time2reload)
     {
-        //reloadObj = Instantiate(reload, new Vector3(Camera.main.transform.position.x, player.gameObject.transform.position.y - player.gameObject.GetComponent<RectTransform>().rect.height, 0), Quaternion.identity, canvas.transform);
-        //reloadObj.GetComponent<Reloading>().GetTime(time2reload);
-        yield return new WaitForSeconds(time2reload);
-        //ammoLeft = ammo;
-        //reloading = false;
-        //затычка
+        reloadingCor = StartCoroutine(Reload(time2reload));
+    }
+
+    public virtual void StopReloading()
+    {
+
     }
 }

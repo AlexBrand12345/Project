@@ -25,7 +25,7 @@ public abstract class Movement : MonoBehaviour
         //layerMask = (1 << layerMask);
         rect = GetComponent<RectTransform>();
         body = gameObject.GetComponent<Rigidbody2D>();
-        checkRadius = rect.rect.height/2 + 0.11f ;
+        checkRadius = (rect.rect.height / 2)*rect.localScale.y  + rect.rect.height / 20;
     }
 
     protected virtual void Update()
@@ -65,7 +65,7 @@ public abstract class Movement : MonoBehaviour
     protected void Jump()
     {
         if (isGrounded) body.velocity = new Vector2(body.velocity.x, 10);
-        else body.velocity = new Vector2(body.velocity.x, 5);
+        else body.velocity = new Vector2(body.velocity.x, 10);
     }
     
 }

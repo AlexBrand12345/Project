@@ -214,9 +214,11 @@ public abstract class BaseEnemy : Person
     {
         if (!alreadyDead)
         {
+            source.Play();
             alreadyDead = true;
             Destroy(gameObject);
             Game.game.protivnikov--;
+            MainSave.save.kills++;
             player.GainExp();
         }
         

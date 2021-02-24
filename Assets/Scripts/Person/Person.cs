@@ -11,7 +11,7 @@ public abstract class Person : Movement
     public int maxHealth;
     [SerializeField]
     public AudioClip[] clips; //0-takeDMG 1-Die
-    AudioSource source;
+    protected AudioSource source;
 
     protected new void Awake()
     {

@@ -40,6 +40,7 @@ public class Escbuttons : MonoBehaviour
         SaveLoad.Save();
         //SaveLoad.Load();  
         string scene = allInOne.Split(' ')[0];
+        if (scene == "Arena") MainSave.save.rounds++;
         string loader = allInOne.Split(' ')[1];
         Debug.Log(scene + "esc1");
         Debug.Log(loader + "esc2");
