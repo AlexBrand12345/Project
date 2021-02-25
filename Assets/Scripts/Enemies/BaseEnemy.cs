@@ -214,6 +214,7 @@ public abstract class BaseEnemy : Person
     {
         if (!alreadyDead)
         {
+            source.clip = clips[1];
             source.Play();
             alreadyDead = true;
             Destroy(gameObject);

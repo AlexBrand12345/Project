@@ -15,6 +15,7 @@ TagManager:
   - SceneLoader
   - StartMenu
   - Ground
+  - medkit
   layers:
   - Default
   - TransparentFX

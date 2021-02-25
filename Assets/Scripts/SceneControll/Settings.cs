@@ -32,8 +32,9 @@ public class Settings : MonoBehaviour
         effects.ChangeEffectsVolume(slider.value);
         MainSave.save.effectsVolume = effectsSlider.value;
     }
-    public void Destroy()
+    public void Destroy(AudioClip clip)
     {
+        effects.PlayOneShot(1, clip);
         esc.Settings();
         SaveLoad.Save();
     }

@@ -39,10 +39,14 @@ public sealed class Player : Person
     public int maxExp;
     public int exp;
     public int gainExp = 1;
+    public int health2heal;
 
     SpriteRenderer sprite;
     public List<Sprite> sprites;
     public List<Sprite> hands;
+    EffectsControll effects;
+    public AudioClip updClip;
+    public AudioClip healClip;
     //int maxHealth;
     //int health;
     //int baseDMG;
@@ -60,6 +64,7 @@ public sealed class Player : Person
         index = 0;
         CurIndex = 0;
         base.Awake();
+        effects = GameObject.FindWithTag("EffectsControll").GetComponent<EffectsControll>();
         esc = GameObject.FindGameObjectWithTag("EscController").GetComponent<Escbuttons>();
         stats = GameObject.Find("UIController").GetComponent<AllStats>();
         bg = GameObject.FindWithTag("Background").GetComponent<Collider2D>();
@@ -134,6 +139,14 @@ public sealed class Player : Person
         }
         
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "medkit" && health != maxHealth)
+        {
+            Heal(health2heal);
+            Destroy(collision.gameObject);
+        }               
+    }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (!esc.IsLoading && collision == bg) 
@@ -187,6 +200,7 @@ public sealed class Player : Person
     }
     public void Heal(int heal)
     {
+        effects.PlayOneShot(0, healClip);
         health += heal;
         MainSave.save.heals++;
         if (health >= maxHealth) health = maxHealth;
@@ -215,6 +229,7 @@ public sealed class Player : Person
                 Debug.Log("ничего не произошло");
                 break;
         }
+        effects.PlayOneShot(1, updClip);
         Destroy(upgrades);
         paused = false;
     }

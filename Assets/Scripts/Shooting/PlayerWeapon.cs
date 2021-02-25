@@ -54,7 +54,8 @@ public class PlayerWeapon : BaseWeapon
     }
     public override IEnumerator Reload(float time2reload)
     {
-        reloadObj = Instantiate(reload, new Vector3(Camera.main.transform.position.x, player.gameObject.transform.position.y - player.gameObject.GetComponent<RectTransform>().rect.height, 0), Quaternion.identity, canvas.transform);
+        reloadObj = Instantiate(reload, new Vector3(Camera.main.transform.position.x, player.gameObject.transform.position.y - 
+        player.gameObject.GetComponent<RectTransform>().rect.height*player.gameObject.GetComponent<RectTransform>().localScale.y, 0), Quaternion.identity, canvas.transform);
         reloadObj.GetComponent<Reloading>().GetTime(time2reload);
         yield return new WaitForSeconds(time2reload);
         //Destroy(reloadObj);
