@@ -71,6 +71,7 @@ public class Escbuttons : MonoBehaviour
     private void Start()
     {
         SaveLoad.Load();
+        Time.timeScale = 1f;
         startmenu = GameObject.FindWithTag("StartMenu").GetComponent<StartMenu>();
         music = GetMusicControll();
         if (startmenu.needToLoad) startmenu.Load();

@@ -314,7 +314,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1875755168305658920}
   - component: {fileID: 1529983095324066292}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Font
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -376,7 +376,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 53972379
   m_SortingLayer: 1
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: d65c567405117534c83a3061f6ada31f, type: 3}
   m_Color: {r: 1, g: 0.9657669, b: 0.6556604, a: 1}
   m_FlipX: 0
@@ -808,7 +808,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5758775097363592237}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
@@ -1723,7 +1723,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4980249888323069950}
   - component: {fileID: 1623283941533366214}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: "\u043A\u0443\u0434\u0430\u0442\u043E.png_-removebg-preview"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1786,7 +1786,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 53972379
   m_SortingLayer: 1
-  m_SortingOrder: 3
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: a451cea4214982a4a955ecba694deeae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

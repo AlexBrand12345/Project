@@ -126,7 +126,7 @@ public class MusicControll : MonoBehaviour
     {
         //ChangeVolumeVoid(audioSrc, speed2change, audioClips);
         ChangeVolume(audioSrc, speed2change, audioClips);
-        yield return new WaitForSeconds(time2change - 1f);
+        yield return new WaitForSeconds(time2change);
         ChangeVolume(audioSrc, speed2change * 2, waves);
     }
     //IEnumerator ChangeVolume(AudioSource source, float speed, AudioClip[] clips)
