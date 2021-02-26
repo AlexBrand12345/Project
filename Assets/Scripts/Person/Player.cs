@@ -230,6 +230,7 @@ public sealed class Player : Person
                 break;
         }
         effects.PlayOneShot(1, updClip);
+        body.WakeUp();
         Destroy(upgrades);
         paused = false;
     }

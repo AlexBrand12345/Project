@@ -112,12 +112,14 @@ public class AllStats : MonoBehaviour
     IEnumerator UpdLvl()
     {
         player.paused = true;
+        player.body.Sleep();
         //updLvl.SetActive(true);
         updLvl = Instantiate(updLvlpref, canvas.transform);
         updLvl.GetComponentInChildren<TimerSlider>().Begin();       
         yield return new WaitForSeconds(updLvlTime);
         //updLvl.SetActive(false);
-        Destroy(updLvlpref);
+        Destroy(updLvl);
+        player.body.WakeUp();
         player.paused = false;
     }
   
