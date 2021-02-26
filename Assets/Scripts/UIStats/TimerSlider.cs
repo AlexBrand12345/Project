@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +15,8 @@ public class TimerSlider : MonoBehaviour
     public string called;
     public float time;
     public float timeRemain;
+    [SerializeField] int timeLeft;
+    int n = 3;
 
 
     // Start is called before the first frame update
@@ -45,9 +48,16 @@ public class TimerSlider : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        timeRemain -= Time.fixedDeltaTime;
-        text.text = Mathf.RoundToInt(timeRemain).ToString();
-        if (timeRemain == 3 || timeRemain == 2 || timeRemain == 1) audioEffects.PlayOneShot(1, clip);
+        timeRemain -= Time.fixedDeltaTime;       
+        timeLeft = Mathf.RoundToInt(timeRemain);
+        text.text = timeLeft.ToString();
+        //if (timeRemain == 3 || timeRemain == 2 || timeRemain == 1) audioEffects.PlayOneShot(1, clip);
+        if (timeLeft == n)
+        {
+            n--;
+            audioEffects.PlayOneShot(1, clip);
+        }
+        if (timeRemain <= 0.01f) audioEffects.StopPlaying(1);
         slider.fillAmount = timeRemain / time;
     }
 }

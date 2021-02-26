@@ -72,8 +72,10 @@ public sealed class Player : Person
         //Debug.Log(MainSave.save.curSkin);
         sprite = GetComponent<SpriteRenderer>();
         sprite.sprite = sprites[MainSave.save.curSkin];
+        sprite.color = MainSave.save.skinColor;
         hand.gameObject.GetComponent<SpriteRenderer>().sprite = hands[MainSave.save.curSkin];
-        font.GetComponent<Image>().sprite = fonts[Random.Range(0, fonts.Count)];
+        hand.gameObject.GetComponent<SpriteRenderer>().color = MainSave.save.skinColor;
+        font.GetComponent<Image>().sprite = fonts[Random.Range(0, fonts.Count)]; //для переключения неба, если оно есть (а оно есть, но выключено)
     }
     private new void Update()
     {

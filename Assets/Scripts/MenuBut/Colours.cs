@@ -10,6 +10,10 @@ public class Colours : MonoBehaviour
     public void ChangeColour(GameObject obj)
     {
         color = obj.GetComponent<Image>().color;
-        skins[MainSave.save.curSkin].GetComponent<Image>().color = color;
+        MainSave.save.skinColor = color;
+        foreach(GameObject skin in skins)
+        {
+            skin.GetComponent<Image>().color = color;
+        }
     }
 }

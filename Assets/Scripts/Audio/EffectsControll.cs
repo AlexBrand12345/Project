@@ -44,14 +44,21 @@ public class EffectsControll : MonoBehaviour
         self.GetComponent<AudioSource>().Play();
         //audioSrc.Play();
     }
-    public void PlayOneShot(int sourceInt, AudioClip clip)
+    public void PlayOneShot(int sourceInt, AudioClip clip) //0 - audioSrc, 1-UIaudioSrc
     {
         if (sourceInt == 0) source = audioSrc;
         else source = UIaudioSrc;
+        source.Stop();
         source.PlayOneShot(clip);
     }
     public void PlayOneShot(GameObject self)
     {
         self.GetComponent<AudioSource>().PlayOneShot(self.GetComponent<AudioSource>().clip);
+    }
+    public void StopPlaying(int sourceInt)
+    {
+        if (sourceInt == 0) source = audioSrc;
+        else source = UIaudioSrc;
+        source.Stop();
     }
 }
