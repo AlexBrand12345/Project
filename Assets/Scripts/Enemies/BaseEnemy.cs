@@ -116,12 +116,12 @@ public abstract class BaseEnemy : Person
         }
     }
 
-    bool SearchPlayer()
+    protected bool SearchPlayer()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, (player.body.position - body.position).normalized);
         Debug.DrawRay(transform.position, player.body.position - body.position, Color.white);
         if (hit.rigidbody != null)
-        {   
+        {
             if (hit.rigidbody.gameObject == player.gameObject)
             {
                 return true;
