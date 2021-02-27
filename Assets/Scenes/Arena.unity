@@ -1866,7 +1866,7 @@ GameObject:
   - component: {fileID: 618277080}
   - component: {fileID: 618277078}
   - component: {fileID: 618277079}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Background
   m_TagString: Background
   m_Icon: {fileID: 0}
@@ -2606,7 +2606,7 @@ MonoBehaviour:
   - {fileID: 1399392116}
   - {fileID: 1828183796669719291}
   enemies:
-  - {fileID: 909472798086400713, guid: 3dbb9b65d6cc5834bb1424ac6c82b4f4, type: 3}
+  - {fileID: 1572856871617285098, guid: 7a9894a229d44f5489f02dfdc4005854, type: 3}
   protivnikov: 0
   waves: 0
   pistolDMG: 0
@@ -2810,7 +2810,7 @@ GameObject:
   m_Component:
   - component: {fileID: 806791430}
   - component: {fileID: 806791431}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3559,7 +3559,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1026644298}
   - component: {fileID: 1026644299}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Font
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15626,7 +15626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 406c6aa9783e8db4fa3775e5e374d4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time2spawn: 3
+  time2spawn: 90
   kit: {fileID: 6345295768296660208, guid: 798758f6c3a57d44da84762d533cd187, type: 3}
 --- !u!1 &2100260967
 GameObject:
