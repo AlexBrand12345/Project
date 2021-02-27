@@ -28,7 +28,7 @@ public class Healing : MonoBehaviour
     IEnumerator SpawnKit()
     {
         isSpawning = true;
-        yield return new WaitForSeconds(Random.Range(time2spawn - 1f, time2spawn + 1f));
+        yield return new WaitForSeconds(Random.Range(time2spawn - 30f, time2spawn + 30f));
         actualKit = Instantiate(kit, new Vector3(transform.position.x, transform.position.y + 4f, 0), Quaternion.Euler(0, 0, 0), transform);
         isSpawning = false;
     }

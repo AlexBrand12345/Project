@@ -15,7 +15,7 @@ public class Hands : MonoBehaviour
     //public GameObject effect;
     //public Transform bulletPosition;
     //public List<Sprite> sprites;
-    public GameObject reload;
+    //public GameObject reload;
     public List<GameObject> guns;
     GameObject batka;
     GameObject gun;
@@ -78,10 +78,8 @@ public class Hands : MonoBehaviour
     {
         weapon.Shoot();
     }
-    public void SwitchWeapon(int CurIndex, int index)
-    {
-        if (CurIndex != index)
-        {
+    public void SwitchWeapon(int index)
+    {      
             weapon.StopReloading();
             gun.SetActive(false);
             gun = guns[index];
@@ -90,6 +88,5 @@ public class Hands : MonoBehaviour
             weapon = gun.GetComponent<BaseWeapon>();
             gun.SetActive(true);
             if (weapon.ammoLeft == 0) weapon.StartReloading(weapon.time2reload);
-        }
     }
 }

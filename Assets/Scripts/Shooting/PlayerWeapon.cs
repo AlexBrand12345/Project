@@ -9,7 +9,8 @@ public class PlayerWeapon : BaseWeapon
     [SerializeField]
     GameObject reload;
     [SerializeField]
-    GameObject canvas;   
+    GameObject canvas;
+    AllStats stats;
     //Player player;
     //public GameObject bullet;
     //RectTransform rect;
@@ -35,9 +36,10 @@ public class PlayerWeapon : BaseWeapon
     public new void Start()
     {
         base.Start();
-        reloadObj = null;
-        reload = transform.parent.GetComponent<Hands>().reload;       
+        //reloadObj = null;
+        //reload = transform.parent.GetComponent<Hands>().reload;       
         canvas = player.canvas;
+        stats = GameObject.FindWithTag("UIController").GetComponent<AllStats>();
         //sprite = GetComponent<SpriteRenderer>();       
     }
     public void UpdateDMG(float DMGmod)
@@ -54,9 +56,11 @@ public class PlayerWeapon : BaseWeapon
     }
     public override IEnumerator Reload(float time2reload)
     {
-        reloadObj = Instantiate(reload, new Vector3(Camera.main.transform.position.x, player.gameObject.transform.position.y - 
-        player.gameObject.GetComponent<RectTransform>().rect.height*player.gameObject.GetComponent<RectTransform>().localScale.y, 0), Quaternion.identity, canvas.transform);
-        reloadObj.GetComponent<Reloading>().GetTime(time2reload);
+        //reloadObj = Instantiate(reload, new Vector3(Camera.main.transform.position.x, player.gameObject.transform.position.y - 
+        //player.gameObject.GetComponent<RectTransform>().rect.height*player.gameObject.GetComponent<RectTransform>().localScale.y, 0), Quaternion.identity, canvas.transform);
+        //reloadObj = Instantiate(reload, new Vector3())
+        //reloadObj.GetComponent<Reloading>().GetTime(time2reload);
+        stats.Reload(time2reload);
         yield return new WaitForSeconds(time2reload);
         //Destroy(reloadObj);
         reloadObj = null;
@@ -71,9 +75,10 @@ public class PlayerWeapon : BaseWeapon
     {
         //reloadObj = null;
         reloading = false;
-        Destroy(reloadObj);
-        Debug.Log(reloadObj);
-        Debug.Log(reloadingCor);
+        stats.StopReloading();
+        //Destroy(reloadObj);
+        //Debug.Log(reloadObj);
+        //Debug.Log(reloadingCor);
         if(reloadingCor != null)
         StopCoroutine(reloadingCor);
     }

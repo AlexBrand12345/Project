@@ -38,7 +38,8 @@ public class Escbuttons : MonoBehaviour
     public void LoadScene(string allInOne) //передача сцены и её подгрузчика
     {
         SaveLoad.Save();
-        //SaveLoad.Load();  
+        //if(SaveLoad.Load())
+        SaveLoad.Load();  
         string scene = allInOne.Split(' ')[0];
         if (scene == "Arena") MainSave.save.rounds++;
         string loader = allInOne.Split(' ')[1];

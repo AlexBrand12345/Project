@@ -96,5 +96,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 406c6aa9783e8db4fa3775e5e374d4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time2spawn: 60
+  time2spawn: 90
   kit: {fileID: 6345295768296660208, guid: 798758f6c3a57d44da84762d533cd187, type: 3}

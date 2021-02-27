@@ -72,9 +72,9 @@ public sealed class Player : Person
         //Debug.Log(MainSave.save.curSkin);
         sprite = GetComponent<SpriteRenderer>();
         sprite.sprite = sprites[MainSave.save.curSkin];
-        sprite.color = MainSave.save.skinColor;
+        sprite.color = new Color(MainSave.save.skinColorr, MainSave.save.skinColorg, MainSave.save.skinColorb, MainSave.save.skinColora);
         hand.gameObject.GetComponent<SpriteRenderer>().sprite = hands[MainSave.save.curSkin];
-        hand.gameObject.GetComponent<SpriteRenderer>().color = MainSave.save.skinColor;
+        hand.gameObject.GetComponent<SpriteRenderer>().color = new Color(MainSave.save.skinColorr, MainSave.save.skinColorg, MainSave.save.skinColorb, MainSave.save.skinColora); ;
         font.GetComponent<Image>().sprite = fonts[Random.Range(0, fonts.Count)]; //для переключения неба, если оно есть (а оно есть, но выключено)
     }
     private new void Update()
@@ -106,25 +106,25 @@ public sealed class Player : Person
             if (Input.GetKeyDown(KeyCode.F))
             {              
                 index = 0;
-                hand.SwitchWeapon(CurIndex, index);
+                SwitchWeapon(CurIndex, index);
                 CurIndex = index;
             }
             else if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 index = 1;
-                hand.SwitchWeapon(CurIndex, index);
+                SwitchWeapon(CurIndex, index);
                 CurIndex = index;
             }
             else if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 index = 2;
-                hand.SwitchWeapon(CurIndex, index);
+                SwitchWeapon(CurIndex, index);
                 CurIndex = index;
             }
             else if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 index = 3;
-                hand.SwitchWeapon(CurIndex, index);
+                SwitchWeapon(CurIndex, index);
                 CurIndex = index;
             }
             //if(!esc.IsLoading) CheckOnBG();
@@ -153,6 +153,14 @@ public sealed class Player : Person
     {
         if (!esc.IsLoading && collision == bg) 
         CheckOnBG();
+    }
+    private void SwitchWeapon(int CurIndex, int index)
+    {
+        if(CurIndex!=index)
+        {
+            hand.SwitchWeapon(index);
+            stats.SwitchWeapon(CurIndex, index);
+        }
     }
     public void CheckOutOfView()
     {

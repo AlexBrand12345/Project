@@ -21,6 +21,7 @@ public class MusicControll : MonoBehaviour
     bool clipFound;
     bool changeStarted;
     bool isLoud = false;
+    bool paused;
     public float speed2change;
     public float volume;
     public AudioSource UIaudioSource;
@@ -95,6 +96,7 @@ public class MusicControll : MonoBehaviour
         if (isStopped)
         {
             audioSrc.Pause();
+            paused = true;
             if (ChangeVol != null)
             StopCoroutine(ChangeVol);
             //audioSrc.volume = 0f;
@@ -105,6 +107,7 @@ public class MusicControll : MonoBehaviour
         }
         else
         {
+            paused = false;
             if (ChangeVol != null)
             StopCoroutine(ChangeVol);
             //UIaudioSource.volume = 0f;
@@ -203,7 +206,7 @@ public class MusicControll : MonoBehaviour
     {
         source.volume = volume;
         isLoud = true;
-        if (UIaudioSource.isPlaying) Time.timeScale = 0.03f;
+        if (paused) Time.timeScale = 0.03f;
         //changeStarted = false;
     }
     IEnumerator ChangeSourceVolume(AudioSource source, float speed, AudioClip[] clips)

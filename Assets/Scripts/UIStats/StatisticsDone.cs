@@ -42,6 +42,7 @@ public class StatisticsDone : MonoBehaviour
             foreach (GameObject obj in stats)
             {
                 obj.transform.GetChild(1).GetComponent<Text>().text = values[i].ToString();
+                i++;
             }
             TimeSpan timeSpan = TimeSpan.FromSeconds(timeValue);
             time.transform.GetChild(1).GetComponent<Text>().text = string.Format("{0:D2}:{1:D2}:{2:D2}", timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds);       

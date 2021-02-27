@@ -38,7 +38,10 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (batyanya.tag == collider.gameObject.tag) return;
-        else if (!(collider.gameObject.tag == "ground")) collider.gameObject.GetComponent<Person>().TakeDamage(damage);
-        Destroy(gameObject);
+        else if (collider.gameObject.tag == "Player" || collider.gameObject.tag == "Enemy")
+        {
+            collider.gameObject.GetComponent<Person>().TakeDamage(damage);
+            Destroy(gameObject);
+        }
     }
 }

@@ -15,6 +15,10 @@ public class AllStats : MonoBehaviour
     public float updLvlTime;
     public float gameOverTime;
     public float startGameOverTime;
+    public GameObject[] weapons;
+    GameObject weapon;
+    public GameObject reload;
+    GameObject reloadObj;
     public GameObject canvas;
     public GameObject gameOver;
     public GameObject updLvlpref;
@@ -36,6 +40,7 @@ public class AllStats : MonoBehaviour
     public void Awake()
     {
         Time.timeScale = 1f;
+        weapon = weapons[0];
         alreadyDead = false;    
         //music = GameObject.FindWithTag("MusicControll").GetComponent<MusicControll>();
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
@@ -74,6 +79,24 @@ public class AllStats : MonoBehaviour
             player.SetMaxExp();
             StartCoroutine(UpdLvl());
         }
+    }
+    public void SwitchWeapon(int curIndex, int index)
+    {
+        weapon = weapons[curIndex];
+        weapon.GetComponent<Image>().color = Color.black;
+        weapon.GetComponentInChildren<Text>().color = new Color(91 / 255.0f, 218 / 255.0f, 245 / 255.0f);
+        weapon = weapons[index];
+        weapon.GetComponent<Image>().color = Color.green;
+        weapon.GetComponentInChildren<Text>().color = new Color(255 / 255.0f, 218 / 211.0f, 69 / 255.0f);
+    }
+    public void Reload(float time2reload)
+    {
+        reloadObj = Instantiate(reload, new Vector3(weapon.transform.position.x, weapon.transform.position.y + weapon.GetComponent<RectTransform>().rect.height/20f, 0f), Quaternion.Euler(0,0,0), canvas.transform);
+        reloadObj.GetComponent<Reloading>().GetTime(time2reload);
+    }
+    public void StopReloading()
+    {
+        Destroy(reloadObj);
     }
     public void GuiDie()
     {

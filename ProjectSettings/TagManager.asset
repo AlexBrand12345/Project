@@ -16,6 +16,7 @@ TagManager:
   - StartMenu
   - Ground
   - medkit
+  - UIController
   layers:
   - Default
   - TransparentFX

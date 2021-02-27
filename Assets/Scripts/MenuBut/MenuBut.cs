@@ -15,6 +15,7 @@ public class MenuBut : MonoBehaviour
     {
          if (!butClicked)
          {
+            Debug.Log(obj);
             clone = obj.transform.GetChild(2).gameObject;
             scroll = obj.transform.GetChild(1).gameObject;
             startPos = new Vector3(obj.transform.position.x, obj.transform.position.y, obj.transform.position.z);

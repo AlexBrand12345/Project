@@ -12,7 +12,7 @@ public class Credits : MonoBehaviour
     Vector2 max, min;
     void Start()
     {
-        esc = GetComponent<Escbuttons>();
+        esc = GameObject.FindWithTag("EscController").GetComponent<Escbuttons>();
         rect = GetComponent<RectTransform>();
         camera = Camera.main;
         //ymax = camera.WorldToScreenPoint(transform.position).y;

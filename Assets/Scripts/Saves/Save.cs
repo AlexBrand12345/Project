@@ -21,7 +21,10 @@ public class MainSave
     public int curSkin;
     public float musicVolume;
     public float effectsVolume;
-    public Color skinColor;
+    public float skinColorr;
+    public float skinColorg;
+    public float skinColorb;
+    public float skinColora;
     public MainSave()
     {
         //i = new int();
@@ -36,5 +39,6 @@ public class MainSave
         //curSkin = new int();
         //musicVolume = new float();
         //effectsVolume = new float();
+        //skinColor = new float[4];
     }
 }
