@@ -8,6 +8,8 @@ using Pathfinding;
 /// </summary>
 public abstract class BaseEnemy : Person
 {
+    [SerializeField] GameObject hand;
+    bool isVisible;
     protected Player player;
     [Header("BaseEnemy")]
     public float timeRange = 5;
@@ -42,6 +44,7 @@ public abstract class BaseEnemy : Person
     protected new void Start()
     {
         base.Start();
+        weapon = transform.GetChild(0).GetChild(0).GetComponent<EnemyWeapon>();
         InvokeRepeating("ChangeSpeedAndDirectionPerTime", 0, timeRange);
         InvokeRepeating("UpdatePath", 0, .5f);
     }
@@ -58,6 +61,14 @@ public abstract class BaseEnemy : Person
             currentWaypoint = 0;
         }
     }
+    private void OnBecameVisible()
+    {
+        isVisible = true;
+    }
+    private void OnBecameInvisible()
+    {
+        isVisible = false;
+    }
     protected new void Update()
     {
         base.Update();
@@ -73,6 +84,21 @@ public abstract class BaseEnemy : Person
             else
             {
                 reachedEndOfPath = false;
+            }
+
+            if (SearchPlayer())
+            {
+                float x = -player.transform.position.x + transform.position.x;
+                float y = -player.transform.position.y + transform.position.y;
+                float gunAngle = Mathf.Atan2(y, x) * Mathf.Rad2Deg;
+                //Debug.Log(gunAngle);
+                if (body.velocity.x <= -0.01f) hand.transform.rotation = Quaternion.Euler(0, -180, -gunAngle);
+                if (body.velocity.x >= 0.01f) hand.transform.rotation = Quaternion.Euler(0, 0, -gunAngle);
+            }
+            else
+            {
+                if (body.velocity.x <= -0.01f) hand.transform.rotation = Quaternion.Lerp(hand.transform.rotation, Quaternion.Euler(0, -180, 0), 0.1f);
+                if (body.velocity.x >= 0.01f) hand.transform.rotation = Quaternion.Lerp(hand.transform.rotation, Quaternion.Euler(0, 0, 0), 0.1f);
             }
 
             Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - body.position).normalized;
@@ -106,7 +132,11 @@ public abstract class BaseEnemy : Person
             //Стрельба
             if (shootingCoroutine == null)
             {
-                if (SearchPlayer()) Debug.Log("Shooting");//shootingCoroutine = StartCoroutine(weapon.Shoot()); 
+                if (SearchPlayer() && isVisible)
+                {
+                    Debug.Log("Shooting");
+                    weapon.Shoot();
+                }
             }
             else if (!SearchPlayer())
             {

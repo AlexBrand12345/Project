@@ -1,13 +1,16 @@
 fileFormatVersion: 2
-guid: 6a9413d952ae3514eb93c21f82cb5beb
+guid: 31a32314747cf60418c3d9b914fd016f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7525531852832829399
-    second: "\u0431\u0435\u043B\u044B\u04394_0"
+      213: 4714423296994213466
+    second: "\u0438\u043A\u043E\u043D\u043A\u0430_0"
   - first:
-      213: 336377815539742701
-    second: "\u0431\u0435\u043B\u044B\u04394_1"
+      213: -8455720768119391431
+    second: "\u0438\u043A\u043E\u043D\u043A\u0430_1"
+  - first:
+      213: -6343475149630006263
+    second: "\u0438\u043A\u043E\u043D\u043A\u0430_2"
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -95,13 +98,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u0431\u0435\u043B\u044B\u04394_0"
+      name: "\u0438\u043A\u043E\u043D\u043A\u0430_0"
       rect:
         serializedVersion: 2
-        x: 21
-        y: 0
-        width: 25
-        height: 51
+        x: 6
+        y: 41
+        width: 17
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -109,20 +112,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7dfecf1295f007860800000000000000
-      internalID: 7525531852832829399
+      spriteID: a5e7a22b20ffc6140800000000000000
+      internalID: 4714423296994213466
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u0431\u0435\u043B\u044B\u04394_1"
+      name: "\u0438\u043A\u043E\u043D\u043A\u0430_1"
       rect:
         serializedVersion: 2
-        x: 55
-        y: 0
-        width: 25
-        height: 51
+        x: 38
+        y: 45
+        width: 15
+        height: 18
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,8 +133,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de7719d47dd0ba400800000000000000
-      internalID: 336377815539742701
+      spriteID: 93bb95003ce37aa80800000000000000
+      internalID: -8455720768119391431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u0438\u043A\u043E\u043D\u043A\u0430_2"
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 14
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90c19c8e5f277f7a0800000000000000
+      internalID: -6343475149630006263
       vertices: []
       indices: 
       edges: []

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public abstract class Person : Movement
 {
     HeartFon heartFon;
+    protected SpriteRenderer sprite;
     [Header("Stats")]
     public int health;
     public int maxHealth;
@@ -16,7 +17,8 @@ public abstract class Person : Movement
     protected new void Awake()
     {
         base.Awake();
-        source = GetComponent<AudioSource>();      
+        source = GetComponent<AudioSource>();
+        sprite = GetComponent<SpriteRenderer>();
     }
     protected void LookForComponents(bool need)
     {
@@ -61,7 +63,7 @@ public abstract class Person : Movement
         source.Play();
         //heartFon = GetComponent<HeartFon>();
 
-        heartFon.MakeRed(gameObject.tag);
+        heartFon.MakeRed(gameObject.tag);      
 
         if (health <= 0)
         {

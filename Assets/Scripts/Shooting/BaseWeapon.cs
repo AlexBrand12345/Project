@@ -36,9 +36,11 @@ public class BaseWeapon : MonoBehaviour
         source = GetComponent<AudioSource>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         rect = GetComponent<RectTransform>();
+        Debug.Log(gameObject.name);
         switch (gameObject.name)
         {
             case "pistol":
+                Debug.Log(Game.game.pistolAmmo);
                 damage = Game.game.pistolDMG;
                 bspeed = Game.game.pistolbspeed;
                 //shotTime = 1f;
@@ -52,7 +54,7 @@ public class BaseWeapon : MonoBehaviour
                 ammo = Game.game.tommyAmmo;
                 //sprite.sprite = Game.game.sprites[1];
                 break;
-            case "autogun":
+            case "auto":
                 damage = Game.game.autogunDMG;
                 bspeed = Game.game.autogunbspeed;
                 //shotTime = 1.5f;
@@ -78,7 +80,7 @@ public class BaseWeapon : MonoBehaviour
     }
     public void Shoot()
     {
-        //Debug.Log(reloading);
+        Debug.Log(reloading);
         if (!reloading)
         {
             if (ammoLeft == 0) GoToReload();

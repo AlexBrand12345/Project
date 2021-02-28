@@ -16,11 +16,11 @@ public class HeartFon : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
     }
     public void MakeRed(string tag)
-    {
-        switch(tag)
+    {      
+        switch (tag)
         {
             case "Player":
-                image.color = new Color(image.color.r, image.color.g, image.color.b, 60f);
+                image.color = new Color(image.color.r, image.color.g, image.color.b, 60/255.0f);
                 break;
             case "Enemy":
                 if (!isShoted) StartCoroutine(MakeEnemyRed());
@@ -30,8 +30,11 @@ public class HeartFon : MonoBehaviour
     }
     void Update()
     {
-        if(gameObject.tag!="Enemy")
-        if (image.color.a > 0) image.color = new Color(image.color.r, image.color.g, image.color.b, image.color.a - 0.5f * Time.deltaTime);
+        //if(gameObject.tag!="Enemy")
+        if (image.color.a > 0)
+        {
+            image.color = new Color(image.color.r, image.color.g, image.color.b, image.color.a - 0.01f);
+        }
     }
     IEnumerator MakeEnemyRed()
     {

@@ -41,7 +41,6 @@ public sealed class Player : Person
     public int gainExp = 1;
     public int health2heal;
 
-    SpriteRenderer sprite;
     public List<Sprite> sprites;
     public List<Sprite> hands;
     EffectsControll effects;
@@ -70,7 +69,7 @@ public sealed class Player : Person
         bg = GameObject.FindWithTag("Background").GetComponent<Collider2D>();
         hand = GetComponentInChildren<Hands>();
         //Debug.Log(MainSave.save.curSkin);
-        sprite = GetComponent<SpriteRenderer>();
+        //sprite = GetComponent<SpriteRenderer>();
         sprite.sprite = sprites[MainSave.save.curSkin];
         sprite.color = new Color(MainSave.save.skinColorr, MainSave.save.skinColorg, MainSave.save.skinColorb, MainSave.save.skinColora);
         hand.gameObject.GetComponent<SpriteRenderer>().sprite = hands[MainSave.save.curSkin];

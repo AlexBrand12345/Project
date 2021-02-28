@@ -78,6 +78,9 @@ public class Game : MonoBehaviour
         game.spawnPoints = spawnPoints;
         game.enemies = enemies;
         game.pistolHP = pistolHP;
+        game.pistolAmmo = pistolAmmo;
+        game.pistolbspeed = pistolbspeed;
+        game.pistolDMG = pistolDMG;
         game.music = GameObject.FindWithTag("MusicControll").GetComponent<MusicControll>();
         StartCoroutine(game.Wave(UnityEngine.Random.Range(1, (int)(waves / 10) + 3)));
     }
