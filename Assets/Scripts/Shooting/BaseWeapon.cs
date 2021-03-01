@@ -80,7 +80,7 @@ public class BaseWeapon : MonoBehaviour
     }
     public void Shoot()
     {
-        Debug.Log(reloading);
+        //Debug.Log(reloading);
         if (!reloading)
         {
             if (ammoLeft == 0) GoToReload();

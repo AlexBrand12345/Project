@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     GameObject batyanya;
+    string batyanyatag;
     int damage;
     int speed;
     public float lifeTime = 4f;
@@ -15,6 +16,7 @@ public class Bullet : MonoBehaviour
     {
         parent = transform.parent.gameObject.GetComponent<BaseWeapon>();
         batyanya = transform.parent.parent.parent.gameObject;
+        batyanyatag = batyanya.tag;
         damage = (int)parent.damage;
         speed = parent.bspeed;
         transform.parent = null;
@@ -37,7 +39,7 @@ public class Bullet : MonoBehaviour
     //}
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (batyanya.tag == collider.gameObject.tag) return;
+        if (batyanyatag == collider.gameObject.tag) return;
         else if (collider.gameObject.tag == "Player" || collider.gameObject.tag == "Enemy")
         {
             collider.gameObject.GetComponent<Person>().TakeDamage(damage);

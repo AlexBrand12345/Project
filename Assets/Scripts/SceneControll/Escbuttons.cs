@@ -37,11 +37,12 @@ public class Escbuttons : MonoBehaviour
     }
     public void LoadScene(string allInOne) //передача сцены и её подгрузчика
     {
-        SaveLoad.Save();
+        Cursor.visible = false;
         //if(SaveLoad.Load())
-        SaveLoad.Load();  
+        //SaveLoad.Load();  
         string scene = allInOne.Split(' ')[0];
         if (scene == "Arena") MainSave.save.rounds++;
+        SaveLoad.Save();
         string loader = allInOne.Split(' ')[1];
         Debug.Log(scene + "esc1");
         Debug.Log(loader + "esc2");
@@ -69,9 +70,10 @@ public class Escbuttons : MonoBehaviour
         }
         
     }
-    private void Start()
+    public void Start()
     {
         SaveLoad.Load();
+        Cursor.visible = true;
         Time.timeScale = 1f;
         startmenu = GameObject.FindWithTag("StartMenu").GetComponent<StartMenu>();
         music = GetMusicControll();
@@ -106,7 +108,7 @@ public class Escbuttons : MonoBehaviour
             isSets = false;
             Destroy(settings);           
         }
-        Debug.Log(isSets);
+        //Debug.Log(isSets);
     } 
     //public void Start()
     //{
@@ -121,6 +123,7 @@ public class Escbuttons : MonoBehaviour
     {
         if (player.paused)
         {
+            isSets = false;
             Destroy(settings);
             Resume();
         }

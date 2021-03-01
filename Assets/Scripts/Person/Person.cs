@@ -43,9 +43,9 @@ public abstract class Person : Movement
         //}
         //else heartFon = GetComponent<HeartFon>();
     }
-    protected new void Update()
+    protected void Update()
     {
-        base.Update();
+        base.FixedUpdate();
     }
 
     //private void OnTriggerEnter2D(Collider2D collision)

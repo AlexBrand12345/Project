@@ -61,13 +61,15 @@ public abstract class BaseEnemy : Person
             currentWaypoint = 0;
         }
     }
-    private void OnBecameVisible()
+    public void OnBecameVisible()
     {
         isVisible = true;
+        Debug.Log(isVisible);
     }
-    private void OnBecameInvisible()
+    public void OnBecameInvisible()
     {
         isVisible = false;
+        Debug.Log(isVisible);
     }
     protected new void Update()
     {
@@ -106,12 +108,17 @@ public abstract class BaseEnemy : Person
 
             //Нужно для того, чтобы скорость вниз не увеличивалась
             //Path прокладывается по центру клеток, а position объекта может быть с краю клетки
-            if (!isGrounded & direction.y <= -0.25f /*Максимальное расстояние от края клетки до центра*/) Fall();
+            if (!isGrounded & direction.y <= -0.25f /*Максимальное расстояние от края клетки до центра*/)
+            {
+                Fall();
+                jetAnimator.SetBool("isFlying", false);
+            }
             else
             {
                 force = direction * speed * Time.deltaTime;
                 if (direction.y > 0) force.y += -Physics2D.gravity.y * 4;
                 body.AddForce(force);
+                jetAnimator.SetBool("isFlying", true);
             }
 
             //Поворот

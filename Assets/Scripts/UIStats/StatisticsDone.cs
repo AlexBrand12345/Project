@@ -29,11 +29,12 @@ public class StatisticsDone : MonoBehaviour
         heals = MainSave.save.heals;
         exp = MainSave.save.exp;
         rounds = MainSave.save.rounds;
+        Debug.Log(MainSave.save.rounds);
         timeValue = MainSave.save.timeValue;
         waves = MainSave.save.waves;
         shots = MainSave.save.shots;
     }
-    void Start()
+    public void Start()
     {
         Debug.Log(timeValue);
             values = new List<int> { kills, deaths, heals, exp, rounds, waves, shots };

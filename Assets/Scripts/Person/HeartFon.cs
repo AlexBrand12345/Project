@@ -6,17 +6,27 @@ using UnityEngine.UI;
 public class HeartFon : MonoBehaviour
 {
     SpriteRenderer sprite;
+    SpriteRenderer hand;
+    [SerializeField] float changeAlpha;
+    float minusAlpha;
     public float redTime;
     bool isShoted=false;
     Color color;
+    string tagg;
     public Image image;
     void Awake()
     {
         image = GetComponent<Image>();
-        sprite = GetComponent<SpriteRenderer>();
+        if (GetComponent<SpriteRenderer>() != null)
+        {
+            sprite = GetComponent<SpriteRenderer>();
+            hand = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        }
+        minusAlpha = changeAlpha;
     }
     public void MakeRed(string tag)
-    {      
+    {
+        tagg = tag;
         switch (tag)
         {
             case "Player":
@@ -30,19 +40,23 @@ public class HeartFon : MonoBehaviour
     }
     void Update()
     {
-        //if(gameObject.tag!="Enemy")
-        if (image.color.a > 0)
-        {
-            image.color = new Color(image.color.r, image.color.g, image.color.b, image.color.a - 0.01f);
-        }
+        if (tagg == "Player")
+            if (image.color.a > 0f)
+            {
+                image.color = new Color(image.color.r, image.color.g, image.color.b, image.color.a - minusAlpha);
+                minusAlpha += 0.05f;
+            }
+            else minusAlpha = changeAlpha;
     }
     IEnumerator MakeEnemyRed()
     {
         isShoted = true;
         color = sprite.color;
         sprite.color = new Color(255f, 0f, 0f, 60f);
+        hand.color = new Color(255f, 0f, 0f, 60f);
         yield return new WaitForSeconds(redTime);
         sprite.color = color;
+        hand.color = color;
         isShoted = false;
     }
 }

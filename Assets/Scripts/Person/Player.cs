@@ -101,9 +101,12 @@ public sealed class Player : Person
             {
                 Jump();
             }
-               
+            else if (Input.GetKeyUp(KeyCode.Space))
+            {
+                isFlying = false;
+            }
             if (Input.GetKeyDown(KeyCode.F))
-            {              
+            {
                 index = 0;
                 SwitchWeapon(CurIndex, index);
                 CurIndex = index;
@@ -126,14 +129,16 @@ public sealed class Player : Person
                 SwitchWeapon(CurIndex, index);
                 CurIndex = index;
             }
+            
             //if(!esc.IsLoading) CheckOnBG();
         }
        
     }
-    private void FixedUpdate()
+    private new void FixedUpdate()
     {
-        if (gameObject) CheckOutOfView();
+        //if (gameObject) CheckOutOfView();
         //if (!paused && gameObject)
+        base.FixedUpdate();
         if (!paused)
         {            
             if (Input.GetMouseButton(0)) hand.Shoot();         
@@ -161,19 +166,19 @@ public sealed class Player : Person
             stats.SwitchWeapon(CurIndex, index);
         }
     }
-    public void CheckOutOfView()
-    {
-        if (body.transform.position.y > Camera.main.ViewportToWorldPoint(new Vector2(0, 1)).y)
-        {
-            Debug.Log("ExitMap");
-            Destroy(gameObject);
-            StopCoroutine(stats.End);
-            StopAllCoroutines();
-            //Debug.Log(stats.StartGameOver().Current);
-            stats.StartCoroutine(stats.GameOver());
-            Debug.Log("started");
-        }
-    }
+    //public void CheckOutOfView()
+    //{
+    //    if (body.transform.position.y > Camera.main.ViewportToWorldPoint(new Vector2(0, 1)).y)
+    //    {
+    //        Debug.Log("ExitMap");
+    //        Destroy(gameObject);
+    //        StopCoroutine(stats.End);
+    //        StopAllCoroutines();
+    //        //Debug.Log(stats.StartGameOver().Current);
+    //        stats.StartCoroutine(stats.GameOver());
+    //        Debug.Log("started");
+    //    }
+    //}
     public override void Die()
     {
         health = 0;
