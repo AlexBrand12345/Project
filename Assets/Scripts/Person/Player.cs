@@ -21,12 +21,12 @@ public sealed class Player : Person
     //public int pistolAmmo;
     //public int pistolbspeed;
     //public int pistolDMG;
-    //public int autogunAmmo;
-    //public int autogunbspeed;
-    //public int autogunDMG;
-    //public int tommyAmmo;
-    //public int tommybspeed;
-    //public int tommyDMG;
+    //public int machinegunAmmo;
+    //public int machinegunbspeed;
+    //public int machinegunDMG;
+    //public int autoAmmo;
+    //public int autobspeed;
+    //public int autoDMG;
     //public int rifleAmmo;
     //public int riflebspeed;
     //public int rifleDMG;
@@ -41,6 +41,7 @@ public sealed class Player : Person
     public int gainExp = 1;
     public int health2heal;
 
+    public bool reloading;
     public List<Sprite> sprites;
     public List<Sprite> hands;
     EffectsControll effects;
@@ -139,11 +140,13 @@ public sealed class Player : Person
         //if (gameObject) CheckOutOfView();
         //if (!paused && gameObject)
         base.FixedUpdate();
-        if (!paused)
-        {            
-            if (Input.GetMouseButton(0)) hand.Shoot();         
+        if (!paused && !reloading)
+        {
+            if (Input.GetMouseButton(0))
+            {
+                hand.Shoot();
+            }
         }
-        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -162,8 +165,8 @@ public sealed class Player : Person
     {
         if(CurIndex!=index)
         {
-            hand.SwitchWeapon(index);
             stats.SwitchWeapon(CurIndex, index);
+            hand.SwitchWeapon(index);          
         }
     }
     //public void CheckOutOfView()
@@ -181,23 +184,14 @@ public sealed class Player : Person
     //}
     public override void Die()
     {
-        health = 0;
-        MainSave.save.deaths++;
+        Blow(Game.game.time2die);
+    }
+    void Blow(float time2die)
+    {
+        hand.canRotate = false;
         stats.GuiDie();
-        Debug.Log("Die");
-        body.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-        body.gravityScale = 0;
-        body.velocity = new Vector2(0, 10);
-        Debug.Log(body.velocity);
-        //Game.game.EndGame();
-        //if (transform.position.y > Camera.main.ViewportToWorldPoint(new Vector2(0, 1)).y)
-        //{
-        //    Debug.Log("ExitMap");
-        //    Destroy(gameObject);
-        //    StopCoroutine(stats.End);
-        //    Debug.Log(stats.StartGameOver().Current);
-        //    StartCoroutine(stats.GameOver());
-        //}
+        MainSave.save.deaths++;
+        BlowUp(time2die);
     }
     void CheckOnBG()
     {

@@ -80,13 +80,13 @@ public class Hands : MonoBehaviour
     }
     public void SwitchWeapon(int index)
     {      
-            weapon.StopReloading();
-            gun.SetActive(false);
-            gun = guns[index];
-            //weaponAnimator.SetInteger("index", index);
-            //gun.GetComponent<Animator>().SetInteger("index",index);
-            weapon = gun.GetComponent<BaseWeapon>();
-            gun.SetActive(true);
-            if (weapon.ammoLeft == 0) weapon.StartReloading(weapon.time2reload);
+        weapon.StopReloading();
+        gun.SetActive(false);
+        gun = guns[index];      
+        weapon = gun.GetComponent<BaseWeapon>();
+        //Debug.Log(weapon.ammoLeft);
+        gun.SetActive(true);
+        //if (weapon.ammoLeft == 0) weapon.StartReloading(weapon.time2reload);
+        if (weapon.ammoLeft == 0) weapon.GoToReload();
     }
 }

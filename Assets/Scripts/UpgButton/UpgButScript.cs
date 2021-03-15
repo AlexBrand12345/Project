@@ -15,7 +15,7 @@ public class UpgButScript : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
-        upg = Instantiate(Upgrades[UnityEngine.Random.Range(0, Upgrades.Count - 1)], new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -4), gameObject.transform.rotation, gameObject.transform);
+        upg = Instantiate(Upgrades[UnityEngine.Random.Range(0, Upgrades.Count)], new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -4), gameObject.transform.rotation, gameObject.transform);
         Debug.Log(gameObject);
         //upgName = upg.name;
     }

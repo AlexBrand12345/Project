@@ -35,41 +35,32 @@ public class BaseWeapon : MonoBehaviour
         animator = GetComponent<Animator>();
         source = GetComponent<AudioSource>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        reloading = player.reloading;
         rect = GetComponent<RectTransform>();
-        Debug.Log(gameObject.name);
+        //Debug.Log(gameObject.name);
         switch (gameObject.name)
         {
             case "pistol":
                 Debug.Log(Game.game.pistolAmmo);
                 damage = Game.game.pistolDMG;
-                bspeed = Game.game.pistolbspeed;
-                //shotTime = 1f;
-                ammo = Game.game.pistolAmmo;
-                //sprite.sprite = Game.game.sprites[0];
-                break;
-            case "tommy":
-                damage = Game.game.tommyDMG;
-                bspeed = Game.game.tommybspeed;
-                //shotTime = 0.5f;
-                ammo = Game.game.tommyAmmo;
-                //sprite.sprite = Game.game.sprites[1];
+                bspeed = Game.game.pistolbspeed;                
+                ammo = Game.game.pistolAmmo;            
                 break;
             case "auto":
-                damage = Game.game.autogunDMG;
-                bspeed = Game.game.autogunbspeed;
-                //shotTime = 1.5f;
-                ammo = Game.game.autogunAmmo;
-                //sprite.sprite = Game.game.sprites[2];
+                damage = Game.game.autoDMG;
+                bspeed = Game.game.autobspeed;                
+                ammo = Game.game.autoAmmo;                
+                break;
+            case "machinegun":
+                damage = Game.game.machinegunDMG;
+                bspeed = Game.game.machinegunbspeed;                
+                ammo = Game.game.machinegunAmmo;              
                 break;
             case "rifle":
                 damage = Game.game.rifleDMG;
-                bspeed = Game.game.riflebspeed;
-                //shotTime = 4f;
-                ammo = Game.game.rifleAmmo;
-                //sprite.sprite = Game.game.sprites[3];
+                bspeed = Game.game.riflebspeed;               
+                ammo = Game.game.rifleAmmo;               
                 break;
-            //case "Ppistol":
-            //    break;
             default: //блять я второй, крч мы должны обновлять статистику оружия, ладно, отдельного оружия сможем, но когда у всех увеличивается дамаг или скорость, то нужны методы, нужно их вызывать, скорее всего из player
                 damage *= player.DMGmod;
                 bspeed += player.bspeed;
@@ -81,8 +72,8 @@ public class BaseWeapon : MonoBehaviour
     public void Shoot()
     {
         //Debug.Log(reloading);
-        if (!reloading)
-        {
+        //if (!reloading)
+        //{
             if (ammoLeft == 0) GoToReload();
             else
             {
@@ -93,7 +84,7 @@ public class BaseWeapon : MonoBehaviour
                     StartCoroutine(ShootCor());
                 }
             }
-        }
+        //}
     }
     public IEnumerator ShootCor()
     {
@@ -117,12 +108,12 @@ public class BaseWeapon : MonoBehaviour
     {
         if (!reloading)
         {
+            reloading = true;
             StartReloading(time2reload);
-        }
-        reloading = true;
+        }   
     }
     public virtual void StartReloading(float time2reload)
-    {
+    {     
         reloadingCor = StartCoroutine(Reload(time2reload));
     }
 

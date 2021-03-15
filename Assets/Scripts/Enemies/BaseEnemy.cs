@@ -19,13 +19,13 @@ public abstract class BaseEnemy : Person
     public float minDistance = 5;
 
     private bool isFalling;
-    bool alreadyDead;
     
-
+    
     [Header("AI")]
     public float nextWaypointDistance = 3f;
     int currentWaypoint = 0;
     bool reachedEndOfPath = false;
+    bool need2move;
     Path path;
     Seeker seeker; 
 
@@ -45,8 +45,13 @@ public abstract class BaseEnemy : Person
     {
         base.Start();
         weapon = transform.GetChild(0).GetChild(0).GetComponent<EnemyWeapon>();
-        InvokeRepeating("ChangeSpeedAndDirectionPerTime", 0, timeRange);
-        InvokeRepeating("UpdatePath", 0, .5f);
+        need2move = true;
+        if (need2move) 
+        {
+            InvokeRepeating("ChangeSpeedAndDirectionPerTime", 0, timeRange);
+            InvokeRepeating("UpdatePath", 0, .5f);
+        }
+        
     }
 
     void UpdatePath()
@@ -64,12 +69,12 @@ public abstract class BaseEnemy : Person
     public void OnBecameVisible()
     {
         isVisible = true;
-        Debug.Log(isVisible);
+        //Debug.Log(isVisible);
     }
     public void OnBecameInvisible()
     {
         isVisible = false;
-        Debug.Log(isVisible);
+        //Debug.Log(isVisible);
     }
     protected new void Update()
     {
@@ -90,15 +95,17 @@ public abstract class BaseEnemy : Person
 
             if (SearchPlayer())
             {
+                need2move = false;
                 float x = -player.transform.position.x + transform.position.x;
                 float y = -player.transform.position.y + transform.position.y;
                 float gunAngle = Mathf.Atan2(y, x) * Mathf.Rad2Deg;
                 //Debug.Log(gunAngle);
                 if (body.velocity.x <= -0.01f) hand.transform.rotation = Quaternion.Euler(0, -180, -gunAngle);
-                if (body.velocity.x >= 0.01f) hand.transform.rotation = Quaternion.Euler(0, 0, -gunAngle);
+                if (body.velocity.x >= 0.01f) hand.transform.rotation = Quaternion.Euler(0, 0, gunAngle-180f);
             }
             else
             {
+                need2move = true;
                 if (body.velocity.x <= -0.01f) hand.transform.rotation = Quaternion.Lerp(hand.transform.rotation, Quaternion.Euler(0, -180, 0), 0.1f);
                 if (body.velocity.x >= 0.01f) hand.transform.rotation = Quaternion.Lerp(hand.transform.rotation, Quaternion.Euler(0, 0, 0), 0.1f);
             }
@@ -141,7 +148,7 @@ public abstract class BaseEnemy : Person
             {
                 if (SearchPlayer() && isVisible)
                 {
-                    Debug.Log("Shooting");
+                    //Debug.Log("Shooting");
                     weapon.Shoot();
                 }
             }
@@ -248,17 +255,14 @@ public abstract class BaseEnemy : Person
     }
 
     public override void Die()
+    {      
+         Blow(Game.game.time2die);
+    }
+    protected void Blow(float time2die)
     {
-        if (!alreadyDead)
-        {
-            source.clip = clips[1];
-            source.Play();
-            alreadyDead = true;
-            Destroy(gameObject);
-            Game.game.protivnikov--;
-            MainSave.save.kills++;
-            player.GainExp();
-        }
-        
+        Game.game.protivnikov--;
+        MainSave.save.kills++;
+        player.GainExp();
+        BlowUp(time2die);
     }
 }

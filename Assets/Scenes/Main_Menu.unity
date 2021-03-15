@@ -6283,7 +6283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -8091,6 +8091,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   texture: {fileID: 0}
+  cursorPoint: {fileID: 0}
   cursor: {fileID: 0}
 --- !u!1 &1561979480
 GameObject:
@@ -8150,7 +8151,6 @@ MonoBehaviour:
   skins:
   - {fileID: 1274694320}
   - {fileID: 1200329058}
-  - {fileID: 0}
   i: 0
 --- !u!114 &1561979483
 MonoBehaviour:

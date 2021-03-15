@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,9 +14,9 @@ public class StartMenu : MonoBehaviour
     public void Load()
     {
         need2DestroySelf = true;
-        Debug.Log("iteration");
+        //Debug.Log("iteration");
         script = GameObject.FindWithTag("EscController").GetComponent<Escbuttons>();
-        Debug.Log(scene + "startmenu1");
+        //Debug.Log(scene + "startmenu1");
         LoadScene(scene);
     }
     void Start()
@@ -24,7 +25,7 @@ public class StartMenu : MonoBehaviour
         if (startGame)
         {
             script = GameObject.FindWithTag("EscController").GetComponent<Escbuttons>();
-            Debug.Log(scene + "startmenu1");
+            //Debug.Log(scene + "startmenu1");
             script.LoadScene("Main_Menu StartScene");
             startGame = false;
         }

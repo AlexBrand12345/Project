@@ -215,6 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ac9309ede4ac424db7d505640b571f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  changeAlpha: 0
   redTime: 0.4
   image: {fileID: 0}
 --- !u!61 &1572856871617285096
@@ -264,8 +265,13 @@ MonoBehaviour:
   isFlying: 0
   infiniteFuel: 1
   fuel: 10
+  actualFuel: 0
+  time2refuel: 0
+  mayFLy: 0
   body: {fileID: 0}
   jetAnimator: {fileID: 7604852330740629487}
+  explosionPref: {fileID: 8052619824401749066, guid: 291d96849c4ef7142b90e88d7144e3ad,
+    type: 3}
   health: 7
   maxHealth: 7
   clips:
@@ -876,7 +882,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   bullet: {fileID: 1659217005082650244, guid: 7328c020405d74749b99f99cddee2635, type: 3}
-  damage: 1
+  damage: 0
   bspeed: 25
   time2reload: 3
   shotTime: 0.21

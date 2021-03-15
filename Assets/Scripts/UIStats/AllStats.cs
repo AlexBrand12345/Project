@@ -15,6 +15,7 @@ public class AllStats : MonoBehaviour
     public float updLvlTime;
     public float gameOverTime;
     public float startGameOverTime;
+    public GameObject redText;
     public GameObject[] weapons;
     GameObject weapon;
     public GameObject reload;
@@ -30,6 +31,7 @@ public class AllStats : MonoBehaviour
     public Image image;
     public Text textH;
     public Text textE;
+    Text redText2;
     //string child;
     Player player;
 
@@ -40,6 +42,7 @@ public class AllStats : MonoBehaviour
     public void Awake()
     {
         Time.timeScale = 1f;
+        redText2 = redText.GetComponent<Text>();
         weapon = weapons[0];
         alreadyDead = false;    
         //music = GameObject.FindWithTag("MusicControll").GetComponent<MusicControll>();
@@ -97,6 +100,7 @@ public class AllStats : MonoBehaviour
     public void StopReloading()
     {
         Destroy(reloadObj);
+        Debug.Log("Destroyed");
     }
     public void GuiDie()
     {
@@ -117,10 +121,11 @@ public class AllStats : MonoBehaviour
     }
     public IEnumerator StartGameOver()
     {
-       player.paused = true;
-       yield return new WaitForSeconds(startGameOverTime);
-       Debug.Log("I catched you");
-       StartCoroutine(GameOver());
+        player.paused = true;
+        StartCoroutine(ShowRedText("Игра окончена", startGameOverTime - 0.1f));
+        yield return new WaitForSeconds(startGameOverTime);
+        Debug.Log("I catched you");
+        StartCoroutine(GameOver());
     }
     public IEnumerator GameOver()
     {
@@ -145,6 +150,12 @@ public class AllStats : MonoBehaviour
         player.body.WakeUp();
         player.paused = false;
     }
-  
+    public IEnumerator ShowRedText(string text, float time2show)
+    {
+        redText2.text = text;
+        redText.SetActive(true);
+        yield return new WaitForSeconds(time2show);
+        redText.SetActive(false);
+    }
 
 }

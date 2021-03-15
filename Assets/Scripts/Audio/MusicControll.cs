@@ -83,10 +83,10 @@ public class MusicControll : MonoBehaviour
         //source.Stop();
         //do
         //{
-            curClip = clips[Random.Range(0, clips.Length - 1)];
+            curClip = clips[Random.Range(0, clips.Length)];
         //} //while (curClip == prevClip);
         source.clip = curClip;
-        Debug.Log(curClip);
+        //Debug.Log(curClip);
         source.Play();
         clipFound = true;
 
@@ -198,7 +198,7 @@ public class MusicControll : MonoBehaviour
     void LookForNewClip(AudioSource source, AudioClip[] clips)
     {
         isLoud = false;
-        Debug.Log("LookingFoClip");
+        //Debug.Log("LookingFoClip");
         source.volume = 0f;
         GetNewClip(source, clips);      
     }
@@ -216,7 +216,7 @@ public class MusicControll : MonoBehaviour
             if (source.volume >= volume)
             {
                 EndToChangeMusic(source, clips);
-                Debug.Log("End");
+                //Debug.Log("End");
                 yield break;
             }
             else

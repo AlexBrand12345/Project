@@ -28,12 +28,20 @@ public class Escbuttons : MonoBehaviour
         //SaveLoad.Save();     
         IsLoading = true;
         //CursorControll.cursorControll.HideCursor();
-        Debug.Log(loadingScene);
+        //Debug.Log(loadingScene);
         loadingSlider = loadingScene.GetComponentInChildren<Slider>();
-        Debug.Log(loadingSlider);
+        //Debug.Log(loadingSlider);
         //loadingScene.SetActive(true);
         loading = SceneManager.LoadSceneAsync(scene);
-        if(loading.progress >=0.9f) IsLoading = false;
+        //if (IsLoading)
+        //{while (!loading.isDone)
+        Debug.Log(loading.progress);
+        {
+            loadingSlider.value = 1 - loading.progress;
+        }
+        //Debug.Log(IsLoading);        
+        //}
+        if (loading.progress >=0.9f) IsLoading = false;
     }
     public void LoadScene(string allInOne) //передача сцены и её подгрузчика
     {
@@ -52,23 +60,18 @@ public class Escbuttons : MonoBehaviour
         startmenu.scene = scene;
         Debug.Log(startmenu.scene + "esc3");
         startmenu.needToLoad = true;
-        //loadingSlider = loadingScene.GetComponentInChildren<Slider>();
-        //loadingScene.SetActive(true);
-        //DontDestroyOnLoad(startmenu.gameObject);
-        //loading = SceneManager.LoadSceneAsync(loader); //загрузка подгрузчика
-        SceneManager.LoadScene(loader); //или эта, в предыдущей подвисает всё, здесь только кнопка играть
+        SceneManager.LoadSceneAsync(loader); //или эта, в предыдущей подвисает всё, здесь только кнопка играть
         Debug.Log("LoadingLoaded");
-        //if (loading.progress >= 0.9f) IsLoading = false;
+        
     }
 
     public void Update()
     {
-        if (IsLoading) 
-        {
-            //Debug.Log(IsLoading);
+        if (IsLoading)
+        {            
             loadingSlider.value = 1 - loading.progress;
+        //Debug.Log(IsLoading);        
         }
-        
     }
     public void Start()
     {

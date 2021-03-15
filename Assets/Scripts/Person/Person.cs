@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public abstract class Person : Movement
 {
     HeartFon heartFon;
+    public GameObject explosionPref;
+    GameObject explosion;
     protected SpriteRenderer sprite;
     [Header("Stats")]
     public int health;
@@ -13,6 +15,7 @@ public abstract class Person : Movement
     [SerializeField]
     public AudioClip[] clips; //0-takeDMG 1-Die
     protected AudioSource source;
+    bool alreadyDead;
 
     protected new void Awake()
     {
@@ -22,7 +25,7 @@ public abstract class Person : Movement
     }
     protected void LookForComponents(bool need)
     {
-        Debug.Log("searching");
+        //Debug.Log("searching");
         if(!source)
         source = GetComponent<AudioSource>();
         if(!heartFon)
@@ -67,18 +70,27 @@ public abstract class Person : Movement
 
         if (health <= 0)
         {
-            source.clip = clips[1];
-       
-            source.PlayOneShot(clips[1]);
-            
+            //source.clip = clips[1];
+            //source.Play();           
             health = 0;
             Die();
         }
        
     }
     public virtual void Die()
-    {         
-        source.Play();
-        Destroy(gameObject);
+    {
+        //StartCoroutine(BlowUp(2));
+    }
+    protected void BlowUp(float time2die)
+    {
+        if (!alreadyDead) 
+        {
+            alreadyDead = true;
+            source.Play();
+            explosion = Instantiate(explosionPref, new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z), Quaternion.Euler(0, 0, 0));
+            explosion.GetComponent<Explosion>().Blow(time2die);
+            Destroy(gameObject);
+        }
+        
     }
 }
