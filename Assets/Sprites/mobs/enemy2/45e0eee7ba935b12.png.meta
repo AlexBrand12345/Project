@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 33a4add964281e145a7d8c81540f7329
+guid: 324f7f6f6a395f34b928ec09d92cfc44
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2915958627642956910
-    second: "run-of-the-dodik-.png_0003_\u0421\u043B\u043E\u0439-12_0"
+      213: -3507740558721165075
+    second: 45e0eee7ba935b12_0
+  - first:
+      213: -7517433390080419538
+    second: 45e0eee7ba935b12_1
+  - first:
+      213: 4349230992321800175
+    second: 45e0eee7ba935b12_2
+  - first:
+      213: -3799127604736706249
+    second: 45e0eee7ba935b12_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -92,13 +101,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "run-of-the-dodik-.png_0003_\u0421\u043B\u043E\u0439-12_0"
+      name: 45e0eee7ba935b12_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 17
+        y: 5
         width: 30
-        height: 59
+        height: 57
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -106,8 +115,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e6cd4642ce0977820800000000000000
-      internalID: 2915958627642956910
+      spriteID: de8d131fb80025fc0800000000000000
+      internalID: -3507740558721165075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 45e0eee7ba935b12_1
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 5
+        width: 30
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2998992926bca790800000000000000
+      internalID: -7517433390080419538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 45e0eee7ba935b12_2
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 5
+        width: 30
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe7e5775b829b5c30800000000000000
+      internalID: 4349230992321800175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 45e0eee7ba935b12_3
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 5
+        width: 30
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 739b9477299c64bc0800000000000000
+      internalID: -3799127604736706249
       vertices: []
       indices: 
       edges: []

@@ -40,6 +40,7 @@ public class MusicControll : MonoBehaviour
     void Awake()
     {      
         audioSrc = GetComponent<AudioSource>();
+        ChangeMusicVolume(MainSave.save.musicVolume);
         volume = 1f;
         audioSrc.volume = 0.01f;
         UIaudioSource.volume = 0.01f;

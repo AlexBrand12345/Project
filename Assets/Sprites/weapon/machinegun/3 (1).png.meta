@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: 7a4bc9869519f2e48bd4b9c3138a5595
+guid: 672b20a735bfb6744b33d67fed379047
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7586339777452756647
-    second: run-of-the-dodik-.png_0001_14_0
+      213: 4818666962548292046
+    second: 3 (1)_0
+  - first:
+      213: 1695351448811912462
+    second: 3 (1)_1
+  - first:
+      213: 3624179302514329415
+    second: 3 (1)_2
+  - first:
+      213: 362465365386549204
+    second: 3 (1)_3
+  - first:
+      213: 5127214442517212606
+    second: 3 (1)_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -49,7 +61,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 14
+  spritePixelsToUnits: 26
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -92,22 +104,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: run-of-the-dodik-.png_0001_14_0
+      name: 3 (1)_0
       rect:
         serializedVersion: 2
-        x: 12
-        y: 0
-        width: 30
-        height: 59
+        x: 20
+        y: 53
+        width: 72
+        height: 22
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9513383aa28e7b690800000000000000
-      internalID: -7586339777452756647
+      spriteID: ec9f99172185fd240800000000000000
+      internalID: 4818666962548292046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3 (1)_1
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 53
+        width: 75
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0db0eb0929178710800000000000000
+      internalID: 1695351448811912462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3 (1)_2
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 53
+        width: 75
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74780b8bfdbab4230800000000000000
+      internalID: 3624179302514329415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3 (1)_3
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 53
+        width: 73
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d75f33545cb70500800000000000000
+      internalID: 362465365386549204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3 (1)_4
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 53
+        width: 73
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebdad7dce56872740800000000000000
+      internalID: 5127214442517212606
       vertices: []
       indices: 
       edges: []

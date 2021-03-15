@@ -57,7 +57,7 @@ public class PlayerWeapon : BaseWeapon
     public override IEnumerator Reload(float time2reload)
     {
         reloading = true;
-        Debug.Log(player.reloading);
+        //Debug.Log(player.reloading);
         stats.Reload(time2reload);
         yield return new WaitForSeconds(time2reload);
         //Destroy(reloadObj);

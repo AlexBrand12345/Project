@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class CursorControll : MonoBehaviour
 {
-    bool menuOpened;
+    bool menuOpened = false;
     CursorMode cursorMode = CursorMode.ForceSoftware;
     public Texture2D texture;
+    //public Texture2D baseTexture;
     [SerializeField] GameObject cursorPoint;
     [SerializeField]
     Texture2D cursor;
@@ -18,30 +19,31 @@ public class CursorControll : MonoBehaviour
     }
     public void ChangeCursor()
     {
-        //Texture2D cursor;
-        //if(!Cursor.visible)
-        //{
-        //    Cursor.visible = true;
-        //}
-        //menuOpened = !menuOpened;
-        //if (menuOpened) cursor = null;
-        //else cursor = texture;
-        //Cursor.SetCursor(cursor, Vector2.zero, cursorMode);
         if (!Cursor.visible) Cursor.visible = true;
         menuOpened = !menuOpened;
         Debug.Log(menuOpened);
-        if(menuOpened) Cursor.SetCursor(null, Vector2.zero, cursorMode);
-        else Cursor.SetCursor(texture, Vector2.zero, cursorMode);
+        if (menuOpened)
+        {
+            //Debug.Log(baseTexture);
+            Cursor.SetCursor(null, Vector3.zero, cursorMode);
+        }
+        else
+        {
+            Debug.Log(texture);
+            Cursor.SetCursor(texture, Vector3.zero, cursorMode);
+        }
 
     }
     public void Update()
     {
-        if (cursorPoint != null) cursorPoint.transform.position = Input.mousePosition;
+        //if (cursorPoint != null) cursorPoint.transform.position = Input.mousePosition;
     }
     public void Awake()
     {
         menuOpened = false;
         cursor = texture;
-        Cursor.SetCursor(texture, Vector2.zero, cursorMode); 
+        Cursor.SetCursor(texture, Vector2.zero, cursorMode);
+        Debug.Log(texture);
+        cursorControll.texture = texture;
     }
 }

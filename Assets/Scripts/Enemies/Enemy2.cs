@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public sealed class Enemy : BaseEnemy
+public class Enemy2 : BaseEnemy
 {
     // Start is called before the first frame update
     private new void Start()
     {
         base.Start();
     }
-
     private new void Awake()
     {
         base.Awake();
-        maxHealth = Game.game.pistolHP;
+        maxHealth = Game.game.machinegunHP;
         health = maxHealth;
     }
 
@@ -21,7 +20,5 @@ public sealed class Enemy : BaseEnemy
     private new void Update()
     {
         base.Update();
-        //Hand Controller
-       
     }
 }

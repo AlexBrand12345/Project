@@ -100,7 +100,7 @@ public class AllStats : MonoBehaviour
     public void StopReloading()
     {
         Destroy(reloadObj);
-        Debug.Log("Destroyed");
+        //Debug.Log("Destroyed");
     }
     public void GuiDie()
     {

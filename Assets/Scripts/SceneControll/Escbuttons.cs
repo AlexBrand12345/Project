@@ -84,10 +84,10 @@ public class Escbuttons : MonoBehaviour
     }
     MusicControll GetMusicControll()
     {
-        Debug.Log("GetMusicStarted");
+        //Debug.Log("GetMusicStarted");
         if (GameObject.FindWithTag("MusicControll") == null)
         {
-            Debug.Log("Didnt find anything");
+            //Debug.Log("Didnt find anything");
             return null;
         }
         else

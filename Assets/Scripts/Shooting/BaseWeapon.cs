@@ -26,8 +26,8 @@ public class BaseWeapon : MonoBehaviour
     public int ammo;
     public int ammoLeft;
     int shoted;
-    public bool reloading = false;
     bool firing;
+    protected bool reloading;
     [SerializeField]
     protected Coroutine reloadingCor;
     public void Start()
@@ -35,13 +35,12 @@ public class BaseWeapon : MonoBehaviour
         animator = GetComponent<Animator>();
         source = GetComponent<AudioSource>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        reloading = player.reloading;
         rect = GetComponent<RectTransform>();
         //Debug.Log(gameObject.name);
         switch (gameObject.name)
         {
             case "pistol":
-                Debug.Log(Game.game.pistolAmmo);
+                //Debug.Log(Game.game.pistolAmmo);
                 damage = Game.game.pistolDMG;
                 bspeed = Game.game.pistolbspeed;                
                 ammo = Game.game.pistolAmmo;            
@@ -72,8 +71,8 @@ public class BaseWeapon : MonoBehaviour
     public void Shoot()
     {
         //Debug.Log(reloading);
-        //if (!reloading)
-        //{
+        if (!reloading)
+        {
             if (ammoLeft == 0) GoToReload();
             else
             {
@@ -84,7 +83,7 @@ public class BaseWeapon : MonoBehaviour
                     StartCoroutine(ShootCor());
                 }
             }
-        //}
+        }
     }
     public IEnumerator ShootCor()
     {

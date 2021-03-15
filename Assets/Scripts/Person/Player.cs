@@ -7,7 +7,7 @@ public sealed class Player : Person
 {
     public GameObject font;
     public List<Sprite> fonts;
-    public HeartFon heartFon;
+    //public HeartFon heartFon;
     public GameObject canvas;
     bool alreadyDead = false;
     public bool paused;
@@ -41,7 +41,7 @@ public sealed class Player : Person
     public int gainExp = 1;
     public int health2heal;
 
-    public bool reloading;
+    //public bool reloading;
     public List<Sprite> sprites;
     public List<Sprite> hands;
     EffectsControll effects;
@@ -140,7 +140,8 @@ public sealed class Player : Person
         //if (gameObject) CheckOutOfView();
         //if (!paused && gameObject)
         base.FixedUpdate();
-        if (!paused && !reloading)
+        //Debug.Log(reloading);
+        if (!paused)
         {
             if (Input.GetMouseButton(0))
             {
@@ -210,6 +211,7 @@ public sealed class Player : Person
     {
         effects.PlayOneShot(0, healClip);
         health += heal;
+        heartFon.MakeGreen();
         MainSave.save.heals++;
         if (health >= maxHealth) health = maxHealth;
     }

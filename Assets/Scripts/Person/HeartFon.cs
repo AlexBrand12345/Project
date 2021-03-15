@@ -30,13 +30,17 @@ public class HeartFon : MonoBehaviour
         switch (tag)
         {
             case "Player":
-                image.color = new Color(image.color.r, image.color.g, image.color.b, 60/255.0f);
+                image.color = new Color(Color.red.r, 0, 0, 60/255.0f);
                 break;
             case "Enemy":
                 if (!isShoted) StartCoroutine(MakeEnemyRed());
                 break;
         }
         //image.color = new Color(image.color.r, image.color.g, image.color.b, 60f);
+    }
+    public void MakeGreen()
+    {
+        image.color = new Color(0, Color.green.g, 0, 60 / 255.0f);
     }
     void Update()
     {

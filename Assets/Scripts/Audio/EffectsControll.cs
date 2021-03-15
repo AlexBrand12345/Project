@@ -20,6 +20,7 @@ public class EffectsControll : MonoBehaviour
     void Awake()
     {
         audioSrc = GetComponent<AudioSource>();
+        ChangeEffectsVolume(MainSave.save.effectsVolume);
     }
 
     // Update is called once per frame

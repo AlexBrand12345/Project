@@ -95,9 +95,9 @@ GameObject:
   - component: {fileID: 1572856871617285099}
   - component: {fileID: 1572856871617285102}
   - component: {fileID: 1572856871617285097}
+  - component: {fileID: 5622091050985497284}
   - component: {fileID: 1572856871617285090}
   - component: {fileID: 1572856871617285096}
-  - component: {fileID: 1572856871617285103}
   - component: {fileID: 1572856871617285100}
   - component: {fileID: 1572856871617285101}
   - component: {fileID: 1572856871617285091}
@@ -203,6 +203,45 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &5622091050985497284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572856871617285098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca116114e9717b14ca4a777a1a057b9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1400
+  isGrounded: 0
+  isForward: 0
+  ground:
+    serializedVersion: 2
+    m_Bits: 0
+  isFlying: 0
+  infiniteFuel: 1
+  fuel: 0
+  actualFuel: 0
+  time2refuel: 0
+  mayFLy: 0
+  body: {fileID: 0}
+  jetAnimator: {fileID: 7604852330740629487}
+  explosionPref: {fileID: 8052619824401749066, guid: 291d96849c4ef7142b90e88d7144e3ad,
+    type: 3}
+  health: 0
+  maxHealth: 0
+  clips:
+  - {fileID: 8300000, guid: 96aae7940f0662446a8b05a1f605d1d6, type: 3}
+  hand: {fileID: 1572856870807123400}
+  timeRange: 5
+  rotationDistance: 3
+  jumpDistance: 0
+  moveInput: 1
+  minDistance: 5
+  nextWaypointDistance: 3
 --- !u!114 &1572856871617285090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,46 +283,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.2882085, y: 4.3614583}
   m_EdgeRadius: 0
---- !u!114 &1572856871617285103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1572856871617285098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca116114e9717b14ca4a777a1a057b9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 800
-  isGrounded: 0
-  isForward: 0
-  ground:
-    serializedVersion: 2
-    m_Bits: 256
-  isFlying: 0
-  infiniteFuel: 1
-  fuel: 10
-  actualFuel: 0
-  time2refuel: 0
-  mayFLy: 0
-  body: {fileID: 0}
-  jetAnimator: {fileID: 7604852330740629487}
-  explosionPref: {fileID: 8052619824401749066, guid: 291d96849c4ef7142b90e88d7144e3ad,
-    type: 3}
-  health: 7
-  maxHealth: 7
-  clips:
-  - {fileID: 8300000, guid: 96aae7940f0662446a8b05a1f605d1d6, type: 3}
-  - {fileID: 8300000, guid: b61cd3e28d4dd6c41881bded91bd824e, type: 3}
-  hand: {fileID: 1572856870807123400}
-  timeRange: 5
-  rotationDistance: 0
-  jumpDistance: 0
-  moveInput: 0
-  minDistance: 10
-  nextWaypointDistance: 3
 --- !u!114 &1572856871617285100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -890,7 +889,6 @@ MonoBehaviour:
   animator: {fileID: 0}
   ammo: 5
   ammoLeft: 5
-  reloading: 0
 --- !u!212 &8832669732760273356
 SpriteRenderer:
   m_ObjectHideFlags: 0

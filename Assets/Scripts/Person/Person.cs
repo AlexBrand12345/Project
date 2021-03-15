@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public abstract class Person : Movement
 {
-    HeartFon heartFon;
+    protected HeartFon heartFon;
     public GameObject explosionPref;
     GameObject explosion;
     protected SpriteRenderer sprite;
@@ -25,7 +25,6 @@ public abstract class Person : Movement
     }
     protected void LookForComponents(bool need)
     {
-        //Debug.Log("searching");
         if(!source)
         source = GetComponent<AudioSource>();
         if(!heartFon)
@@ -33,45 +32,28 @@ public abstract class Person : Movement
         {
             heartFon = GameObject.Find("HeartFon").GetComponent<HeartFon>();
         }
-        else heartFon = GetComponent<HeartFon>();
-        //if (source && heartFon) need = false;
-        //if(!need) LookForComponents(need);
+        else heartFon = GetComponent<HeartFon>();        
     }
     public void Start()
     {
         LookForComponents(true);
-        //if (gameObject.tag == "Player")
-        //{
-        //    heartFon = GameObject.Find("HeartFon").GetComponent<HeartFon>();
-        //}
-        //else heartFon = GetComponent<HeartFon>();
+        
     }
     protected void Update()
     {
         base.FixedUpdate();
     }
-
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.tag == "Bullet")
-    //    {
-    //        collision.gameObject.GetComponent<Bullet>().DoDamage(gameObject);
-    //    }
-    //}
     public void TakeDamage(int damage)
     {
 
         health -= damage;
         source.clip = clips[0];
         source.Play();
-        //heartFon = GetComponent<HeartFon>();
 
         heartFon.MakeRed(gameObject.tag);      
 
         if (health <= 0)
-        {
-            //source.clip = clips[1];
-            //source.Play();           
+        {         
             health = 0;
             Die();
         }
