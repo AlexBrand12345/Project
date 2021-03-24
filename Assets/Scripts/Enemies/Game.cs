@@ -98,7 +98,7 @@ public class Game : MonoBehaviour
         game.machinegunDMG = machinegunDMG;
 
         game.music = GameObject.FindWithTag("MusicControll").GetComponent<MusicControll>();
-        StartCoroutine(game.Wave(UnityEngine.Random.Range(waves/5, (int)(waves / 5) + 3)));
+        StartCoroutine(game.Wave(UnityEngine.Random.Range(waves/5 + 2, (waves / 5) + 4)));
     }
     IEnumerator Wave(int bots)
     {
@@ -136,7 +136,8 @@ public class Game : MonoBehaviour
         {
             //startWave = false;
             MainSave.save.waves++;
-            StartCoroutine(game.Wave(UnityEngine.Random.Range(waves / 5, (waves / 5) + 3)));
+            Debug.Log(game.waves / 5);
+            StartCoroutine(game.Wave(UnityEngine.Random.Range(game.waves / 5 + 2, (game.waves / 5) + 4)));
         }
     }
     public void AddDMG()

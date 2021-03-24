@@ -17,11 +17,11 @@ public class Credits : MonoBehaviour
         rect = GetComponent<RectTransform>();
         //camera = Camera.main;
         //ymax = camera.WorldToScreenPoint(transform.position).y;
-        max = new Vector2(0, font.rect.height / 2);
+        max = new Vector2(0, font.rect.height / 10);
             //camera.ViewportToWorldPoint(new Vector2(0, 1));
        
         //min = camera.ScreenToWorldPoint(new Vector2(0, 0-gameObject.GetComponent<RectTransform>().rect.height));
-        min = new Vector2(0, -font.rect.height / 2);
+        min = new Vector2(0, -font.rect.height / 10);
         Debug.Log(max.y);
         Debug.Log(min.y);
         //GetComponent<Camera>().ViewportToWorldPoint(new Vector2(0, 0));

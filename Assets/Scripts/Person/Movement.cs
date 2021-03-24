@@ -18,6 +18,9 @@ public abstract class Movement : MonoBehaviour
     [SerializeField] float actualFuel;
     [SerializeField] float time2refuel;
     [SerializeField] bool mayFLy;
+    [SerializeField] float refuelSpeed;
+    [SerializeField] float fuelConsumeSpeed;
+
 
     public Rigidbody2D body;
     protected RectTransform rect;
@@ -59,7 +62,7 @@ public abstract class Movement : MonoBehaviour
             {
                 if (actualFuel > 0f) 
                 {
-                    actualFuel -= 0.05f;
+                    actualFuel -= fuelConsumeSpeed;
                     if (actualFuel <= (fuel / 20f)) StartCoroutine(Refuel());
                 }                   
                 else
@@ -71,11 +74,11 @@ public abstract class Movement : MonoBehaviour
             else
             {
                 if (actualFuel >= fuel)
-                    actualFuel = fuel;
-                else actualFuel += 0.02f;
+                    actualFuel = fuel;                
             }
             //if(actualFuel == 0f)
             jetSlider.value = actualFuel / fuel;
+            if (isGrounded) actualFuel += refuelSpeed;
         }
         else jetSlider.value = 1f;
     }
@@ -112,15 +115,15 @@ public abstract class Movement : MonoBehaviour
     }
     protected void Jump()
     {
-        if (isGrounded) body.velocity = new Vector2(body.velocity.x, 10);
-        else 
+        if (isGrounded) body.velocity = new Vector2(body.velocity.x, 12);        
+        else
         {
-            if(!isFlying && mayFLy) isFlying = true;
+            if (!isFlying && mayFLy) isFlying = true;
             if (isFlying && mayFLy)
-            {           
-                body.velocity = new Vector2(body.velocity.x, 16);
+            {
+                body.velocity = new Vector2(body.velocity.x, 24);                
             }
-            else if (!mayFLy) isFlying = false;           
+            else if (!mayFLy) isFlying = false;
         }
         
     }

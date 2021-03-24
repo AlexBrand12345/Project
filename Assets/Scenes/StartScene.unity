@@ -655,7 +655,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Starting...
+  m_Text: "\u0417\u0430\u043F\u0443\u0441\u043A..."
 --- !u!222 &2069419058
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -839,3 +839,4 @@ MonoBehaviour:
   - {fileID: 2287013754857477386, guid: 14f7b4ca62e8fa440b3d4ab69c5bfbd7, type: 3}
   - {fileID: 5619610279621917755, guid: 652b8095ca53f4a469ce0725cde9f997, type: 3}
   - {fileID: 5209096429573158632, guid: e6fa4603ea6c9df4b8282ee97bd06eb7, type: 3}
+  - {fileID: 8550328089133074136, guid: 63bdc34bd634c074294e713a15341ac9, type: 3}
