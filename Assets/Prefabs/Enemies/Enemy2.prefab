@@ -926,6 +926,8 @@ MonoBehaviour:
   actualFuel: 0
   time2refuel: 0
   mayFLy: 0
+  refuelSpeed: 0
+  fuelConsumeSpeed: 0
   body: {fileID: 0}
   jetAnimator: {fileID: 4482891455613314201}
   explosionPref: {fileID: 8052619824401749066, guid: 291d96849c4ef7142b90e88d7144e3ad,
@@ -935,6 +937,7 @@ MonoBehaviour:
   clips:
   - {fileID: 8300000, guid: 96aae7940f0662446a8b05a1f605d1d6, type: 3}
   hand: {fileID: 4786299587265703614}
+  redPoint: {fileID: 557086112965956466, guid: e00093c4ca7026346a589ed537d22479, type: 3}
   timeRange: 5
   rotationDistance: 3
   jumpDistance: 0

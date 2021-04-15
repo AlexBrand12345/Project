@@ -9,6 +9,9 @@ using Pathfinding;
 public abstract class BaseEnemy : Person
 {
     [SerializeField] GameObject hand;
+    [SerializeField] GameObject redPoint;
+    GameObject redPointClone;
+    float gunAngle;
     bool isVisible;
     protected Player player;
     [Header("BaseEnemy")]
@@ -46,6 +49,7 @@ public abstract class BaseEnemy : Person
         base.Start();
         weapon = transform.GetChild(0).GetChild(0).GetComponent<EnemyWeapon>();
         need2move = true;
+        redPointClone = Instantiate(redPoint, player.transform.position, Quaternion.Euler(0, player.gameObject.transform.rotation.y, gunAngle), player.gameObject.transform);
         if (need2move) 
         {
             InvokeRepeating("ChangeSpeedAndDirectionPerTime", 0, timeRange);
@@ -70,11 +74,13 @@ public abstract class BaseEnemy : Person
     {
         isVisible = true;
         //Debug.Log(isVisible);
+        redPointClone.SetActive(false);
     }
     public void OnBecameInvisible()
     {
         isVisible = false;
         //Debug.Log(isVisible);
+        redPointClone.SetActive(true);
     }
     protected new void Update()
     {
@@ -93,12 +99,14 @@ public abstract class BaseEnemy : Person
                 reachedEndOfPath = false;
             }
 
+            float x = -player.transform.position.x + transform.position.x;
+            float y = -player.transform.position.y + transform.position.y;
+            gunAngle = Mathf.Atan2(y, x) * Mathf.Rad2Deg;
+            redPointClone.transform.rotation = Quaternion.Euler(0, player.gameObject.transform.rotation.y, gunAngle);
+
             if (SearchPlayer())
             {
-                need2move = false;
-                float x = -player.transform.position.x + transform.position.x;
-                float y = -player.transform.position.y + transform.position.y;
-                float gunAngle = Mathf.Atan2(y, x) * Mathf.Rad2Deg;
+                need2move = false;                
                 //Debug.Log(gunAngle);
                 if (body.velocity.x <= -0.01f) hand.transform.rotation = Quaternion.Euler(0, -180, -gunAngle);
                 if (body.velocity.x >= 0.01f) hand.transform.rotation = Quaternion.Euler(0, 0, gunAngle-180f);
@@ -261,6 +269,7 @@ public abstract class BaseEnemy : Person
     protected void Blow(float time2die)
     {
         Game.game.protivnikov--;
+        Destroy(redPointClone);
         MainSave.save.kills++;
         player.GainExp();
         BlowUp(time2die);
